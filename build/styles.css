@@ -1,0 +1,11 @@
+.test {
+  text-decoration: none; }
+
+.test-container {
+  position: absolute;
+  background: linear-gradient(270deg, #2196F3 0%, #1EC3AF 101.06%);
+  height: 470px;
+  width: 1481px;
+  border-radius: 0px; }
+
+/*# sourceMappingURL=styles.css.map */
