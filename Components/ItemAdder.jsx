@@ -4,7 +4,8 @@ import {render} from "react-dom";
 
 class ItemAdder extends Component {
 state ={
-  items : []
+  items : [],
+  text: null
 };
     changeHandler = (event) =>  {
         event.currentTarget.value ;
