@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8390655d-237f-4fcc-89f1-7200c08f8d46" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/react_redux_proj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/react_reduxproj.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/script.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/script.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +41,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.16.1" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/node_modules/gulp" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../jstask2" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -95,10 +104,21 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.test" />
+        <item itemvalue="npm.start" />
         <item itemvalue="Gulp.js.clean" />
         <item itemvalue="Gulp.js.watch" />
       </list>
@@ -120,7 +140,8 @@
       <workItem from="1601554952547" duration="599000" />
       <workItem from="1601826702522" duration="604000" />
       <workItem from="1601906860212" duration="599000" />
-      <workItem from="1601984941792" duration="873000" />
+      <workItem from="1601984941792" duration="1535000" />
+      <workItem from="1601993716230" duration="2875000" />
     </task>
     <servers />
   </component>
@@ -133,26 +154,26 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1601308189568">
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1602013247524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601308189568" />
-    <state width="1898" height="277" key="GridCell.Tab.0.bottom" timestamp="1601319929336">
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602013247524" />
+    <state width="1898" height="277" key="GridCell.Tab.0.bottom" timestamp="1602013409147">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1898" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1601319929336" />
-    <state width="1898" height="277" key="GridCell.Tab.0.center" timestamp="1601319929336">
+    <state width="1898" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602013409147" />
+    <state width="1898" height="277" key="GridCell.Tab.0.center" timestamp="1602013409147">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1898" height="277" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1601319929336" />
-    <state width="1898" height="277" key="GridCell.Tab.0.left" timestamp="1601319929336">
+    <state width="1898" height="277" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602013409147" />
+    <state width="1898" height="277" key="GridCell.Tab.0.left" timestamp="1602013409147">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1898" height="277" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1601319929336" />
-    <state width="1898" height="277" key="GridCell.Tab.0.right" timestamp="1601319929336">
+    <state width="1898" height="277" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602013409147" />
+    <state width="1898" height="277" key="GridCell.Tab.0.right" timestamp="1602013409147">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1898" height="277" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1601319929336" />
+    <state width="1898" height="277" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602013409147" />
     <state x="463" y="150" key="SettingsEditor" timestamp="1601310149253">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
