@@ -21,7 +21,7 @@ const Table = () =>{
     const classes = useStyles();
 
     return (
-        <Grid container className={classes.root} spacing={25}>
+        <Grid container className={classes.root} spacing={7}>
             <Grid item xs={12}>
                 <Grid container justify="center" spacing={spacing}>
                     {[0, 1, 2, 3, 4, 5].map((value) => (
