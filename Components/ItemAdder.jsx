@@ -1,20 +1,22 @@
 import React, {Component, Fragment} from "react";
 import {render} from "react-dom";
+import {InputField} from "./InputField";
+import Grid from '@material-ui/core/Grid';
 
 
 class ItemAdder extends Component {
 render(){
     return(
-        <Fragment>
-            <div>
-                <div className="text-style">Добавить</div>
-                <input className="input-style" type="text"/>
+        <Grid >
+            <div className>
+                <div className="text-style">Add item</div>
+                <InputField/>
             </div>
             <div>
-                <div className="text-style">Удалить</div>
-                <input className="input-style" type="text"/>
+                <div className="text-style">Remove item</div>
+                <InputField/>
             </div>
-        </Fragment>
+        </Grid>
     )
 }
 }

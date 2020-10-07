@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import {Table} from "./Table.jsx"
+import {BookItem} from "./BookItem.jsx"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,7 +26,7 @@ const BookTable = () => {
                 <Grid container justify="center" spacing={spacing}>
                     {[0, 1, 2, 3, 4, 5].map((value) => (
                         <Grid>
-                            <Table/>
+                            <BookItem/>
                         </Grid>
                     ))}
                 </Grid>

@@ -12,7 +12,7 @@ const App = props => {
             <div>
                 <nav className="header">
                     <p>
-                        <Link className="header-item" to="/">AddItem</Link>
+                        <Link className="header-item" to="/">EditTable</Link>
                         <Link className="header-item" to="/table">Table</Link>
                     </p>
                 </nav>

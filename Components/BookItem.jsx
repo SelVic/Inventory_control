@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         padding: 10,
         margin: 6,
-        maxWidth: 600,
+        maxWidth: 400,
     },
     image: {
         width: 128,
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Table = () => {
+const BookItem = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -41,13 +41,10 @@ const Table = () => {
                         <Grid item xs container direction="column" spacing={6}>
                             <Grid item xs>
                                 <Typography gutterBottom variant="subtitle1">
-                                    Book example
-                                </Typography>
-                                <Typography variant="body2" gutterBottom>
-                                    Description
+                                    Book Example
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary">
-                                    ID: 1234567
+                                    ID: 123456789
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -58,4 +55,4 @@ const Table = () => {
     );
 }
 
-export {Table}
+export {BookItem}
