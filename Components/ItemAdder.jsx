@@ -7,10 +7,12 @@ render(){
     return(
         <Fragment>
             <div>
-                <input type="text"/>
+                <div className="text-style">Добавить</div>
+                <input className="input-style" type="text"/>
             </div>
             <div>
-                <input type="text"/>
+                <div className="text-style">Удалить</div>
+                <input className="input-style" type="text"/>
             </div>
         </Fragment>
     )
