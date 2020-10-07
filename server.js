@@ -9,7 +9,7 @@ app.use('/build', express.static(path.join(__dirname, 'build')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
-app.get(['/'], function(req, res) {
+app.get(['/', '/table'], function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
