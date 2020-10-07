@@ -1,0 +1,14 @@
+@each $size in 10,20,30,40,50,150,300,800 {
+  .mb-#{$size} {
+    margin-bottom: #{$size}px;
+  }
+  .mt-#{$size} {
+    margin-top: #{$size}px;
+  }
+  .ml-#{$size} {
+    margin-left: #{$size}px;
+  }
+  .mr-#{$size} {
+    margin-right: #{$size}px;
+  }
+}

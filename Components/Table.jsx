@@ -2,36 +2,59 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
     paper: {
-        height: 140,
-        width: 100,
+        padding: 10,
+        margin: 6,
+        maxWidth: 600,
     },
-    control: {
-        padding: 25,
+    image: {
+        width: 128,
+        height: 128,
+    },
+    img: {
+        margin: 'auto',
+        display: 'block',
+        maxWidth: '100%',
+        maxHeight: '100%',
     },
 }));
 
-const Table = () =>{
-    const [spacing, setSpacing] = React.useState(7);
+const Table = () => {
     const classes = useStyles();
-
     return (
-        <Grid container className={classes.root} spacing={7}>
-            <Grid item xs={12}>
-                <Grid container justify="center" spacing={spacing}>
-                    {[0, 1, 2, 3, 4, 5].map((value) => (
-                        <Grid key={value} item>
-                            <Paper className={classes.paper} />
+        <div className={classes.root}>
+            <Paper className={classes.paper}>
+                <Grid container spacing={6}>
+                    <Grid item>
+                        <ButtonBase className={classes.image}>
+                            <img className={classes.img} alt="complex" src="" alt ="Picture" />
+                        </ButtonBase>
+                    </Grid>
+                    <Grid item xs={12} sm container>
+                        <Grid item xs container direction="column" spacing={6}>
+                            <Grid item xs>
+                                <Typography gutterBottom variant="subtitle1">
+                                    Book example
+                                </Typography>
+                                <Typography variant="body2" gutterBottom>
+                                    Description
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary">
+                                    ID: 1234567
+                                </Typography>
+                            </Grid>
                         </Grid>
-                    ))}
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Grid>
+            </Paper>
+        </div>
     );
 }
 

@@ -4,21 +4,21 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import {ItemAdder} from "./Components/ItemAdder"
-import {Table} from "./Components/Table"
+import {BookTable} from "./Components/BookTable"
 
 const App = props => {
     return(
         <Router>
             <div>
-                <nav>
-                    <ul className="header">
+                <nav className="header">
+                    <p>
                         <Link className="header-item" to="/">AddItem</Link>
                         <Link className="header-item" to="/table">Table</Link>
-                    </ul>
+                    </p>
                 </nav>
                 <Switch>
                     <Route path="/table">
-                        <Table/>
+                        <BookTable/>
                     </Route>
                     <Route path="/">
                         <ItemAdder/>
