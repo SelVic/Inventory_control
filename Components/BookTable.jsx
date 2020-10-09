@@ -133,7 +133,7 @@ const rows = [
     createData('bookname', 356, 1700, 6455),
 ];
 
-const BookTable= () => {
+const BookTable= (props) => {
     return (
         <TableContainer component={Paper}>
             <Table aria-label="collapsible table">
