@@ -366,7 +366,7 @@ const InputField = () => {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "contained",
     color: "primary",
-    onClick: alert("hello")
+    onClick: console.log("hello")
   }, "Submit"));
 };
 

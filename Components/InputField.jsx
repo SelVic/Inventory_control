@@ -26,9 +26,9 @@ const InputField =()=> {
                 <TextField id="standard-basic" label="Amount" type="text" value = {amount} onChange={e => updateAmount(e.currentTarget.value)}/>
                 <TextField id="standard-basic" label="ID" type="text" value = {id} onChange={e => updateId(e.currentTarget.value)}/>
             </form>
-        <Button variant="contained" color="primary" onClick={alert("hello")}>
-    Submit
-    </Button>
+            <Button variant="contained" color="primary" onClick={console.log("hello")}>
+                Submit
+            </Button>
         </Fragment>
     );
 }
