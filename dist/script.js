@@ -339,8 +339,23 @@ const InputField = () => {
     amount: 0,
     id: 0
   });
+  let [firstRun, setRun] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   let books = [];
-  const classes = useStyles();
+  const classes = useStyles(); // let updateBooks = () =>{
+  //     books.push(book)
+  //     return books
+  // }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    if (firstRun === false) {
+      setRun(true);
+      let item = book;
+      books.push(item);
+    } else {
+      let item = book;
+      books.push(item);
+    }
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: classes.root,
     noValidate: true,
@@ -363,11 +378,17 @@ const InputField = () => {
     type: "text",
     value: id,
     onChange: e => updateId(e.currentTarget.value)
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "contained",
     color: "primary",
-    onClick: console.log("hello")
-  }, "Submit"));
+    onClick: () => {
+      updateBook({
+        name,
+        amount,
+        id
+      }), console.log(books);
+    }
+  }, "Submit")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (InputField);

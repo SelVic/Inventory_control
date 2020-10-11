@@ -4,8 +4,6 @@ import InputField from "./InputField";
 import Grid from '@material-ui/core/Grid';
 
 
-
-
 class ItemAdder extends Component {
 render(){
     return(
