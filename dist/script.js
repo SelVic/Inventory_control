@@ -244,7 +244,7 @@ Row.propTypes = {
 };
 const rows = [createData('Lord of the Rings', 159, 1000, 23429), createData('Мертвые души', 237, 2000, 1234), createData('bookname', 262, 1500, 23479), createData('bookname', 305, 1600, 345), createData('bookname', 356, 1700, 6455)];
 
-const BookTable = () => {
+const BookTable = props => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
     component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_13__["default"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -307,12 +307,11 @@ const BookTable = () => {
 /*!***********************************!*\
   !*** ./Components/InputField.jsx ***!
   \***********************************/
-/*! exports provided: InputField */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InputField", function() { return InputField; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
@@ -332,27 +331,46 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["
 }));
 
 const InputField = () => {
+  let [id, updateId] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  let [name, updateName] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
+  let [amount, updateAmount] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  let [book, updateBook] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    name: "",
+    amount: 0,
+    id: 0
+  });
+  let books = [];
   const classes = useStyles();
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: classes.root,
     noValidate: true,
     autoComplete: "off"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     id: "standard-basic",
-    label: "Name"
+    label: "Name",
+    type: "text",
+    value: name,
+    onChange: e => updateName(e.currentTarget.value)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     id: "standard-basic",
-    label: "Amount"
+    label: "Amount",
+    type: "text",
+    value: amount,
+    onChange: e => updateAmount(e.currentTarget.value)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     id: "standard-basic",
-    label: "ID"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    label: "ID",
+    type: "text",
+    value: id,
+    onChange: e => updateId(e.currentTarget.value)
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "contained",
-    color: "primary"
+    color: "primary",
+    onClick: alert("hello")
   }, "Submit"));
 };
 
-
+/* harmony default export */ __webpack_exports__["default"] = (InputField);
 
 /***/ }),
 
@@ -383,9 +401,9 @@ class ItemAdder extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: true
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "text-style"
-    }, "Add item"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputField__WEBPACK_IMPORTED_MODULE_2__["InputField"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "Add item"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputField__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "text-style"
-    }, "Remove item"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputField__WEBPACK_IMPORTED_MODULE_2__["InputField"], null)));
+    }, "Remove item"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputField__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
   }
 
 }
