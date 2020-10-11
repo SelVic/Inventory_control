@@ -334,28 +334,31 @@ const InputField = () => {
   let [id, updateId] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
   let [name, updateName] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
   let [amount, updateAmount] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
-  let [book, updateBook] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    name: "",
-    amount: 0,
-    id: 0
-  });
+  let [book, updateBook] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({});
   let [firstRun, setRun] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  let books = [];
-  const classes = useStyles(); // let updateBooks = () =>{
-  //     books.push(book)
-  //     return books
-  // }
-
+  let [books, updateBooks] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const classes = useStyles();
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     if (firstRun === false) {
       setRun(true);
-      let item = book;
-      books.push(item);
+      updateBook({
+        name,
+        amount,
+        id
+      });
     } else {
-      let item = book;
-      books.push(item);
+      updateBook({
+        name,
+        amount,
+        id
+      });
     }
-  });
+  }, [name, amount, id]);
+
+  let setBooks = () => {
+    updateBooks([...books, book]);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: classes.root,
     noValidate: true,
@@ -382,13 +385,15 @@ const InputField = () => {
     variant: "contained",
     color: "primary",
     onClick: () => {
-      updateBook({
-        name,
-        amount,
-        id
-      }), console.log(books);
+      setBooks();
     }
-  }, "Submit")));
+  }, "Submit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "contained",
+    color: "secondary",
+    onClick: () => {
+      console.log(books);
+    }
+  }, "test")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (InputField);
