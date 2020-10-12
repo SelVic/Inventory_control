@@ -34,8 +34,6 @@ const InputField =()=> {
     let setBooks = () =>{
         updateBooks([...books, book])
     }
-
-
     
     return (
         <Fragment>
