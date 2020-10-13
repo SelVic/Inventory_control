@@ -38,6 +38,7 @@ const InputField =()=> {
     return (
         <div>
         <Fragment>
+            Add book
             <form className={classes.root} noValidate autoComplete="off">
                 <TextField id="standard-basic" label="Name" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
                 <TextField id="standard-basic" label="Amount" type="text" value = {amount} onChange={e => updateAmount(e.currentTarget.value)}/>
@@ -51,6 +52,7 @@ const InputField =()=> {
             </form>
         </Fragment>
             <Fragment>
+                Remove book
                 <form className={classes.root} noValidate autoComplete="off">
                     <TextField id="standard-basic" label="Name" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
                     <TextField id="standard-basic" label="Amount" type="text" value = {amount} onChange={e => updateAmount(e.currentTarget.value)}/>
