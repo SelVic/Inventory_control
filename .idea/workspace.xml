@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8390655d-237f-4fcc-89f1-7200c08f8d46" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Components/InputField.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Components/InputField.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/ItemAdder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ItemAdder.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +131,8 @@
       <workItem from="1602331595373" duration="1958000" />
       <workItem from="1602422304179" duration="11308000" />
       <workItem from="1602527199247" duration="624000" />
-      <workItem from="1602598442453" duration="1346000" />
+      <workItem from="1602598442453" duration="3103000" />
+      <workItem from="1602688402572" duration="603000" />
     </task>
     <servers />
   </component>
