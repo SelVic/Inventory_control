@@ -44,15 +44,14 @@ const InputField =()=> {
                     <TextField id="standard-basic" label="Amount" type="text" value = {amount} onChange={e => updateAmount(e.currentTarget.value)}/>
                     <TextField id="standard-basic" label="ID" type="text" value = {id} onChange={e => updateId(e.currentTarget.value)}/>
                     <Button variant="contained" color="primary" onClick={() => {setBooks()}}>
-                        Submit
+                        Add
                     </Button>
-                    <Button variant="contained" color="secondary" onClick={() => {console.log(books)}}>
-                        test
+                    <Button variant="contained" color="secondary" onClick={() => {}}>
+                        Submit
                     </Button>
                 </form>
             </Fragment>
         </div>
-
     )
 }
 

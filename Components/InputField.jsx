@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
-const InputField =()=> {
+const InputFields =()=> {
     let [id, updateId] = useState(0)
     let [name, updateName] = useState("");
     let [amount, updateAmount] = useState(0);
@@ -70,4 +70,4 @@ const InputField =()=> {
     )
 }
 
-export default InputField
+export default InputFields
