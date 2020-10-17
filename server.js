@@ -13,10 +13,20 @@ app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 app.get("/api/test", function (req, res, next) {
     const arr = ["test1", "test2"]
     // if (err) return next(err);
-    res.json({
-        data: arr,
-    });
+    res.json(
+        arr
+    );
 });
+
+// const getData = async () => {
+//     const res = await fetch('localhost:3000/api/get')
+//     if(res.status == 200) {
+//         const { data } = await res.json()
+//         setItems(data.items) // положить в стэйт
+//     }
+// }
+
+
 
 // app.post("/api/add", bodyParser.json(), function(req, res) {
 //
