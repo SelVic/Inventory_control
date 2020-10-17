@@ -10,6 +10,18 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 
+app.get("/api/test", function (req, res, next) {
+    const arr = ["test1", "test2"]
+    // if (err) return next(err);
+    res.json({
+        data: arr,
+    });
+});
+
+// app.post("/api/add", bodyParser.json(), function(req, res) {
+//
+// });
+
 app.use(
     "/",
     (req, res) => {
@@ -19,7 +31,8 @@ app.use(
 
 
 
-// app.get('*', function(req, res) {
+
+// app.get('/', function(req, res) {
 //     res.sendFile(__dirname + '/index.html');
 // });
 
