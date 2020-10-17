@@ -10,14 +10,22 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 
+app.use(
+    "/",
+    (req, res) => {
+        res.sendFile("index.html", { root: __dirname });
+    }
+);
 
-app.get(['/', '/table'], function(req, res) {
-    res.sendFile(__dirname + '/index.html');
-});
 
-app.get('/error', function (req, res, next) {
-    next('404040')
-})
+
+// app.get('*', function(req, res) {
+//     res.sendFile(__dirname + '/index.html');
+// });
+
+// app.get('/error', function (req, res, next) {
+//     next('404040')
+// })
 
 
 app.get('*', function (req, res, next) {
