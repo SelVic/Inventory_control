@@ -12,7 +12,6 @@ app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 
 app.get("/api/test", function (req, res, next) {
     const arr = ["test1", "test2"]
-    // if (err) return next(err);
     res.json(
         arr
     );
