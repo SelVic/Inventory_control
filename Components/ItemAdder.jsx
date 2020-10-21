@@ -21,6 +21,9 @@ const InputField =()=> {
     let [books, updateBooks] = useState([]);
     const classes = useStyles();
 
+    async function getResponse
+
+
     useEffect(()=>{
         if(firstRun === false){
             setRun(true);
@@ -39,7 +42,7 @@ const InputField =()=> {
         <div>
             <Fragment>
                 Add book
-                <form className={classes.root} noValidate autoComplete="off" method="POST">
+                <form className={classes.root} noValidate autoComplete="off">
                     <TextField id="standard-basic" label="Name" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
                     <TextField id="standard-basic" label="Amount" type="text" value = {amount} onChange={e => updateAmount(e.currentTarget.value)}/>
                     <TextField id="standard-basic" label="ID" type="text" value = {id} onChange={e => updateId(e.currentTarget.value)}/>
