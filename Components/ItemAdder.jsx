@@ -21,7 +21,11 @@ const InputField =()=> {
     let [books, updateBooks] = useState([]);
     const classes = useStyles();
 
-    async function getResponse
+    async function getResponse() {
+        let response = await fetch('http://localhost:3000/api/test')
+        let content = await response.json()
+        console.log(content)
+    }
 
 
     useEffect(()=>{
@@ -49,7 +53,7 @@ const InputField =()=> {
                     <Button variant="contained" color="primary" onClick={() => {setBooks()}}>
                         Add
                     </Button>
-                    <Button variant="contained" color="secondary" onClick={() => {}}>
+                    <Button variant="contained" color="secondary" onClick={() => {getResponse()}}>
                         Submit
                     </Button>
                 </form>
