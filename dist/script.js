@@ -292,6 +292,13 @@ const InputField = () => {
   let [firstRun, setRun] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   let [books, updateBooks] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   const classes = useStyles();
+
+  async function getResponse() {
+    let response = await fetch('http://localhost:3000/api/test');
+    let content = await response.json();
+    console.log(content);
+  }
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     if (firstRun === false) {
       setRun(true);
@@ -344,7 +351,9 @@ const InputField = () => {
   }, "Add"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "contained",
     color: "secondary",
-    onClick: () => {}
+    onClick: () => {
+      getResponse();
+    }
   }, "Submit"))));
 };
 
