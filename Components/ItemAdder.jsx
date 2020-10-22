@@ -27,6 +27,11 @@ const InputField =()=> {
         console.log(content)
     }
 
+    async function PostData() {
+        let data = books;
+        
+    }
+
 
     useEffect(()=>{
         if(firstRun === false){
