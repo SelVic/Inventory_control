@@ -99,8 +99,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.start" />
         <item itemvalue="Node.js.test.js" />
         <item itemvalue="npm.test" />
         <item itemvalue="Gulp.js.clean" />
