@@ -26,11 +26,7 @@ const InputField =()=> {
         let content = await response.json()
         console.log(content)
     }
-
-    async function PostData() {
-        let data = books;
-        
-    }
+    
 
 
     useEffect(()=>{
