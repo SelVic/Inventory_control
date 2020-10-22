@@ -26,7 +26,7 @@ const InputField =()=> {
         let content = await response.json()
         console.log(content)
     }
-    
+
 
 
     useEffect(()=>{
@@ -47,7 +47,7 @@ const InputField =()=> {
         <div>
             <Fragment>
                 Add book
-                <form className={classes.root} noValidate autoComplete="off">
+                <form className={classes.root} noValidate autoComplete="off" method="POST">
                     <TextField id="standard-basic" label="Name" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
                     <TextField id="standard-basic" label="Amount" type="text" value = {amount} onChange={e => updateAmount(e.currentTarget.value)}/>
                     <TextField id="standard-basic" label="ID" type="text" value = {id} onChange={e => updateId(e.currentTarget.value)}/>
