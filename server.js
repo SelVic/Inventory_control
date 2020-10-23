@@ -2,6 +2,7 @@ let express = require('express');
 let path = require('path');
 let app = express();
 
+
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
 app.use('/build', express.static(path.join(__dirname, 'build')));
