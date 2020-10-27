@@ -1,7 +1,23 @@
 let express = require('express');
 let path = require('path');
 let app = express();
-const MongoClient    = require('mongodb').MongoClient;
+// const MongoClient    = require('mongodb').MongoClient;
+const mongoose = require('mongoose')
+
+async function mong() {
+    try{
+        await mongoose.connect("mongodb+srv://Vic:1q2w3e4r@cluster0.q16eb.mongodb.net/appdata",{
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false
+        })
+    }catch(e) {
+        console.log(e)
+    }
+}
+
+mong()
+
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
