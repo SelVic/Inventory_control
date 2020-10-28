@@ -33,13 +33,13 @@ app.get("/api/test", function (req, res, next) {
     );
 });
 
-// const getData = async () => {
-//     const res = await fetch('localhost:3000/api/get')
-//     if(res.status == 200) {
-//         const { data } = await res.json()
-//         setItems(data.items) // положить в стэйт
-//     }
-// }
+const getData = async () => {
+    const res = await fetch('localhost:3000/api/get')
+    if(res.status == 200) {
+        const { data } = await res.json()
+        setItems(data.items) // положить в стэйт
+    }
+}
 
 
 
