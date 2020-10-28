@@ -1,7 +1,6 @@
 let express = require('express');
 let path = require('path');
 let app = express();
-// const MongoClient    = require('mongodb').MongoClient;
 const mongoose = require('mongoose')
 
 async function mong() {
