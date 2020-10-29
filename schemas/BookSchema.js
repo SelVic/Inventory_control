@@ -6,15 +6,11 @@ const reqString = {
     required: true
 }
 
-const reqNumber = {
-    type: Number,
-    required: true
-}
 
 const bookSchema = mongoose.Schema({
-    id: reqNumber,
+    id: Number,
     name : reqString,
-    amount : reqNumber
+    amount : Number
 })
 
 module.exports = mongoose.model('BookSchemas', bookSchema)
