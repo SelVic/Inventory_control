@@ -2,6 +2,7 @@ import React, {useEffect, useState, Fragment} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+const bookSchema = require('./schemas/BookSchema');
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,13 +22,11 @@ const InputField =()=> {
     let [books, updateBooks] = useState([]);
     const classes = useStyles();
 
-    async function getResponse() {
-        let response = await fetch('http://localhost:3000/api/test')
-        let content = await response.json()
-        console.log(content)
-    }
-
-
+    // async function getResponse() {
+    //     let response = await fetch('http://localhost:3000/api/test')
+    //     let content = await response.json()
+    //     console.log(content)
+    // }
 
     useEffect(()=>{
         if(firstRun === false){
@@ -54,7 +53,7 @@ const InputField =()=> {
                     <Button variant="contained" color="primary" onClick={() => {setBooks()}}>
                         Add
                     </Button>
-                    <Button variant="contained" color="secondary" onClick={() => {getResponse()}}>
+                    <Button variant="contained" color="secondary" onClick={() => {}}>
                         Submit
                     </Button>
                 </form>

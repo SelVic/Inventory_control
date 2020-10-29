@@ -10,6 +10,7 @@ async function mong() {
             useUnifiedTopology: true,
             useFindAndModify: false
         })
+        console.log("Connected to Mongodb")
     }catch(e) {
         console.log(e)
     }

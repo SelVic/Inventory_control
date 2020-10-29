@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8390655d-237f-4fcc-89f1-7200c08f8d46" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ItemAdder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ItemAdder.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/script.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/script.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/schemas/BookSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/BookSchema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +44,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\WebstormProjects\react_redux_proj\schemas" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\WebstormProjects\userlogin_proj" />
     </key>
@@ -100,8 +107,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.build" />
         <item itemvalue="Node.js.test.js" />
         <item itemvalue="npm.test" />
         <item itemvalue="Gulp.js.clean" />
@@ -145,7 +152,7 @@
       <workItem from="1603635348189" duration="1208000" />
       <workItem from="1603744300583" duration="785000" />
       <workItem from="1603806951136" duration="5913000" />
-      <workItem from="1603979428163" duration="2640000" />
+      <workItem from="1603979428163" duration="4131000" />
     </task>
     <servers />
   </component>
@@ -162,22 +169,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602942602247" />
-    <state width="1882" height="223" key="GridCell.Tab.0.bottom" timestamp="1603986187656">
+    <state width="1882" height="223" key="GridCell.Tab.0.bottom" timestamp="1603987161095">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="223" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603986187656" />
-    <state width="1882" height="223" key="GridCell.Tab.0.center" timestamp="1603986187656">
+    <state width="1882" height="223" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603987161095" />
+    <state width="1882" height="223" key="GridCell.Tab.0.center" timestamp="1603987161095">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="223" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603986187656" />
-    <state width="1882" height="223" key="GridCell.Tab.0.left" timestamp="1603986187656">
+    <state width="1882" height="223" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603987161095" />
+    <state width="1882" height="223" key="GridCell.Tab.0.left" timestamp="1603987161095">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="223" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603986187656" />
-    <state width="1882" height="223" key="GridCell.Tab.0.right" timestamp="1603986187656">
+    <state width="1882" height="223" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603987161095" />
+    <state width="1882" height="223" key="GridCell.Tab.0.right" timestamp="1603987161095">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="223" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603986187656" />
+    <state width="1882" height="223" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603987161095" />
     <state width="1898" height="342" key="GridCell.Tab.1.bottom" timestamp="1602455852167">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
