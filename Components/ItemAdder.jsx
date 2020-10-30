@@ -28,7 +28,9 @@ const InputField =()=> {
     //     console.log(content)
     // }
 
-    
+    async function getSchemaData() {
+        
+    }
 
 
 
