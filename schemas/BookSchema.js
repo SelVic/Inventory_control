@@ -8,9 +8,6 @@ const reqString = {
 
 
 const bookSchema = mongoose.Schema({
-    // id: Number,
-    //     // name : reqString,
-    //     // amount : Number
     books : [Object]
 })
 
