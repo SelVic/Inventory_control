@@ -2,11 +2,12 @@ let express = require('express');
 let path = require('path');
 let app = express();
 const mongoose = require('mongoose')
-const login = require('configfile.js')
+const {login} = require('configfile.js')
+const mongoPath = `mongodb+srv://${login}@cluster0.q16eb.mongodb.net/appdata`
 
 async function mong() {
     try{
-        await mongoose.connect("mongodb+srv://@cluster0.q16eb.mongodb.net/appdata",{
+        await mongoose.connect("mongodb+srv://${login}@cluster0.q16eb.mongodb.net/appdata",{
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false
