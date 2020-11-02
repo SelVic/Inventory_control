@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8390655d-237f-4fcc-89f1-7200c08f8d46" name="Default Changelist" comment="" />
+    <list default="true" id="8390655d-237f-4fcc-89f1-7200c08f8d46" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ItemAdder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ItemAdder.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configfile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/script.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/script.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/BookSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/BookSchema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,7 +157,7 @@
       <workItem from="1604082795149" duration="861000" />
       <workItem from="1604142391999" duration="601000" />
       <workItem from="1604232319675" duration="3198000" />
-      <workItem from="1604346384060" duration="320000" />
+      <workItem from="1604346384060" duration="1769000" />
     </task>
     <servers />
   </component>
@@ -166,22 +174,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602942602247" />
-    <state width="1882" height="223" key="GridCell.Tab.0.bottom" timestamp="1603987161095">
+    <state width="1898" height="228" key="GridCell.Tab.0.bottom" timestamp="1604348248787">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="223" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603987161095" />
-    <state width="1882" height="223" key="GridCell.Tab.0.center" timestamp="1603987161095">
+    <state width="1898" height="228" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604348248787" />
+    <state width="1898" height="228" key="GridCell.Tab.0.center" timestamp="1604348248787">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="223" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603987161095" />
-    <state width="1882" height="223" key="GridCell.Tab.0.left" timestamp="1603987161095">
+    <state width="1898" height="228" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604348248787" />
+    <state width="1898" height="228" key="GridCell.Tab.0.left" timestamp="1604348248787">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="223" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603987161095" />
-    <state width="1882" height="223" key="GridCell.Tab.0.right" timestamp="1603987161095">
+    <state width="1898" height="228" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604348248787" />
+    <state width="1898" height="228" key="GridCell.Tab.0.right" timestamp="1604348248787">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="223" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603987161095" />
+    <state width="1898" height="228" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604348248787" />
     <state width="1898" height="342" key="GridCell.Tab.1.bottom" timestamp="1602455852167">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
