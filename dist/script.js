@@ -58576,7 +58576,7 @@ const reqString = {
 const bookSchema = mongoose.Schema({
   books: [Object]
 });
-module.exports = mongoose.model('BookSchemas', bookSchema); // export {bookSchema}
+module.exports = mongoose.model('BookSchemas', bookSchema);
 
 /***/ })
 
