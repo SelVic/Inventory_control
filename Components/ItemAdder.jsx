@@ -28,7 +28,7 @@ const InputField =()=> {
     //     console.log(content)
     // }
 
-    async function getSchemaData() {
+    const connectToMongoDb = async() => {
 
     }
 
