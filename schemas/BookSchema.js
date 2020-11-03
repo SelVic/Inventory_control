@@ -8,7 +8,9 @@ const reqString = {
 
 
 const bookSchema = mongoose.Schema({
-    books : [Object]
+    id: Number,
+    name: String,
+    amount: Number
 })
 
 module.exports = mongoose.model('BookSchemas', bookSchema)
