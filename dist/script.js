@@ -278,6 +278,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const bookSchema = __webpack_require__(/*! ../schemas/BookSchema.js */ "./schemas/BookSchema.js");
 
+const mongoose = __webpack_require__(/*! mongoose */ "./node_modules/mongoose/dist/browser.umd.js");
+
 const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["makeStyles"])(theme => ({
   root: {
     '& > *': {
@@ -299,8 +301,18 @@ const InputField = () => {
   //     let content = await response.json()
   //     console.log(content)
   // }
-
-  const connectToMongoDb = async () => {};
+  // const postData = async() =>{
+  //     try{
+  //         const newBooks = [{
+  //             id: 435,
+  //             name: "LOTR",
+  //             amount: 10
+  //         }];
+  //         await new bookSchema(newBooks).save()
+  //     }catch(e){
+  //         console.log(e)
+  //     }
+  // }
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     if (firstRun === false) {

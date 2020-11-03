@@ -1,3 +1,3 @@
-const login = "Vic:1q2w3e4r"
+let mongoPass = "pE23c135fxaI3gjz"
 
-export default login
+module.exports = mongoPass

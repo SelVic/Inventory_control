@@ -4,6 +4,7 @@ let app = express();
 let mongoose = require('mongoose')
 let login = require('./configfile')
 let mongoPath = `mongodb+srv://Vic:${login}@cluster0.q16eb.mongodb.net/appdata`
+let bookSchema = require('./schemas/BookSchema')
 
 async function mong() {
     try{
@@ -11,8 +12,16 @@ async function mong() {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false
+
+
         })
         console.log("Connected to Mongodb")
+
+        const newBooks = [{
+            id: 1235,
+            name: "LOTR",
+            amount: 10
+        }]
     }catch(e) {
         console.log(e)
     }
@@ -29,12 +38,12 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 
-app.get("/api/test", function (req, res, next) {
-    const arr = ["test1", "test2"]
-    res.json(
-        arr
-    );
-});
+// app.get("/api/test", function (req, res, next) {
+//     const arr = ["test1", "test2"]
+//     res.json(
+//         arr
+//     );
+// });
 
 // const getData = async () => {
 //     const res = await fetch('localhost:3000/api/get')
