@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8390655d-237f-4fcc-89f1-7200c08f8d46" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/BookTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Components/BookTable.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +156,9 @@
       <workItem from="1604400695260" duration="4565000" />
       <workItem from="1604499585110" duration="857000" />
       <workItem from="1604523156631" duration="24000" />
-      <workItem from="1604592437175" duration="1158000" />
+      <workItem from="1604592437175" duration="1199000" />
+      <workItem from="1604672658595" duration="1440000" />
+      <workItem from="1604754436295" duration="1261000" />
     </task>
     <servers />
   </component>
