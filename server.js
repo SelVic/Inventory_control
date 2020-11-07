@@ -18,9 +18,6 @@ async function mong() {
         console.log("Connected to Mongodb")
 
         const newBooks = {
-            id: 1235,
-            name: "LOTR",
-            amount: 10
         }
         await new bookSchema(newBooks).save()
     }catch(e) {
