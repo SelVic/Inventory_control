@@ -16,10 +16,12 @@ async function mong() {
 
         })
         console.log("Connected to Mongodb")
-
-        const newBooks = {
-        }
-        await new bookSchema(newBooks).save()
+            let books = {
+                name : "LOTR",
+                id: 12345,
+                amount: 10
+            }
+        await new bookSchema(books).save()
     }catch(e) {
         console.log(e)
     }
@@ -36,12 +38,12 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 
-// app.get("/api/test", function (req, res, next) {
-//     const arr = ["test1", "test2"]
-//     res.json(
-//         arr
-//     );
-// });
+app.get("/api/test", function (req, res, next) {
+    const arr = []
+    res.json(
+        arr
+    );
+});
 
 // const getData = async () => {
 //     const res = await fetch('localhost:3000/api/get')
