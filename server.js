@@ -12,8 +12,6 @@ async function mong() {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false
-
-
         })
         console.log("Connected to Mongodb")
             let books = {
@@ -38,7 +36,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 
-app.get("/api/test", function (req, res, next) {
+app.get("/api/data", function (req, res, next) {
     const arr = []
     res.json(
         arr

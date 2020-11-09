@@ -293,7 +293,8 @@ const InputField = () => {
   let [book, updateBook] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({});
   let [firstRun, setRun] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   let [books, updateBooks] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  const classes = useStyles(); // async function getResponse() {
+  const classes = useStyles();
+  const actions = []; // async function getResponse() {
   //     let response = await fetch('http://localhost:3000/api/test')
   //     let content = await response.json()
   //     console.log(content)
@@ -335,7 +336,9 @@ const InputField = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, "Add book", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: classes.root,
     noValidate: true,
-    autoComplete: "off"
+    autoComplete: "off",
+    action: "/api/data",
+    method: "POST"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     id: "standard-basic",
     label: "Name",
@@ -355,6 +358,7 @@ const InputField = () => {
     value: id,
     onChange: e => updateId(e.currentTarget.value)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    type: "submit",
     variant: "contained",
     color: "primary",
     onClick: () => {
