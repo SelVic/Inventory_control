@@ -2,8 +2,6 @@ import React, {useEffect, useState, Fragment} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-// const bookSchema = require('../schemas/BookSchema.js');
-// const mongoose = require('mongoose')
 import axios from "axios";
 
 
@@ -27,23 +25,35 @@ const InputField =()=> {
     const classes = useStyles();
 
 
-    const submitHandler = () =>{
-        const payLoad = books;
-
-        axios({
-            url: "/savedb",
-            method: "POST",
-            data: payLoad
-        })
-            .then(()=>{
-                console.log("Data has been sent to the server");
+    const submitHandler = () => {
+        const payLoad = {
+            name: name,
+            amount: amount,
+            id: id
+        };
+        if(name == "" || id == 0 || amount ==0)
+            alert("Заполните все поля!")
+        else{
+            axios({
+                url: "/savedb",
+                method: "POST",
+                data: payLoad
             })
-            .catch(()=>{
-                console.log("Internal server error");
-            })
+                .then(()=>{
+                    console.log("Data has been sent to the server");
+                    resetFields();
+                })
+                .catch(()=>{
+                    console.log("Internal server error");
+                })
+        }
     }
 
-
+    const resetFields = () =>{
+        updateName("")
+        updateAmount(0)
+        updateId(0)
+    }
 
     useEffect(()=>{
         if(firstRun === false){
@@ -55,9 +65,9 @@ const InputField =()=> {
         }
     }, [name, amount, id])
 
-    let setBooks = () =>{
-        updateBooks([...books, book])
-    }
+    // let setBooks = () =>{
+    //     updateBooks([...books, book])
+    // }
 
     return (
         <div>
@@ -67,12 +77,12 @@ const InputField =()=> {
                     <TextField id="standard-basic" label="Name" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
                     <TextField id="standard-basic" label="Amount" type="text" value = {amount} onChange={e => updateAmount(e.currentTarget.value)}/>
                     <TextField id="standard-basic" label="ID" type="text" value = {id} onChange={e => updateId(e.currentTarget.value)}/>
-                    <Button variant="contained" color="primary" onClick={() => {setBooks()}}>
-                        Add
-                    </Button>
-                    <Button variant="contained" color="secondary" onClick={() => {submitHandler()}}>
+                    <Button variant="contained" color="primary" onClick={() => {submitHandler()}}>
                         Submit
                     </Button>
+                    {/*<Button variant="contained" color="secondary" onClick={() => {}}>*/}
+                    {/*    Submit*/}
+                    {/*</Button>*/}
                 </form>
             </Fragment>
         </div>

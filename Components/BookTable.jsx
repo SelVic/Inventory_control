@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -15,6 +15,7 @@ import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Button from '@material-ui/core/Button';
+import axios from "axios";
 
 const useRowStyles = makeStyles({
     root: {
@@ -23,6 +24,8 @@ const useRowStyles = makeStyles({
         },
     },
 });
+
+
 
 function createData(name, amount, id) {
     return {
@@ -126,6 +129,16 @@ const rows = [
 ];
 
 const BookTable= (props) => {
+    useEffect(() => {
+        axios.get('/api')
+            .then((response) => {
+                let bookData = response.data
+                console.log("Data have been received", bookData)
+            })
+            .catch(() => {
+                console.log("Error receiving data")
+            })
+    })
     return (
         <TableContainer component={Paper}>
             <Table aria-label="collapsible table">

@@ -35,8 +35,8 @@ app.use(express.urlencoded({extended: false}))
 
 app.get("/api", function (req, res) {
     bookSchema.find({ })
-        .then((data)=>{
-            res.json(data)
+        .then((apiData)=>{
+            res.json(apiData)
         })
         .catch((error)=>{
             console.log("Error", error)
@@ -45,8 +45,18 @@ app.get("/api", function (req, res) {
 
 app.post("/savedb", function(req, res){
     console.log("Body:", req.body)
-    res.json({
-        msg: "Data received"
+    let reqData = req.body;
+
+    let newBookSchema = new bookSchema(reqData)
+
+    newBookSchema.save((error)=>{
+        if (error) {
+            res.status(500).json({msg: "Sorry, internal server errors"})
+        } else{
+            res.json({
+                msg: "Data received"
+            })
+        }
     })
 })
 
@@ -91,6 +101,3 @@ console.log('http://localhost:3000');
 
 
 
-// app.post("/api/add", bodyParser.json(), function(req, res) {
-//
-// });

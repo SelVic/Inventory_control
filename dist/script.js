@@ -117,6 +117,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @material-ui/icons/KeyboardArrowUp */ "./node_modules/@material-ui/icons/KeyboardArrowUp.js");
 /* harmony import */ var _material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_15__);
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_17__);
+
 
 
 
@@ -239,6 +242,14 @@ Row.propTypes = {
 const rows = [createData('Lord of the Rings', 159, 1000), createData('Мертвые души', 237, 2000), createData('bookname1', 262, 1500), createData('bookname2', 305, 1600), createData('bookname3', 356, 1700)];
 
 const BookTable = props => {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api').then(response => {
+      let bookData = response.data;
+      console.log("Data have been received", bookData);
+    }).catch(() => {
+      console.log("Error receiving data");
+    });
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
     component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_13__["default"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -276,8 +287,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // const bookSchema = require('../schemas/BookSchema.js');
-// const mongoose = require('mongoose')
 
 
 const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["makeStyles"])(theme => ({
@@ -299,16 +308,29 @@ const InputField = () => {
   const classes = useStyles();
 
   const submitHandler = () => {
-    const payLoad = books;
-    axios__WEBPACK_IMPORTED_MODULE_4___default()({
-      url: "/savedb",
-      method: "POST",
-      data: payLoad
-    }).then(() => {
-      console.log("Data has been sent to the server");
-    }).catch(() => {
-      console.log("Internal server error");
-    });
+    const payLoad = {
+      name: name,
+      amount: amount,
+      id: id
+    };
+    if (name == "" || id == 0 || amount == 0) alert("Заполните все поля!");else {
+      axios__WEBPACK_IMPORTED_MODULE_4___default()({
+        url: "/savedb",
+        method: "POST",
+        data: payLoad
+      }).then(() => {
+        console.log("Data has been sent to the server");
+        resetFields();
+      }).catch(() => {
+        console.log("Internal server error");
+      });
+    }
+  };
+
+  const resetFields = () => {
+    updateName("");
+    updateAmount(0);
+    updateId(0);
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
@@ -326,11 +348,9 @@ const InputField = () => {
         id
       });
     }
-  }, [name, amount, id]);
-
-  let setBooks = () => {
-    updateBooks([...books, book]);
-  };
+  }, [name, amount, id]); // let setBooks = () =>{
+  //     updateBooks([...books, book])
+  // }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, "Add book", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: classes.root,
@@ -357,12 +377,6 @@ const InputField = () => {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "contained",
     color: "primary",
-    onClick: () => {
-      setBooks();
-    }
-  }, "Add"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    variant: "contained",
-    color: "secondary",
     onClick: () => {
       submitHandler();
     }
