@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 // const bookSchema = require('../schemas/BookSchema.js');
 // const mongoose = require('mongoose')
+import axios from "axios";
 
 
 
@@ -25,27 +26,18 @@ const InputField =()=> {
     let [books, updateBooks] = useState([]);
     const classes = useStyles();
 
-    const actions = [
 
-    ]
+    const submitHandler = (event) =>{
+        event.preventDefault();
 
-    // async function getResponse() {
-    //     let response = await fetch('http://localhost:3000/api/test')
-    //     let content = await response.json()
-    //     console.log(content)
-    // }
-    // const postData = async() =>{
-    //     try{
-    //         const newBooks = [{
-    //             id: 435,
-    //             name: "LOTR",
-    //             amount: 10
-    //         }];
-    //         await new bookSchema(newBooks).save()
-    //     }catch(e){
-    //         console.log(e)
-    //     }
-    // }
+        const payLoad = books;
+
+        axios({
+            url: "",
+            method: "POST",
+            data: payLoad
+        })
+    }
 
 
 
@@ -67,7 +59,7 @@ const InputField =()=> {
         <div>
             <Fragment>
                 Add book
-                <form className={classes.root} noValidate autoComplete="off" action="/api/data" method='POST'>
+                <form className={classes.root} noValidate autoComplete="off">
                     <TextField id="standard-basic" label="Name" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
                     <TextField id="standard-basic" label="Amount" type="text" value = {amount} onChange={e => updateAmount(e.currentTarget.value)}/>
                     <TextField id="standard-basic" label="ID" type="text" value = {id} onChange={e => updateId(e.currentTarget.value)}/>
