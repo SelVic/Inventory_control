@@ -120,9 +120,9 @@ Row.propTypes = {
 const rows = [
     createData('Lord of the Rings', 159, 1000),
     createData('Мертвые души', 237, 2000 ),
-    createData('bookname', 262, 1500 ),
-    createData('bookname', 305, 1600),
-    createData('bookname', 356, 1700),
+    createData('bookname1', 262, 1500 ),
+    createData('bookname2', 305, 1600),
+    createData('bookname3', 356, 1700),
 ];
 
 const BookTable= (props) => {

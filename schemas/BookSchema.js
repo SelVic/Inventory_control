@@ -2,9 +2,9 @@ const mongoose = require("mongoose")
 
 
 const bookSchema = mongoose.Schema({
-    id: Number,
     name: String,
-    amount: Number
+    amount: Number,
+    id: Number
 })
 
-module.exports = mongoose.model('BookSchemas', bookSchema)
+module.exports = mongoose.model('bookSchemas', bookSchema)

@@ -21,25 +21,6 @@ async function mong() {
 
 mong()
 
-const Schema = mongoose.Schema;
-const TestSchema = new Schema ({
-    title: String,
-    body: String,
-    date: {
-        type: String,
-        default: Date.now()
-    }
-})
-
-const TestPost = mongoose.model("TestPost", TestSchema)
-
-
-// newTestPost.save((err)=>{
-//     if(err)
-//         console.log("Error, something happened")
-//     else
-//         console.log("Data has been posted")
-// })
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
@@ -49,16 +30,25 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+
 app.get("/api", function (req, res) {
-    TestPost.find({ })
-        .then((dummyData)=>{
-            res.json(dummyData)
+    bookSchema.find({ })
+        .then((data)=>{
+            res.json(data)
         })
         .catch((error)=>{
             console.log("Error", error)
         });
 });
 
+app.post("/savedb", function(req, res){
+    console.log("Body:", req.body)
+    res.json({
+        msg: "Data received"
+    })
+})
 
 app.use(
     "/",

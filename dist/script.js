@@ -236,7 +236,7 @@ Row.propTypes = {
     })).isRequired
   }).isRequired
 };
-const rows = [createData('Lord of the Rings', 159, 1000), createData('Мертвые души', 237, 2000), createData('bookname', 262, 1500), createData('bookname', 305, 1600), createData('bookname', 356, 1700)];
+const rows = [createData('Lord of the Rings', 159, 1000), createData('Мертвые души', 237, 2000), createData('bookname1', 262, 1500), createData('bookname2', 305, 1600), createData('bookname3', 356, 1700)];
 
 const BookTable = props => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -298,13 +298,16 @@ const InputField = () => {
   let [books, updateBooks] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   const classes = useStyles();
 
-  const submitHandler = event => {
-    event.preventDefault();
+  const submitHandler = () => {
     const payLoad = books;
     axios__WEBPACK_IMPORTED_MODULE_4___default()({
-      url: "",
+      url: "/savedb",
       method: "POST",
       data: payLoad
+    }).then(() => {
+      console.log("Data has been sent to the server");
+    }).catch(() => {
+      console.log("Internal server error");
     });
   };
 
@@ -352,7 +355,6 @@ const InputField = () => {
     value: id,
     onChange: e => updateId(e.currentTarget.value)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    type: "submit",
     variant: "contained",
     color: "primary",
     onClick: () => {
@@ -361,7 +363,9 @@ const InputField = () => {
   }, "Add"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "contained",
     color: "secondary",
-    onClick: () => {}
+    onClick: () => {
+      submitHandler();
+    }
   }, "Submit"))));
 };
 

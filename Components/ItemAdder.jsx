@@ -27,16 +27,20 @@ const InputField =()=> {
     const classes = useStyles();
 
 
-    const submitHandler = (event) =>{
-        event.preventDefault();
-
+    const submitHandler = () =>{
         const payLoad = books;
 
         axios({
-            url: "",
+            url: "/savedb",
             method: "POST",
             data: payLoad
         })
+            .then(()=>{
+                console.log("Data has been sent to the server");
+            })
+            .catch(()=>{
+                console.log("Internal server error");
+            })
     }
 
 
@@ -59,14 +63,14 @@ const InputField =()=> {
         <div>
             <Fragment>
                 Add book
-                <form className={classes.root} noValidate autoComplete="off">
+                <form className={classes.root} noValidate autoComplete="off" >
                     <TextField id="standard-basic" label="Name" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
                     <TextField id="standard-basic" label="Amount" type="text" value = {amount} onChange={e => updateAmount(e.currentTarget.value)}/>
                     <TextField id="standard-basic" label="ID" type="text" value = {id} onChange={e => updateId(e.currentTarget.value)}/>
-                    <Button type = "submit" variant="contained" color="primary" onClick={() => {setBooks()}}>
+                    <Button variant="contained" color="primary" onClick={() => {setBooks()}}>
                         Add
                     </Button>
-                    <Button variant="contained" color="secondary" onClick={() => {}}>
+                    <Button variant="contained" color="secondary" onClick={() => {submitHandler()}}>
                         Submit
                     </Button>
                 </form>
