@@ -14,12 +14,6 @@ async function mong() {
             useFindAndModify: false
         })
         console.log("Connected to Mongodb")
-            let books = {
-                name : "LOTR",
-                id: 12345,
-                amount: 10
-            }
-        await new bookSchema(books).save()
     }catch(e) {
         console.log(e)
     }
@@ -37,7 +31,20 @@ const TestSchema = new Schema ({
     }
 })
 
+const TestPost = mongoose.model("TestPost", TestSchema)
+const dummyData = {
+    title: "Testing",
+    body: "Just checking mongoose"
+}
 
+const newTestPost = new TestPost(dummyData)
+
+newTestPost.save((err)=>{
+    if(err)
+        console.log("Error, something happened")
+    else
+        console.log("Data has been posted")
+})
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
