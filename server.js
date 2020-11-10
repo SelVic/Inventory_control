@@ -27,6 +27,17 @@ async function mong() {
 
 mong()
 
+const Schema = mongoose.Schema;
+const TestSchema = new Schema ({
+    title: String,
+    body: String,
+    date: {
+        type: String,
+        default: Date.now()
+    }
+})
+
+
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
