@@ -32,12 +32,7 @@ const TestSchema = new Schema ({
 })
 
 const TestPost = mongoose.model("TestPost", TestSchema)
-const dummyData = {
-    title: "Testing",
-    body: "Just checking mongoose"
-}
 
-const newTestPost = new TestPost(dummyData)
 
 // newTestPost.save((err)=>{
 //     if(err)
@@ -57,8 +52,7 @@ app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 app.get("/api", function (req, res) {
     TestPost.find({ })
         .then((dummyData)=>{
-            console.log("Data", dummyData)
-            res.json(data)
+            res.json(dummyData)
         })
         .catch((error)=>{
             console.log("Error", error)
