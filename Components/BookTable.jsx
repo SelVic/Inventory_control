@@ -113,9 +113,6 @@ Row.propTypes = {
 
 const BookTable = (props) => {
     let [mongoData, updateMongoData] = useState([]);
-    let rows = [];
-
-
     const createData = (name, amount, id, history) => {
         return {
             name,
@@ -125,9 +122,6 @@ const BookTable = (props) => {
         };
     }
 
-
-
-
     const rows1 = [
         createData('Lord of the Rings', 159, 1000),
         createData('Мертвые души', 237, 2000 ),
@@ -136,28 +130,15 @@ const BookTable = (props) => {
         createData('bookname3', 356, 1700),
     ];
 
-
-
     useEffect(() => {
         const fetch = async () => {
             let response = await axios.get('/api')
-            // .then((response) => {
-            //     // mongoData = response.data;
-            //     // rows = mongoData;
-            //     // console.log("h",rows)
-            //     console.log("Data have been received", mongoData)
-            // })
-            // .catch(() => {
-            //     console.log("Error receiving data")
-            // })
             updateMongoData(response.data.map(item => {
                 return {name: item.name, amount: item.amount, id: item.id}
             }))
         }
         fetch()
     },[]);
-
-   console.log(mongoData)
 
     return (
         <TableContainer component={Paper}>
