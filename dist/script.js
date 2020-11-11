@@ -307,10 +307,17 @@ const InputField = () => {
   const classes = useStyles();
 
   const submitHandler = () => {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+
+    let yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
     const payLoad = {
       name: name,
       amount: amount,
-      id: id
+      id: id,
+      date: today
     };
     if (name == "" || id == 0 || amount == 0) alert("Заполните все поля!");else {
       axios__WEBPACK_IMPORTED_MODULE_4___default()({
