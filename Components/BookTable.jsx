@@ -16,7 +16,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Button from '@material-ui/core/Button';
 import axios from "axios";
-import {getMongoData} from "../api/api"
+
 
 const useRowStyles = makeStyles({
     root: {
@@ -66,24 +66,24 @@ function Row(props) {
                                         <TableCell align="right">Delete</TableCell>
                                     </TableRow>
                                 </TableHead>
-                                <TableBody>
-                                    {row.history.map((historyRow) => (
-                                        <TableRow key={historyRow.date}>
-                                            <TableCell component="th" scope="row">
-                                                {historyRow.date}
-                                            </TableCell>
-                                            <TableCell>Vic</TableCell>
-                                            <TableCell align="right"></TableCell>
-                                            <TableCell align="right">
-                                            </TableCell>
-                                            <TableCell align="right">
-                                                <Button variant="contained">
-                                                    Remove
-                                                </Button>
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
+                                {/*<TableBody>*/}
+                                {/*    {row.history.map((historyRow) => (*/}
+                                {/*        <TableRow key={historyRow.date}>*/}
+                                {/*            <TableCell component="th" scope="row">*/}
+                                {/*                {historyRow.date}*/}
+                                {/*            </TableCell>*/}
+                                {/*            <TableCell>Vic</TableCell>*/}
+                                {/*            <TableCell align="right"></TableCell>*/}
+                                {/*            <TableCell align="right">*/}
+                                {/*            </TableCell>*/}
+                                {/*            <TableCell align="right">*/}
+                                {/*                <Button variant="contained">*/}
+                                {/*                    Remove*/}
+                                {/*                </Button>*/}
+                                {/*            </TableCell>*/}
+                                {/*        </TableRow>*/}
+                                {/*    ))}*/}
+                                {/*</TableBody>*/}
                             </Table>
                         </Box>
                     </Collapse>
@@ -116,8 +116,6 @@ const BookTable = (props) => {
     let rows = [];
 
 
-
-
     const createData = (name, amount, id, history) => {
         return {
             name,
@@ -128,6 +126,8 @@ const BookTable = (props) => {
     }
 
 
+
+
     const rows1 = [
         createData('Lord of the Rings', 159, 1000),
         createData('Мертвые души', 237, 2000 ),
@@ -136,35 +136,28 @@ const BookTable = (props) => {
         createData('bookname3', 356, 1700),
     ];
 
-    useEffect(async () => {
-        const result = await axios(
-            '/api',
-        );
-
-        updateMongoData(result.data);
-    }, []);
 
 
+    useEffect(() => {
+        const fetch = async () => {
+            let response = await axios.get('/api')
+            // .then((response) => {
+            //     // mongoData = response.data;
+            //     // rows = mongoData;
+            //     // console.log("h",rows)
+            //     console.log("Data have been received", mongoData)
+            // })
+            // .catch(() => {
+            //     console.log("Error receiving data")
+            // })
+            updateMongoData(response.data.map(item => {
+                return {name: item.name, amount: item.amount, id: item.id}
+            }))
+        }
+        fetch()
+    },[]);
 
-    // const fetch = async () => {
-    //     let response = await axios.get('/api')
-    //         // .then((response) => {
-    //         //     // mongoData = response.data;
-    //         //     // rows = mongoData;
-    //         //     // console.log("h",rows)
-    //         //     console.log("Data have been received", mongoData)
-    //         // })
-    //         // .catch(() => {
-    //         //     console.log("Error receiving data")
-    //         // })
-    //         useEffect(() => {
-    //             updateMongoData(response.data)
-    //             console.log(mongoData)
-    //         },[mongoData])
-    // }
-    // fetch()
-
-
+   console.log(mongoData)
 
     return (
         <TableContainer component={Paper}>
@@ -178,7 +171,7 @@ const BookTable = (props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {mongoData.map((row) => (
                         <Row key={row.name} row={row} />
                     ))}
                 </TableBody>

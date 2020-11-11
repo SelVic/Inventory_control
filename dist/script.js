@@ -119,9 +119,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../api/api */ "./api/api.js");
-/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_api_api__WEBPACK_IMPORTED_MODULE_18__);
-
 
 
 
@@ -192,20 +189,7 @@ function Row(props) {
     align: "right"
   }, "Action"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, "Delete"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, row.history.map(historyRow => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    key: historyRow.date
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    component: "th",
-    scope: "row"
-  }, historyRow.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null, "Vic"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    align: "right"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    align: "right"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    align: "right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_16__["default"], {
-    variant: "contained"
-  }, "Remove")))))))))));
+  }, "Delete")))))))));
 }
 
 Row.propTypes = {
@@ -239,27 +223,30 @@ const BookTable = props => {
   };
 
   const rows1 = [createData('Lord of the Rings', 159, 1000), createData('Мертвые души', 237, 2000), createData('bookname1', 262, 1500), createData('bookname2', 305, 1600), createData('bookname3', 356, 1700)];
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(async () => {
-    const result = await axios__WEBPACK_IMPORTED_MODULE_17___default()('/api');
-    updateMongoData(result.data);
-  }, []); // const fetch = async () => {
-  //     let response = await axios.get('/api')
-  //         // .then((response) => {
-  //         //     // mongoData = response.data;
-  //         //     // rows = mongoData;
-  //         //     // console.log("h",rows)
-  //         //     console.log("Data have been received", mongoData)
-  //         // })
-  //         // .catch(() => {
-  //         //     console.log("Error receiving data")
-  //         // })
-  //         useEffect(() => {
-  //             updateMongoData(response.data)
-  //             console.log(mongoData)
-  //         },[mongoData])
-  // }
-  // fetch()
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    const fetch = async () => {
+      let response = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api'); // .then((response) => {
+      //     // mongoData = response.data;
+      //     // rows = mongoData;
+      //     // console.log("h",rows)
+      //     console.log("Data have been received", mongoData)
+      // })
+      // .catch(() => {
+      //     console.log("Error receiving data")
+      // })
 
+      updateMongoData(response.data.map(item => {
+        return {
+          name: item.name,
+          amount: item.amount,
+          id: item.id
+        };
+      }));
+    };
+
+    fetch();
+  }, []);
+  console.log(mongoData);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
     component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_13__["default"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -268,7 +255,7 @@ const BookTable = props => {
     align: "right"
   }, "Amount"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, "ID"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, rows.map(row => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Row, {
+  }, "ID"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, mongoData.map(row => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Row, {
     key: row.name,
     row: row
   })))));
@@ -424,31 +411,6 @@ const InputField = () => {
 // }
 //
 // export {ItemAdder}
-
-/***/ }),
-
-/***/ "./api/api.js":
-/*!********************!*\
-  !*** ./api/api.js ***!
-  \********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// import axios from "axios";
-// const getMongoData = () => {
-// axios.get('/api')
-//     .then((response) => {
-//        mongoData = response.data;
-//         console.log("Data have been received", mongoData)
-//     })
-//     .catch(() => {
-//
-//         console.log("Error receiving data")
-//
-//     })
-//     return mongoData
-// }
-// export {getMongoData}
 
 /***/ }),
 
