@@ -145,25 +145,6 @@ const useRowStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2_
   }
 });
 
-function createData(name, amount, id) {
-  return {
-    name,
-    amount,
-    id,
-    history: [{
-      date: '2020-01-05',
-      customerId: 'Director',
-      amount: 3,
-      action: "Added"
-    }, {
-      date: '2020-01-02',
-      customerId: 'Anonymous',
-      amount: 1,
-      action: "Sold"
-    }]
-  };
-}
-
 function Row(props) {
   const {
     row
@@ -206,8 +187,6 @@ function Row(props) {
     align: "right"
   }, "Amount"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, "Total price (RUB)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    align: "right"
   }, "Action"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
   }, "Delete"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, row.history.map(historyRow => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -239,7 +218,6 @@ Row.propTypes = {
     })).isRequired
   }).isRequired
 };
-const rows = [createData('Lord of the Rings', 159, 1000), createData('Мертвые души', 237, 2000), createData('bookname1', 262, 1500), createData('bookname2', 305, 1600), createData('bookname3', 356, 1700)];
 
 const BookTable = props => {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
@@ -250,6 +228,27 @@ const BookTable = props => {
       console.log("Error receiving data");
     });
   });
+
+  const createData = (name, amount, id) => {
+    return {
+      name,
+      amount,
+      id,
+      history: [{
+        date: '2020-01-05',
+        customerId: 'Director',
+        amount: 3,
+        action: "Added"
+      }, {
+        date: '2020-01-02',
+        customerId: 'Anonymous',
+        amount: 1,
+        action: "Sold"
+      }]
+    };
+  };
+
+  const rows = [createData('Lord of the Rings', 159, 1000), createData('Мертвые души', 237, 2000), createData('bookname1', 262, 1500), createData('bookname2', 305, 1600), createData('bookname3', 356, 1700)];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
     component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_13__["default"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -303,8 +302,8 @@ const InputField = () => {
   let [name, updateName] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
   let [amount, updateAmount] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
   let [book, updateBook] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({});
-  let [firstRun, setRun] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  let [books, updateBooks] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  let [firstRun, setRun] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false); // let [books, updateBooks] = useState([]);
+
   const classes = useStyles();
 
   const submitHandler = () => {

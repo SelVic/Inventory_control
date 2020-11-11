@@ -5,8 +5,6 @@ import Button from '@material-ui/core/Button';
 import axios from "axios";
 
 
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -21,7 +19,7 @@ const InputField =()=> {
     let [amount, updateAmount] = useState(0);
     let [book, updateBook] = useState({});
     let [firstRun, setRun] = useState(false);
-    let [books, updateBooks] = useState([]);
+    // let [books, updateBooks] = useState([]);
     const classes = useStyles();
 
 
@@ -80,9 +78,6 @@ const InputField =()=> {
                     <Button variant="contained" color="primary" onClick={() => {submitHandler()}}>
                         Submit
                     </Button>
-                    {/*<Button variant="contained" color="secondary" onClick={() => {}}>*/}
-                    {/*    Submit*/}
-                    {/*</Button>*/}
                 </form>
             </Fragment>
         </div>

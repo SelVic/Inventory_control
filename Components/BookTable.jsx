@@ -27,17 +27,7 @@ const useRowStyles = makeStyles({
 
 
 
-function createData(name, amount, id) {
-    return {
-        name,
-        amount,
-        id,
-        history: [
-            { date: '2020-01-05', customerId: 'Director', amount: 3, action: "Added" },
-            { date: '2020-01-02', customerId: 'Anonymous', amount: 1 , action: "Sold"}
-        ],
-    };
-}
+
 
 function Row(props) {
     const { row } = props;
@@ -71,7 +61,6 @@ function Row(props) {
                                         <TableCell>Date</TableCell>
                                         <TableCell>Customer</TableCell>
                                         <TableCell align="right">Amount</TableCell>
-                                        <TableCell align="right">Total price (RUB)</TableCell>
                                         <TableCell align="right">Action</TableCell>
                                         <TableCell align="right">Delete</TableCell>
                                     </TableRow>
@@ -120,13 +109,6 @@ Row.propTypes = {
     }).isRequired,
 };
 
-const rows = [
-    createData('Lord of the Rings', 159, 1000),
-    createData('Мертвые души', 237, 2000 ),
-    createData('bookname1', 262, 1500 ),
-    createData('bookname2', 305, 1600),
-    createData('bookname3', 356, 1700),
-];
 
 const BookTable= (props) => {
     useEffect(() => {
@@ -139,6 +121,28 @@ const BookTable= (props) => {
                 console.log("Error receiving data")
             })
     })
+
+    const createData = (name, amount, id) => {
+        return {
+            name,
+            amount,
+            id,
+            history: [
+                { date: '2020-01-05', customerId: 'Director', amount: 3, action: "Added" },
+                { date: '2020-01-02', customerId: 'Anonymous', amount: 1 , action: "Sold"}
+            ],
+        };
+    }
+
+    const rows = [
+        createData('Lord of the Rings', 159, 1000),
+        createData('Мертвые души', 237, 2000 ),
+        createData('bookname1', 262, 1500 ),
+        createData('bookname2', 305, 1600),
+        createData('bookname3', 356, 1700),
+    ];
+
+
     return (
         <TableContainer component={Paper}>
             <Table aria-label="collapsible table">
