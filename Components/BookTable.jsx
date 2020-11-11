@@ -16,6 +16,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Button from '@material-ui/core/Button';
 import axios from "axios";
+import {getMongoData} from "../api/api"
 
 const useRowStyles = makeStyles({
     root: {
@@ -71,10 +72,9 @@ function Row(props) {
                                             <TableCell component="th" scope="row">
                                                 {historyRow.date}
                                             </TableCell>
-                                            <TableCell>{historyRow.customerId}</TableCell>
-                                            <TableCell align="right">{historyRow.amount}</TableCell>
+                                            <TableCell>Vic</TableCell>
+                                            <TableCell align="right"></TableCell>
                                             <TableCell align="right">
-                                                {historyRow.action}
                                             </TableCell>
                                             <TableCell align="right">
                                                 <Button variant="contained">
@@ -95,52 +95,75 @@ function Row(props) {
 
 Row.propTypes = {
     row: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        amount: PropTypes.number.isRequired,
-        id: PropTypes.number.isRequired,
-        history: PropTypes.arrayOf(
-            PropTypes.shape({
-                amount: PropTypes.number.isRequired,
-                customerId: PropTypes.string.isRequired,
-                date: PropTypes.string.isRequired,
-                action: PropTypes.string.isRequired,
-            }),
-        ).isRequired,
-    }).isRequired,
+        name: PropTypes.string,
+        amount: PropTypes.number,
+        id: PropTypes.number,
+        history: PropTypes.string
+        // history: PropTypes.arrayOf(
+        //     PropTypes.shape({
+        //         amount: PropTypes.number.isRequired,
+        //         customerId: PropTypes.string.isRequired,
+        //         date: PropTypes.string.isRequired,
+        //         action: PropTypes.string.isRequired,
+        //     }),
+        // ).isRequired,
+    }),
 };
 
 
-const BookTable= (props) => {
-    useEffect(() => {
-        axios.get('/api')
-            .then((response) => {
-                let bookData = response.data
-                console.log("Data have been received", bookData)
-            })
-            .catch(() => {
-                console.log("Error receiving data")
-            })
-    })
+const BookTable = (props) => {
+    let [mongoData, updateMongoData] = useState([]);
+    let rows = [];
 
-    const createData = (name, amount, id) => {
+
+
+
+    const createData = (name, amount, id, history) => {
         return {
             name,
             amount,
             id,
-            history: [
-                { date: '2020-01-05', customerId: 'Director', amount: 3, action: "Added" },
-                { date: '2020-01-02', customerId: 'Anonymous', amount: 1 , action: "Sold"}
-            ],
+            history,
         };
     }
 
-    const rows = [
+
+    const rows1 = [
         createData('Lord of the Rings', 159, 1000),
         createData('Мертвые души', 237, 2000 ),
         createData('bookname1', 262, 1500 ),
         createData('bookname2', 305, 1600),
         createData('bookname3', 356, 1700),
     ];
+
+    useEffect(async () => {
+        const result = await axios(
+            '/api',
+        );
+
+        updateMongoData(result.data);
+    }, []);
+
+
+
+    // const fetch = async () => {
+    //     let response = await axios.get('/api')
+    //         // .then((response) => {
+    //         //     // mongoData = response.data;
+    //         //     // rows = mongoData;
+    //         //     // console.log("h",rows)
+    //         //     console.log("Data have been received", mongoData)
+    //         // })
+    //         // .catch(() => {
+    //         //     console.log("Error receiving data")
+    //         // })
+    //         useEffect(() => {
+    //             updateMongoData(response.data)
+    //             console.log(mongoData)
+    //         },[mongoData])
+    // }
+    // fetch()
+
 
 
     return (
