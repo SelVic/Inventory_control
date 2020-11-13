@@ -3,11 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from "axios";
-import PropTypes from 'prop-types';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import { FixedSizeList } from 'react-window';
-import { Collapse } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,11 +17,13 @@ const useStyles = makeStyles((theme) => ({
             width: '25ch',
         },
     },
-    selectField: {
-        width: '100%',
-        height: 400,
-        maxWidth: 300,
-        backgroundColor: theme.palette.background.paper,
+    button: {
+        display: 'block',
+        marginTop: theme.spacing(2),
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
     },
 }));
 const InputField =()=> {
@@ -30,8 +32,36 @@ const InputField =()=> {
     const [amount, updateAmount] = useState(0);
     const [book, updateBook] = useState({});
     const [firstRun, setRun] = useState(false);
-    // let [books, updateBooks] = useState([]);
     const classes = useStyles();
+    const [item, setItem] = React.useState('');
+    const [open, setOpen] = React.useState(false);
+    const [itemDel, setItemDel] = React.useState('');
+    const [openDel, setOpenDel] = React.useState(false);
+
+
+    const handleChange = (event) => {
+        setItem(event.target.value);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleChangeDelete = (event) => {
+        setItemDel(event.target.value);
+    };
+
+    const handleCloseDelete = () => {
+        setOpenDel(false);
+    };
+
+    const handleOpenDelete = () => {
+        setOpenDel(true);
+    };
 
 
     const submitHandler = () => {
@@ -73,42 +103,11 @@ const InputField =()=> {
         updateId(0)
     }
 
-    useEffect(()=>{
-        if(firstRun === false){
-            setRun(true);
-            updateBook({name, amount, id})
-        }
-        else{
-            updateBook({name, amount, id})
-        }
-    }, [name, amount, id])
-
-    // let setBooks = () =>{
-    //     updateBooks([...books, book])
-    // }
-
-
-    const renderRow=(props) => {
-        const { index, style } = props;
-
-        return (
-            <ListItem button style={style} key={index}>
-                <ListItemText primary={`Item ${index + 1}`} />
-            </ListItem>
-        );
-    }
-
-    renderRow.propTypes = {
-        index: PropTypes.number.isRequired,
-        style: PropTypes.object.isRequired,
-    };
-
-
 
     return (
         <div>
             <Fragment>
-                Add book
+                Добавить предмет
                 <form className={classes.root} noValidate autoComplete="off" >
                     <TextField id="standard-basic" label="Name" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
                     <TextField id="standard-basic" label="Amount" type="text" value = {amount} onChange={e => updateAmount(e.currentTarget.value)}/>
@@ -117,10 +116,57 @@ const InputField =()=> {
                         Submit
                     </Button>
                 </form>
-                <div className={classes.root}>
-                    <FixedSizeList height={400} width={300} itemSize={46} itemCount={200}>
-                        {renderRow}
-                    </FixedSizeList>
+                <div className="mt-40">
+                    <div>Добавить</div>
+                    <FormControl className={classes.formControl}>
+                        <InputLabel id="demo-controlled-open-select-label">Выберите предмет</InputLabel>
+                        <Select
+                            labelId="demo-controlled-open-select-label"
+                            id="demo-controlled-open-select"
+                            open={open}
+                            onClose={handleClose}
+                            onOpen={handleOpen}
+                            value={item}
+                            onChange={handleChange}
+                        >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value={10}>1</MenuItem>
+                            <MenuItem value={20}>2</MenuItem>
+                            <MenuItem value={30}>3</MenuItem>
+                        </Select>
+                        <TextField id="standard-basic" label="Количество" type="text"/>
+                        <Button variant="contained" color="primary">
+                            Submit
+                        </Button>
+                    </FormControl>
+                </div>
+                <div className="mt-40">
+                    <div>Удалить</div>
+                    <FormControl className={classes.formControl}>
+                        <InputLabel id="demo-controlled-open-select-label">Выберите предмет</InputLabel>
+                        <Select
+                            labelId="demo-controlled-open-select-label"
+                            id="demo-controlled-open-select"
+                            open={openDel}
+                            onClose={handleCloseDelete}
+                            onOpen={handleOpenDelete}
+                            value={itemDel}
+                            onChange={handleChangeDelete}
+                        >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value={10}>1</MenuItem>
+                            <MenuItem value={20}>2</MenuItem>
+                            <MenuItem value={30}>3</MenuItem>
+                        </Select>
+                        <TextField id="standard-basic" label="Количество" type="text"/>
+                        <Button variant="contained" color="primary">
+                            Submit
+                        </Button>
+                    </FormControl>
                 </div>
             </Fragment>
         </div>
