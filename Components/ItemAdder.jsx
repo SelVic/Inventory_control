@@ -21,9 +21,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'block',
         marginTop: theme.spacing(2),
     },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
+    adder: {
+        marginBottom: theme.spacing(15)
     },
 }));
 const InputField =()=> {
@@ -118,7 +117,7 @@ const InputField =()=> {
                 </form>
                 <div className="mt-40">
                     <div>Добавить</div>
-                    <FormControl className={classes.formControl}>
+                    <form className={classes.root}>
                         <InputLabel id="demo-controlled-open-select-label">Выберите предмет</InputLabel>
                         <Select
                             labelId="demo-controlled-open-select-label"
@@ -140,11 +139,11 @@ const InputField =()=> {
                         <Button variant="contained" color="primary">
                             Submit
                         </Button>
-                    </FormControl>
+                    </form>
                 </div>
                 <div className="mt-40">
                     <div>Удалить</div>
-                    <FormControl className={classes.formControl}>
+                    <form className={classes.root}>
                         <InputLabel id="demo-controlled-open-select-label">Выберите предмет</InputLabel>
                         <Select
                             labelId="demo-controlled-open-select-label"
@@ -162,11 +161,11 @@ const InputField =()=> {
                             <MenuItem value={20}>2</MenuItem>
                             <MenuItem value={30}>3</MenuItem>
                         </Select>
-                        <TextField id="standard-basic" label="Количество" type="text"/>
+                        <TextField className={classes.adder} id="standard-basic" label="Количество" type="text"/>
                         <Button variant="contained" color="primary">
                             Submit
                         </Button>
-                    </FormControl>
+                    </form>
                 </div>
             </Fragment>
         </div>
