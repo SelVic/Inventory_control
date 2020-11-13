@@ -43,6 +43,16 @@ app.get("/api", function (req, res) {
         });
 });
 
+app.get("/api/history", function (req, res) {
+    bookSchema.find({ })
+        .then((apiData)=>{
+            res.json(apiData)
+        })
+        .catch((error)=>{
+            console.log("Error", error)
+        });
+});
+
 app.post("/savedb", function(req, res){
     console.log("Body:", req.body)
     const reqData = req.body;

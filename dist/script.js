@@ -261,11 +261,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/InputLabel */ "./node_modules/@material-ui/core/esm/InputLabel/index.js");
 /* harmony import */ var _material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/index.js");
-/* harmony import */ var _material_ui_core_Menu__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Menu */ "./node_modules/@material-ui/core/esm/Menu/index.js");
-/* harmony import */ var _material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/FormControl */ "./node_modules/@material-ui/core/esm/FormControl/index.js");
-/* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/Select */ "./node_modules/@material-ui/core/esm/Select/index.js");
-
-
+/* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Select */ "./node_modules/@material-ui/core/esm/Select/index.js");
 
 
 
@@ -290,7 +286,8 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["
 const InputField = () => {
   const [description, updateDescription] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
   const [name, updateName] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
-  const [amount, updateAmount] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  const [amount, updateAmount] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
+  const [amountDel, updateAmountDel] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
   const classes = useStyles();
   const [item, updateItem] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState('');
   const [open, updateOpen] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false);
@@ -316,7 +313,7 @@ const InputField = () => {
 
   const handleChange = event => {
     updateItem(event.target.value);
-    console.log(event.target.value._id);
+    console.log(event.target.value);
   };
 
   const handleClose = () => {
@@ -341,7 +338,8 @@ const InputField = () => {
 
   const handleSelect = event => {
     console.log(event.target.value);
-  };
+  }; //
+
 
   const submitHandler = () => {
     let today = new Date();
@@ -404,7 +402,7 @@ const InputField = () => {
     className: classes.root,
     noValidate: true,
     autoComplete: "off"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_7__["default"], {
     labelId: "demo-controlled-open-select-label",
     id: "demo-controlled-open-select",
     open: open,
@@ -416,8 +414,7 @@ const InputField = () => {
     value: ""
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", null, "None")), mongoData.map(item => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_6__["default"], {
     key: item._id,
-    value: item.name,
-    item: item
+    value: item.name
   }, item.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     id: "standard-basic",
     label: "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E",
@@ -431,7 +428,7 @@ const InputField = () => {
     className: "mt-40"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: classes.root
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_7__["default"], {
     labelId: "demo-controlled-open-select-label",
     id: "demo-controlled-open-select",
     open: openDel,
@@ -448,7 +445,9 @@ const InputField = () => {
   }, item.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     id: "standard-basic",
     label: "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E",
-    type: "text"
+    type: "text",
+    value: amountDel,
+    onChange: e => updateAmountDel(e.currentTarget.value)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "contained",
     color: "primary"
@@ -6698,22 +6697,6 @@ var Menu = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["forwardRef"](functio
 /* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_7__["default"])(styles, {
   name: 'MuiMenu'
 })(Menu));
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/core/esm/Menu/index.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Menu/index.js ***!
-  \**********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Menu */ "./node_modules/@material-ui/core/esm/Menu/Menu.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _Menu__WEBPACK_IMPORTED_MODULE_0__["default"]; });
-
-
 
 /***/ }),
 

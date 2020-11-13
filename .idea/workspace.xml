@@ -6,8 +6,8 @@
       <change beforePath="$PROJECT_DIR$/Components/ItemAdder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ItemAdder.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/script.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/script.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/BookSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/BookSchema.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/schemas/HistorySchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/HistorySchema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +168,7 @@
       <workItem from="1605008028210" duration="13590000" />
       <workItem from="1605096438145" duration="16266000" />
       <workItem from="1605201145518" duration="4189000" />
-      <workItem from="1605286086237" duration="8677000" />
+      <workItem from="1605286086237" duration="11622000" />
     </task>
     <servers />
   </component>

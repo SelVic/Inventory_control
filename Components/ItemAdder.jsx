@@ -5,8 +5,6 @@ import Button from '@material-ui/core/Button';
 import axios from "axios";
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import Menu from "@material-ui/core/Menu";
-import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 
@@ -27,7 +25,8 @@ const useStyles = makeStyles((theme) => ({
 const InputField =()=> {
     const [description, updateDescription] = useState("")
     const [name, updateName] = useState("");
-    const [amount, updateAmount] = useState(0);
+    const [amount, updateAmount] = useState("");
+    const [amountDel, updateAmountDel] = useState("");
     const classes = useStyles();
     const [item, updateItem] = React.useState('');
     const [open, updateOpen] = React.useState(false);
@@ -50,7 +49,7 @@ const InputField =()=> {
 
     const handleChange = (event) => {
         updateItem(event.target.value);
-        console.log(event.target.value._id)
+        console.log(event.target.value)
     };
 
     const handleClose = () => {
@@ -78,7 +77,7 @@ const InputField =()=> {
     }
 
 
-
+    //
     const submitHandler = () => {
 
         let today = new Date();
@@ -148,7 +147,7 @@ const InputField =()=> {
                                 <em>None</em>
                             </MenuItem>
                             {mongoData.map((item) =>
-                                <MenuItem key={item._id} value = {item.name} item={item} >{item.name}</MenuItem>
+                                <MenuItem key={item._id} value = {item.name} >{item.name}</MenuItem>
                             )}
                         </Select>
                         <TextField id="standard-basic" label="Количество" type="text" value={amount} onChange = {e => updateAmount(e.currentTarget.value)}/>
@@ -177,7 +176,7 @@ const InputField =()=> {
                                 <MenuItem key={item._id} value = {item.name} item={item}>{item.name}</MenuItem>
                             )}
                         </Select>
-                        <TextField id="standard-basic" label="Количество" type="text"/>
+                        <TextField id="standard-basic" label="Количество" type="text" value={amountDel} onChange = {e => updateAmountDel(e.currentTarget.value)}/>
                         <Button variant="contained" color="primary">
                             Submit
                         </Button>
