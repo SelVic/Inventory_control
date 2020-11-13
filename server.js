@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const login = require('./configfile')
 const mongoPath = `mongodb+srv://Vic:${login}@cluster0.q16eb.mongodb.net/appdata`
 const bookSchema = require('./schemas/BookSchema')
+const historySchema = require("./schemas/HistorySchema")
 
 async function mong() {
     try{
@@ -44,7 +45,7 @@ app.get("/api", function (req, res) {
 });
 
 app.get("/api/history", function (req, res) {
-    bookSchema.find({ })
+    historySchema.find({ })
         .then((apiData)=>{
             res.json(apiData)
         })
@@ -70,7 +71,24 @@ app.post("/savedb", function(req, res){
     })
 })
 
-app.use("/", (req, res) => {
+app.post("/savedb/history", function(req, res){
+    console.log("HistoryBody:", req.body)
+    const reqData = req.body;
+
+    const newHistorySchema = new historySchema(reqData)
+
+    newHistorySchema.save((error)=>{
+        if (error) {
+            res.status(500).json({msg: "Sorry, internal server errors"})
+        } else{
+            res.json({
+                msg: "Data received"
+            })
+        }
+    })
+})
+
+app.use("/", function (req, res) {
         res.sendFile("index.html", { root: __dirname });
     }
 );

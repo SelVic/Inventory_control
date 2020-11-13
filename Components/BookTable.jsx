@@ -46,7 +46,7 @@ function Row(props) {
                 <TableCell component="th" scope="row">
                     {row.name}
                 </TableCell>
-                <TableCell align="right">{row.amount}</TableCell>
+                <TableCell align="right">Количество будет здесь</TableCell>
                 <TableCell align="right">{row.id}</TableCell>
             </TableRow>
             <TableRow>
@@ -118,7 +118,7 @@ const BookTable = (props) => {
         const fetch = async () => {
             const response = await axios.get('/api')
             updateMongoData(response.data.map(item => {
-                return {name: item.name, amount: item.amount, id: item._id}
+                return {name: item.name, id: item._id}
             }))
         }
         fetch()

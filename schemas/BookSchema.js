@@ -4,8 +4,8 @@ const mongoose = require("mongoose")
 
 const bookSchema = mongoose.Schema({
     name: String,
-    amount: Number,
     description: String,
+    totalAmount: Number,
     date: String
 })
 

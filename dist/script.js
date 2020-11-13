@@ -162,7 +162,7 @@ function Row(props) {
     scope: "row"
   }, row.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, row.amount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0431\u0443\u0434\u0435\u0442 \u0437\u0434\u0435\u0441\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
   }, row.id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     style: {
@@ -217,7 +217,6 @@ const BookTable = props => {
       updateMongoData(response.data.map(item => {
         return {
           name: item.name,
-          amount: item.amount,
           id: item._id
         };
       }));
@@ -301,7 +300,6 @@ const InputField = () => {
       updateMongoData(response.data.map(item => {
         return {
           name: item.name,
-          amount: item.amount,
           description: item.description,
           id: item._id
         };
@@ -309,11 +307,10 @@ const InputField = () => {
     };
 
     fetch();
-  }, []); // console.log(mongoData)
+  }, []);
 
   const handleChange = event => {
     updateItem(event.target.value);
-    console.log(event.target.value);
   };
 
   const handleClose = () => {
@@ -338,18 +335,21 @@ const InputField = () => {
 
   const handleSelect = event => {
     console.log(event.target.value);
-  }; //
+  };
 
-
-  const submitHandler = () => {
+  const dateCount = () => {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0');
     let yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
+    return today;
+  };
+
+  const submitNewItem = () => {
+    let today = dateCount();
     const payLoad = {
       name: name,
-      amount: amount,
       description: description,
       date: today
     };
@@ -367,13 +367,58 @@ const InputField = () => {
     }
   };
 
+  const submitNewHistoryAdd = () => {
+    let today = dateCount();
+    const payLoadHistory = {
+      name: item,
+      action: "Добавлено",
+      amount: amount,
+      date: today
+    };
+    axios__WEBPACK_IMPORTED_MODULE_4___default()({
+      url: "/savedb/history",
+      method: "POST",
+      data: payLoadHistory
+    }).then(() => {
+      console.log("History has been sent to the server");
+      resetHistoryFields();
+    }).catch(() => {
+      console.log("Internal server error");
+    });
+  };
+
+  const submitNewHistoryDel = () => {
+    let today = dateCount();
+    const payLoadHistory = {
+      name: itemDel,
+      action: "Удалено",
+      amount: amount,
+      date: today
+    };
+    axios__WEBPACK_IMPORTED_MODULE_4___default()({
+      url: "/savedb/history",
+      method: "POST",
+      data: payLoadHistory
+    }).then(() => {
+      console.log("History has been sent to the server");
+      resetHistoryFields();
+    }).catch(() => {
+      console.log("Internal server error");
+    });
+  };
+
   const resetFields = () => {
     updateName("");
-    updateAmount(0);
     updateDescription("");
   };
 
-  console.log();
+  const resetHistoryFields = () => {
+    updateAmount(0);
+    updateAmountDel(0);
+    updateItem("");
+    updateItemDel("");
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, "\u0412\u043D\u0435\u0441\u0442\u0438 \u043D\u043E\u0432\u044B\u0439 \u043F\u0440\u0435\u0434\u043C\u0435\u0442 \u0432 \u0431\u0430\u0437\u0443", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: classes.root,
     noValidate: true,
@@ -394,7 +439,7 @@ const InputField = () => {
     variant: "contained",
     color: "primary",
     onClick: () => {
-      submitHandler();
+      submitNewItem();
     }
   }, "Submit")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-40"
@@ -413,7 +458,7 @@ const InputField = () => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_6__["default"], {
     value: ""
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", null, "None")), mongoData.map(item => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    key: item._id,
+    key: item.id,
     value: item.name
   }, item.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     id: "standard-basic",
@@ -423,10 +468,13 @@ const InputField = () => {
     onChange: e => updateAmount(e.currentTarget.value)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "contained",
-    color: "primary"
+    color: "primary",
+    onClick: () => submitNewHistoryAdd()
   }, "Submit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-40"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: () => console.log(itemDel)
+  }, "--- TEST --- "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: classes.root
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_7__["default"], {
     labelId: "demo-controlled-open-select-label",
@@ -435,12 +483,13 @@ const InputField = () => {
     onClose: handleCloseDelete,
     onOpen: handleOpenDelete,
     value: itemDel,
-    onChange: handleChangeDelete
+    onChange: handleChangeDelete // onChange={(e)=>console.log('eee', e.target.value)}
+
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_6__["default"], {
     value: ""
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", null, "None")), mongoData.map(item => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    key: item._id,
-    value: item.name,
+    key: item.id,
+    value: item.id,
     item: item
   }, item.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     id: "standard-basic",
@@ -450,7 +499,8 @@ const InputField = () => {
     onChange: e => updateAmountDel(e.currentTarget.value)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "contained",
-    color: "primary"
+    color: "primary",
+    onClick: () => submitNewHistoryDel()
   }, "Submit")))));
 };
 

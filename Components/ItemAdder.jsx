@@ -39,17 +39,14 @@ const InputField =()=> {
         const fetch = async () => {
             const response = await axios.get('/api')
             updateMongoData(response.data.map(item => {
-                return {name: item.name, amount: item.amount, description: item.description, id: item._id}
+                return {name: item.name, description: item.description, id: item._id}
             }))
         }
         fetch()
     },[]);
 
-    // console.log(mongoData)
-
     const handleChange = (event) => {
         updateItem(event.target.value);
-        console.log(event.target.value)
     };
 
     const handleClose = () => {
@@ -76,20 +73,22 @@ const InputField =()=> {
         console.log(event.target.value)
     }
 
-
-    //
-    const submitHandler = () => {
-
+    const dateCount = () => {
         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
         let mm = String(today.getMonth() + 1).padStart(2, '0');
         let yyyy = today.getFullYear();
 
         today = mm + '/' + dd + '/' + yyyy;
+        return today
+    }
+
+    const submitNewItem = () => {
+
+        let today = dateCount()
 
         const payLoad = {
             name: name,
-            amount: amount,
             description: description,
             date: today
         };
@@ -111,14 +110,62 @@ const InputField =()=> {
         }
     }
 
-    const resetFields = () =>{
-        updateName("")
-        updateAmount(0)
-        updateDescription("")
+    const submitNewHistoryAdd = () => {
+        let today = dateCount()
+        const payLoadHistory = {
+            name: item,
+            action: "Добавлено",
+            amount: amount,
+            date: today
+        };
+            axios({
+                url: "/savedb/history",
+                method: "POST",
+                data: payLoadHistory
+            })
+                .then(()=>{
+                    console.log("History has been sent to the server");
+                    resetHistoryFields();
+                })
+                .catch(()=>{
+                    console.log("Internal server error");
+                })
+    }
+
+    const submitNewHistoryDel = () => {
+        let today = dateCount()
+        const payLoadHistory = {
+            name: itemDel,
+            action : "Удалено",
+            amount: amount,
+            date: today
+        };
+        axios({
+            url: "/savedb/history",
+            method: "POST",
+            data: payLoadHistory
+        })
+            .then(()=>{
+                console.log("History has been sent to the server");
+                resetHistoryFields();
+            })
+            .catch(()=>{
+                console.log("Internal server error");
+            })
     }
 
 
-    console.log()
+    const resetFields = () =>{
+        updateName("")
+        updateDescription("")
+    }
+
+    const resetHistoryFields = () =>{
+        updateAmount(0)
+        updateAmountDel(0)
+        updateItem("")
+        updateItemDel("")
+    }
 
     return (
         <div>
@@ -127,7 +174,7 @@ const InputField =()=> {
                 <form className={classes.root} noValidate autoComplete="off" >
                     <TextField id="standard-basic" label="Наименование" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
                     <TextField id="standard-basic" label="Описание" type="text" value = {description} onChange={e => updateDescription(e.currentTarget.value)}/>
-                    <Button variant="contained" color="primary" onClick={() => {submitHandler()}}>
+                    <Button variant="contained" color="primary" onClick={() => {submitNewItem()}}>
                         Submit
                     </Button>
                 </form>
@@ -147,16 +194,17 @@ const InputField =()=> {
                                 <em>None</em>
                             </MenuItem>
                             {mongoData.map((item) =>
-                                <MenuItem key={item._id} value = {item.name} >{item.name}</MenuItem>
+                                <MenuItem key={item.id} value = {item.name} >{item.name}</MenuItem>
                             )}
                         </Select>
                         <TextField id="standard-basic" label="Количество" type="text" value={amount} onChange = {e => updateAmount(e.currentTarget.value)}/>
-                        <Button variant="contained" color="primary">
+                        <Button variant="contained" color="primary" onClick = {() => submitNewHistoryAdd()}>
                             Submit
                         </Button>
                     </form>
                 </div>
                 <div className="mt-40">
+                    <button onClick={()=>console.log(itemDel)}>--- TEST --- </button>
                     <div>Удалить предметы</div>
                     <form className={classes.root}>
                         {/*<InputLabel id="demo-controlled-open-select-label">Выберите предмет</InputLabel>*/}
@@ -168,16 +216,17 @@ const InputField =()=> {
                             onOpen={handleOpenDelete}
                             value={itemDel}
                             onChange={handleChangeDelete}
+                            // onChange={(e)=>console.log('eee', e.target.value)}
                         >
                             <MenuItem value="">
                                 <em>None</em>
                             </MenuItem>
                             {mongoData.map((item) =>
-                                <MenuItem key={item._id} value = {item.name} item={item}>{item.name}</MenuItem>
+                                <MenuItem key={item.id} value = {item.id} item={item}>{item.name}</MenuItem>
                             )}
                         </Select>
                         <TextField id="standard-basic" label="Количество" type="text" value={amountDel} onChange = {e => updateAmountDel(e.currentTarget.value)}/>
-                        <Button variant="contained" color="primary">
+                        <Button variant="contained" color="primary" onClick = {() => submitNewHistoryDel()}>
                             Submit
                         </Button>
                     </form>
