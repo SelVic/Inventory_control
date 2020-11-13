@@ -3,6 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from "axios";
+import PropTypes from 'prop-types';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { FixedSizeList } from 'react-window';
+import { Collapse } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -11,6 +16,12 @@ const useStyles = makeStyles((theme) => ({
             margin: theme.spacing(1),
             width: '25ch',
         },
+    },
+    selectField: {
+        width: '100%',
+        height: 400,
+        maxWidth: 300,
+        backgroundColor: theme.palette.background.paper,
     },
 }));
 const InputField =()=> {
@@ -76,6 +87,24 @@ const InputField =()=> {
     //     updateBooks([...books, book])
     // }
 
+
+    const renderRow=(props) => {
+        const { index, style } = props;
+
+        return (
+            <ListItem button style={style} key={index}>
+                <ListItemText primary={`Item ${index + 1}`} />
+            </ListItem>
+        );
+    }
+
+    renderRow.propTypes = {
+        index: PropTypes.number.isRequired,
+        style: PropTypes.object.isRequired,
+    };
+
+
+
     return (
         <div>
             <Fragment>
@@ -88,38 +117,14 @@ const InputField =()=> {
                         Submit
                     </Button>
                 </form>
+                <div className={classes.root}>
+                    <FixedSizeList height={400} width={300} itemSize={46} itemCount={200}>
+                        {renderRow}
+                    </FixedSizeList>
+                </div>
             </Fragment>
         </div>
     )
 }
 
 export default InputField
-
-
-
-
-
-// import React, {Component, Fragment} from "react";
-// import {render} from "react-dom";
-// import InputField from "./InputField";
-// import Grid from '@material-ui/core/Grid';
-//
-//
-// class ItemAdder extends Component {
-// render(){
-//     return(
-//         <Grid >
-//             <div className>
-//                 <div className="text-style">Add item</div>
-//                 <InputField/>
-//             </div>
-//             <div>
-//                 <div className="text-style">Remove item</div>
-//                 <InputField/>
-//             </div>
-//         </Grid>
-//     )
-// }
-// }
-//
-// export {ItemAdder}

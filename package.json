@@ -42,10 +42,12 @@
     "gulp-sourcemaps": "^2.6.5",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.11",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
+    "react-window": "^1.8.6",
     "redux": "^4.0.5"
   }
 }
