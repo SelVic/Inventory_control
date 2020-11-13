@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import axios from "axios";
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import Menu from "@material-ui/core/Menu";
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
@@ -17,50 +18,65 @@ const useStyles = makeStyles((theme) => ({
             width: '25ch',
         },
     },
-    button: {
-        display: 'block',
-        marginTop: theme.spacing(2),
-    },
+
     adder: {
-        marginBottom: theme.spacing(15)
+        marginBottom: "15px",
+        minWidth: 150
     },
 }));
 const InputField =()=> {
-    const [id, updateId] = useState(0)
+    const [description, updateDescription] = useState("")
     const [name, updateName] = useState("");
     const [amount, updateAmount] = useState(0);
-    const [book, updateBook] = useState({});
-    const [firstRun, setRun] = useState(false);
     const classes = useStyles();
-    const [item, setItem] = React.useState('');
-    const [open, setOpen] = React.useState(false);
-    const [itemDel, setItemDel] = React.useState('');
-    const [openDel, setOpenDel] = React.useState(false);
+    const [item, updateItem] = React.useState('');
+    const [open, updateOpen] = React.useState(false);
+    const [itemDel, updateItemDel] = React.useState('');
+    const [openDel, updateOpenDel] = React.useState(false);
+    const [mongoData, updateMongoData] = useState([]);
+    const [itemId, updateItemId] = useState(0)
 
+    useEffect(() => {
+        const fetch = async () => {
+            const response = await axios.get('/api')
+            updateMongoData(response.data.map(item => {
+                return {name: item.name, amount: item.amount, description: item.description, id: item._id}
+            }))
+        }
+        fetch()
+    },[]);
+
+    // console.log(mongoData)
 
     const handleChange = (event) => {
-        setItem(event.target.value);
+        updateItem(event.target.value);
+        console.log(event.target.value._id)
     };
 
     const handleClose = () => {
-        setOpen(false);
+        updateOpen(false);
     };
 
     const handleOpen = () => {
-        setOpen(true);
+        updateOpen(true);
     };
 
     const handleChangeDelete = (event) => {
-        setItemDel(event.target.value);
+        updateItemDel(event.target.value);
     };
 
     const handleCloseDelete = () => {
-        setOpenDel(false);
+        updateOpenDel(false);
     };
 
     const handleOpenDelete = () => {
-        setOpenDel(true);
+        updateOpenDel(true);
     };
+
+    const handleSelect = (event) => {
+        console.log(event.target.value)
+    }
+
 
 
     const submitHandler = () => {
@@ -75,11 +91,11 @@ const InputField =()=> {
         const payLoad = {
             name: name,
             amount: amount,
-            id: id,
+            description: description,
             date: today
         };
-        if(name == "" || id == 0 || amount ==0)
-            alert("Заполните все поля!")
+        if(name == "" || mongoData.some(item => item.name == name))
+            alert("Поле наименования не заполнено, либо такой предмет уже существует в базе")
         else{
             axios({
                 url: "/savedb",
@@ -99,26 +115,26 @@ const InputField =()=> {
     const resetFields = () =>{
         updateName("")
         updateAmount(0)
-        updateId(0)
+        updateDescription("")
     }
 
+
+    console.log()
 
     return (
         <div>
             <Fragment>
-                Добавить предмет
+                Внести новый предмет в базу
                 <form className={classes.root} noValidate autoComplete="off" >
-                    <TextField id="standard-basic" label="Name" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
-                    <TextField id="standard-basic" label="Amount" type="text" value = {amount} onChange={e => updateAmount(e.currentTarget.value)}/>
-                    <TextField id="standard-basic" label="ID" type="text" value = {id} onChange={e => updateId(e.currentTarget.value)}/>
+                    <TextField id="standard-basic" label="Наименование" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
+                    <TextField id="standard-basic" label="Описание" type="text" value = {description} onChange={e => updateDescription(e.currentTarget.value)}/>
                     <Button variant="contained" color="primary" onClick={() => {submitHandler()}}>
                         Submit
                     </Button>
                 </form>
                 <div className="mt-40">
-                    <div>Добавить</div>
-                    <form className={classes.root}>
-                        <InputLabel id="demo-controlled-open-select-label">Выберите предмет</InputLabel>
+                    <div>Добавить предметы</div>
+                    <form className={classes.root} noValidate autoComplete="off">
                         <Select
                             labelId="demo-controlled-open-select-label"
                             id="demo-controlled-open-select"
@@ -131,20 +147,20 @@ const InputField =()=> {
                             <MenuItem value="">
                                 <em>None</em>
                             </MenuItem>
-                            <MenuItem value={10}>1</MenuItem>
-                            <MenuItem value={20}>2</MenuItem>
-                            <MenuItem value={30}>3</MenuItem>
+                            {mongoData.map((item) =>
+                                <MenuItem key={item._id} value = {item.name} item={item} >{item.name}</MenuItem>
+                            )}
                         </Select>
-                        <TextField id="standard-basic" label="Количество" type="text"/>
+                        <TextField id="standard-basic" label="Количество" type="text" value={amount} onChange = {e => updateAmount(e.currentTarget.value)}/>
                         <Button variant="contained" color="primary">
                             Submit
                         </Button>
                     </form>
                 </div>
                 <div className="mt-40">
-                    <div>Удалить</div>
+                    <div>Удалить предметы</div>
                     <form className={classes.root}>
-                        <InputLabel id="demo-controlled-open-select-label">Выберите предмет</InputLabel>
+                        {/*<InputLabel id="demo-controlled-open-select-label">Выберите предмет</InputLabel>*/}
                         <Select
                             labelId="demo-controlled-open-select-label"
                             id="demo-controlled-open-select"
@@ -157,11 +173,11 @@ const InputField =()=> {
                             <MenuItem value="">
                                 <em>None</em>
                             </MenuItem>
-                            <MenuItem value={10}>1</MenuItem>
-                            <MenuItem value={20}>2</MenuItem>
-                            <MenuItem value={30}>3</MenuItem>
+                            {mongoData.map((item) =>
+                                <MenuItem key={item._id} value = {item.name} item={item}>{item.name}</MenuItem>
+                            )}
                         </Select>
-                        <TextField className={classes.adder} id="standard-basic" label="Количество" type="text"/>
+                        <TextField id="standard-basic" label="Количество" type="text"/>
                         <Button variant="contained" color="primary">
                             Submit
                         </Button>
