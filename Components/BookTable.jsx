@@ -112,29 +112,13 @@ Row.propTypes = {
 
 
 const BookTable = (props) => {
-    let [mongoData, updateMongoData] = useState([]);
-    const createData = (name, amount, id, history) => {
-        return {
-            name,
-            amount,
-            id,
-            history,
-        };
-    }
-
-    const rows1 = [
-        createData('Lord of the Rings', 159, 1000),
-        createData('Мертвые души', 237, 2000 ),
-        createData('bookname1', 262, 1500 ),
-        createData('bookname2', 305, 1600),
-        createData('bookname3', 356, 1700),
-    ];
+    const [mongoData, updateMongoData] = useState([]);
 
     useEffect(() => {
         const fetch = async () => {
-            let response = await axios.get('/api')
+            const response = await axios.get('/api')
             updateMongoData(response.data.map(item => {
-                return {name: item.name, amount: item.amount, id: item.id}
+                return {name: item.name, amount: item.amount, id: item._id}
             }))
         }
         fetch()

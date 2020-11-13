@@ -210,43 +210,21 @@ Row.propTypes = {
 };
 
 const BookTable = props => {
-  let [mongoData, updateMongoData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  let rows = [];
-
-  const createData = (name, amount, id, history) => {
-    return {
-      name,
-      amount,
-      id,
-      history
-    };
-  };
-
-  const rows1 = [createData('Lord of the Rings', 159, 1000), createData('Мертвые души', 237, 2000), createData('bookname1', 262, 1500), createData('bookname2', 305, 1600), createData('bookname3', 356, 1700)];
+  const [mongoData, updateMongoData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     const fetch = async () => {
-      let response = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api'); // .then((response) => {
-      //     // mongoData = response.data;
-      //     // rows = mongoData;
-      //     // console.log("h",rows)
-      //     console.log("Data have been received", mongoData)
-      // })
-      // .catch(() => {
-      //     console.log("Error receiving data")
-      // })
-
+      const response = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api');
       updateMongoData(response.data.map(item => {
         return {
           name: item.name,
           amount: item.amount,
-          id: item.id
+          id: item._id
         };
       }));
     };
 
     fetch();
   }, []);
-  console.log(mongoData);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
     component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_13__["default"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -296,19 +274,18 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["
 }));
 
 const InputField = () => {
-  let [id, updateId] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
-  let [name, updateName] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
-  let [amount, updateAmount] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
-  let [book, updateBook] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({});
-  let [firstRun, setRun] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false); // let [books, updateBooks] = useState([]);
+  const [id, updateId] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  const [name, updateName] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
+  const [amount, updateAmount] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  const [book, updateBook] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({});
+  const [firstRun, setRun] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false); // let [books, updateBooks] = useState([]);
 
   const classes = useStyles();
 
   const submitHandler = () => {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
     let yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
     const payLoad = {

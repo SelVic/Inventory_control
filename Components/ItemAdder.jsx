@@ -14,11 +14,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 const InputField =()=> {
-    let [id, updateId] = useState(0)
-    let [name, updateName] = useState("");
-    let [amount, updateAmount] = useState(0);
-    let [book, updateBook] = useState({});
-    let [firstRun, setRun] = useState(false);
+    const [id, updateId] = useState(0)
+    const [name, updateName] = useState("");
+    const [amount, updateAmount] = useState(0);
+    const [book, updateBook] = useState({});
+    const [firstRun, setRun] = useState(false);
     // let [books, updateBooks] = useState([]);
     const classes = useStyles();
 
@@ -27,7 +27,7 @@ const InputField =()=> {
 
         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
-        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let mm = String(today.getMonth() + 1).padStart(2, '0');
         let yyyy = today.getFullYear();
 
         today = mm + '/' + dd + '/' + yyyy;

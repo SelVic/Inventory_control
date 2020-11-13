@@ -1,10 +1,10 @@
-let express = require('express');
-let path = require('path');
-let app = express();
-let mongoose = require('mongoose')
-let login = require('./configfile')
-let mongoPath = `mongodb+srv://Vic:${login}@cluster0.q16eb.mongodb.net/appdata`
-let bookSchema = require('./schemas/BookSchema')
+const express = require('express');
+const path = require('path');
+const app = express();
+const mongoose = require('mongoose')
+const login = require('./configfile')
+const mongoPath = `mongodb+srv://Vic:${login}@cluster0.q16eb.mongodb.net/appdata`
+const bookSchema = require('./schemas/BookSchema')
 
 async function mong() {
     try{
@@ -45,9 +45,9 @@ app.get("/api", function (req, res) {
 
 app.post("/savedb", function(req, res){
     console.log("Body:", req.body)
-    let reqData = req.body;
+    const reqData = req.body;
 
-    let newBookSchema = new bookSchema(reqData)
+    const newBookSchema = new bookSchema(reqData)
 
     newBookSchema.save((error)=>{
         if (error) {
