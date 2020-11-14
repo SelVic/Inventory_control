@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const historySchema = mongoose.Schema({
-    name: String,
+    uniqueId: String,
     action: String,
     amount: Number,
     date: String

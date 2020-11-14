@@ -288,12 +288,11 @@ const InputField = () => {
   const [amount, updateAmount] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
   const [amountDel, updateAmountDel] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
   const classes = useStyles();
-  const [item, updateItem] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState('');
-  const [open, updateOpen] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false);
-  const [itemDel, updateItemDel] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState('');
-  const [openDel, updateOpenDel] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false);
+  const [item, updateItem] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+  const [open, updateOpen] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [itemDel, updateItemDel] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+  const [openDel, updateOpenDel] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const [mongoData, updateMongoData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  const [itemId, updateItemId] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     const fetch = async () => {
       const response = await axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('/api');
@@ -311,6 +310,7 @@ const InputField = () => {
 
   const handleChange = event => {
     updateItem(event.target.value);
+    console.log(item);
   };
 
   const handleClose = () => {
@@ -323,6 +323,7 @@ const InputField = () => {
 
   const handleChangeDelete = event => {
     updateItemDel(event.target.value);
+    console.log(itemDel);
   };
 
   const handleCloseDelete = () => {
@@ -351,6 +352,7 @@ const InputField = () => {
     const payLoad = {
       name: name,
       description: description,
+      totalAmount: 0,
       date: today
     };
     if (name == "" || mongoData.some(item => item.name == name)) alert("Поле наименования не заполнено, либо такой предмет уже существует в базе");else {
@@ -370,8 +372,8 @@ const InputField = () => {
   const submitNewHistoryAdd = () => {
     let today = dateCount();
     const payLoadHistory = {
-      name: item,
-      action: "Добавлено",
+      uniqueId: item,
+      action: "Added",
       amount: amount,
       date: today
     };
@@ -390,9 +392,9 @@ const InputField = () => {
   const submitNewHistoryDel = () => {
     let today = dateCount();
     const payLoadHistory = {
-      name: itemDel,
-      action: "Удалено",
-      amount: amount,
+      uniqueId: itemDel,
+      action: "Deleted",
+      amount: amountDel,
       date: today
     };
     axios__WEBPACK_IMPORTED_MODULE_4___default()({
@@ -459,7 +461,7 @@ const InputField = () => {
     value: ""
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", null, "None")), mongoData.map(item => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_6__["default"], {
     key: item.id,
-    value: item.name
+    value: item.id
   }, item.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     id: "standard-basic",
     label: "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E",
@@ -472,9 +474,7 @@ const InputField = () => {
     onClick: () => submitNewHistoryAdd()
   }, "Submit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-40"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: () => console.log(itemDel)
-  }, "--- TEST --- "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: classes.root
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_7__["default"], {
     labelId: "demo-controlled-open-select-label",

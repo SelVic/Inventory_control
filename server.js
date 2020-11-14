@@ -71,9 +71,22 @@ app.post("/savedb", function(req, res){
     })
 })
 
-app.post("/savedb/history", function(req, res){
+app.post("/savedb/history", async function(req, res){
     console.log("HistoryBody:", req.body)
     const reqData = req.body;
+    const reqDataId = req.body.uniqueId;
+    const matchingItem = await bookSchema.findOne({_id : reqDataId})
+    let matchingItemAmount = await parseInt(matchingItem.totalAmount, 10)
+
+    if(reqData.action == "Added"){
+        let newTotalAmount = matchingItemAmount + parseInt(reqData.amount, 10)
+        await bookSchema.findOneAndUpdate({_id : reqDataId}, {totalAmount : newTotalAmount})
+    }
+    else{
+        let newTotalAmount = matchingItemAmount - parseInt(reqData.amount, 10)
+        await bookSchema.findOneAndUpdate({_id : reqDataId}, {totalAmount : newTotalAmount})
+    }
+
 
     const newHistorySchema = new historySchema(reqData)
 

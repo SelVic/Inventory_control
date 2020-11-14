@@ -28,12 +28,11 @@ const InputField =()=> {
     const [amount, updateAmount] = useState("");
     const [amountDel, updateAmountDel] = useState("");
     const classes = useStyles();
-    const [item, updateItem] = React.useState('');
-    const [open, updateOpen] = React.useState(false);
-    const [itemDel, updateItemDel] = React.useState('');
-    const [openDel, updateOpenDel] = React.useState(false);
+    const [item, updateItem] = useState('');
+    const [open, updateOpen] = useState(false);
+    const [itemDel, updateItemDel] = useState('');
+    const [openDel, updateOpenDel] = useState(false);
     const [mongoData, updateMongoData] = useState([]);
-    const [itemId, updateItemId] = useState(0)
 
     useEffect(() => {
         const fetch = async () => {
@@ -47,6 +46,7 @@ const InputField =()=> {
 
     const handleChange = (event) => {
         updateItem(event.target.value);
+        console.log(item)
     };
 
     const handleClose = () => {
@@ -59,6 +59,7 @@ const InputField =()=> {
 
     const handleChangeDelete = (event) => {
         updateItemDel(event.target.value);
+        console.log(itemDel)
     };
 
     const handleCloseDelete = () => {
@@ -90,6 +91,7 @@ const InputField =()=> {
         const payLoad = {
             name: name,
             description: description,
+            totalAmount : 0,
             date: today
         };
         if(name == "" || mongoData.some(item => item.name == name))
@@ -113,8 +115,8 @@ const InputField =()=> {
     const submitNewHistoryAdd = () => {
         let today = dateCount()
         const payLoadHistory = {
-            name: item,
-            action: "Добавлено",
+            uniqueId: item,
+            action: "Added",
             amount: amount,
             date: today
         };
@@ -135,9 +137,9 @@ const InputField =()=> {
     const submitNewHistoryDel = () => {
         let today = dateCount()
         const payLoadHistory = {
-            name: itemDel,
-            action : "Удалено",
-            amount: amount,
+            uniqueId: itemDel,
+            action : "Deleted",
+            amount: amountDel,
             date: today
         };
         axios({
@@ -194,7 +196,7 @@ const InputField =()=> {
                                 <em>None</em>
                             </MenuItem>
                             {mongoData.map((item) =>
-                                <MenuItem key={item.id} value = {item.name} >{item.name}</MenuItem>
+                                <MenuItem key={item.id} value = {item.id} >{item.name}</MenuItem>
                             )}
                         </Select>
                         <TextField id="standard-basic" label="Количество" type="text" value={amount} onChange = {e => updateAmount(e.currentTarget.value)}/>
@@ -204,7 +206,6 @@ const InputField =()=> {
                     </form>
                 </div>
                 <div className="mt-40">
-                    <button onClick={()=>console.log(itemDel)}>--- TEST --- </button>
                     <div>Удалить предметы</div>
                     <form className={classes.root}>
                         {/*<InputLabel id="demo-controlled-open-select-label">Выберите предмет</InputLabel>*/}
