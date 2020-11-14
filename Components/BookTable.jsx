@@ -46,7 +46,7 @@ function Row(props) {
                 <TableCell component="th" scope="row">
                     {row.name}
                 </TableCell>
-                <TableCell align="right">Количество будет здесь</TableCell>
+                <TableCell align="right">{row.totalAmount}</TableCell>
                 <TableCell align="right">{row.id}</TableCell>
             </TableRow>
             <TableRow>
@@ -54,16 +54,15 @@ function Row(props) {
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box margin={1}>
                             <Typography variant="h6" gutterBottom component="div">
-                                History
+                                История
                             </Typography>
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Date</TableCell>
-                                        <TableCell>Customer</TableCell>
-                                        <TableCell align="right">Amount</TableCell>
-                                        <TableCell align="right">Action</TableCell>
-                                        <TableCell align="right">Delete</TableCell>
+                                        <TableCell>Дата</TableCell>
+                                        <TableCell align="right">Количество</TableCell>
+                                        <TableCell align="right">Добавлено / Удалено</TableCell>
+                                        <TableCell align="right">Удалить предмет</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 {/*<TableBody>*/}
@@ -97,28 +96,33 @@ Row.propTypes = {
     row: PropTypes.shape({
         name: PropTypes.string,
         amount: PropTypes.number,
-        id: PropTypes.number,
-        history: PropTypes.string
-        // history: PropTypes.arrayOf(
-        //     PropTypes.shape({
-        //         amount: PropTypes.number.isRequired,
-        //         customerId: PropTypes.string.isRequired,
-        //         date: PropTypes.string.isRequired,
-        //         action: PropTypes.string.isRequired,
-        //     }),
-        // ).isRequired,
+        id: PropTypes.string,
+        // history: PropTypes.string
+        // // history: PropTypes.arrayOf(
+        // //     PropTypes.shape({
+        // //         amount: PropTypes.number.isRequired,
+        // //         customerId: PropTypes.string.isRequired,
+        // //         date: PropTypes.string.isRequired,
+        // //         action: PropTypes.string.isRequired,
+        // //     }),
+        // // ).isRequired,
     }),
 };
 
 
 const BookTable = (props) => {
     const [mongoData, updateMongoData] = useState([]);
+    const [historyData, updateHistoryData] = useState([])
 
     useEffect(() => {
         const fetch = async () => {
             const response = await axios.get('/api')
+            // const responseHistory = await axios.get('/api/history')
+            // updateHistoryData(responseHistory.data.map(item => {
+            //     return {uniqueId: item.uniqueId, action: item.action, amount: item.amount, date: item.date}
+            // }))
             updateMongoData(response.data.map(item => {
-                return {name: item.name, id: item._id}
+                return {name: item.name, id: item._id, totalAmount: item.totalAmount}
             }))
         }
         fetch()
@@ -130,9 +134,9 @@ const BookTable = (props) => {
                 <TableHead>
                     <TableRow>
                         <TableCell />
-                        <TableCell>Book name</TableCell>
-                        <TableCell align="right">Amount</TableCell>
-                        <TableCell align="right">ID</TableCell>
+                        <TableCell>Название предмета</TableCell>
+                        <TableCell align="right">Количество на складе</TableCell>
+                        <TableCell align="right">Идентификатор</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

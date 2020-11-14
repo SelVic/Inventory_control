@@ -27,26 +27,32 @@ const InputField =()=> {
     const [name, updateName] = useState("");
     const [amount, updateAmount] = useState("");
     const [amountDel, updateAmountDel] = useState("");
-    const classes = useStyles();
     const [item, updateItem] = useState('');
     const [open, updateOpen] = useState(false);
     const [itemDel, updateItemDel] = useState('');
     const [openDel, updateOpenDel] = useState(false);
     const [mongoData, updateMongoData] = useState([]);
+    const [submitted, updateSubmitted] = useState(false)
+    const classes = useStyles();
 
     useEffect(() => {
         const fetch = async () => {
             const response = await axios.get('/api')
             updateMongoData(response.data.map(item => {
-                return {name: item.name, description: item.description, id: item._id}
+                return {name: item.name, description: item.description, id: item._id, totalAmount: item.totalAmount}
             }))
         }
+        console.log('Mongo data updated')
         fetch()
-    },[]);
+    },[submitted]);
+
+    useEffect(() => {
+        updateSubmitted(false)
+    })
+
 
     const handleChange = (event) => {
         updateItem(event.target.value);
-        console.log(item)
     };
 
     const handleClose = () => {
@@ -59,7 +65,6 @@ const InputField =()=> {
 
     const handleChangeDelete = (event) => {
         updateItemDel(event.target.value);
-        console.log(itemDel)
     };
 
     const handleCloseDelete = () => {
@@ -69,10 +74,6 @@ const InputField =()=> {
     const handleOpenDelete = () => {
         updateOpenDel(true);
     };
-
-    const handleSelect = (event) => {
-        console.log(event.target.value)
-    }
 
     const dateCount = () => {
         let today = new Date();
@@ -85,7 +86,6 @@ const InputField =()=> {
     }
 
     const submitNewItem = () => {
-
         let today = dateCount()
 
         const payLoad = {
@@ -109,6 +109,7 @@ const InputField =()=> {
                 .catch(()=>{
                     console.log("Internal server error");
                 })
+            updateSubmitted(true)
         }
     }
 
@@ -120,6 +121,9 @@ const InputField =()=> {
             amount: amount,
             date: today
         };
+        if(amount == 0 || item == "")
+            alert("Заполните все поля!")
+        else
             axios({
                 url: "/savedb/history",
                 method: "POST",
@@ -132,6 +136,7 @@ const InputField =()=> {
                 .catch(()=>{
                     console.log("Internal server error");
                 })
+        updateSubmitted(true)
     }
 
     const submitNewHistoryDel = () => {
@@ -142,6 +147,11 @@ const InputField =()=> {
             amount: amountDel,
             date: today
         };
+        if(amountDel == 0 || itemDel == "")
+            alert("Заполните все поля!")
+        else if(mongoData.some(item => item.id == itemDel && (item.totalAmount < amountDel)))
+            alert("Вы ввели слишком большое количество для списания, в базе недостаточно предметов этого наименования")
+        else
         axios({
             url: "/savedb/history",
             method: "POST",
@@ -154,6 +164,7 @@ const InputField =()=> {
             .catch(()=>{
                 console.log("Internal server error");
             })
+        updateSubmitted(true)
     }
 
 

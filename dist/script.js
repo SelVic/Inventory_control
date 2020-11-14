@@ -162,7 +162,7 @@ function Row(props) {
     scope: "row"
   }, row.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0431\u0443\u0434\u0435\u0442 \u0437\u0434\u0435\u0441\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, row.totalAmount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
   }, row.id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     style: {
@@ -180,44 +180,50 @@ function Row(props) {
     variant: "h6",
     gutterBottom: true,
     component: "div"
-  }, "History"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, "\u0418\u0441\u0442\u043E\u0440\u0438\u044F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_6__["default"], {
     size: "small",
     "aria-label": "purchases"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null, "Customer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null, "\u0414\u0430\u0442\u0430"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, "Amount"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, "Action"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E / \u0423\u0434\u0430\u043B\u0435\u043D\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, "Delete")))))))));
+  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043C\u0435\u0442")))))))));
 }
 
 Row.propTypes = {
   row: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
     name: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
     amount: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
-    id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
-    history: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string // history: PropTypes.arrayOf(
-    //     PropTypes.shape({
-    //         amount: PropTypes.number.isRequired,
-    //         customerId: PropTypes.string.isRequired,
-    //         date: PropTypes.string.isRequired,
-    //         action: PropTypes.string.isRequired,
-    //     }),
-    // ).isRequired,
+    id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string // history: PropTypes.string
+    // // history: PropTypes.arrayOf(
+    // //     PropTypes.shape({
+    // //         amount: PropTypes.number.isRequired,
+    // //         customerId: PropTypes.string.isRequired,
+    // //         date: PropTypes.string.isRequired,
+    // //         action: PropTypes.string.isRequired,
+    // //     }),
+    // // ).isRequired,
 
   })
 };
 
 const BookTable = props => {
   const [mongoData, updateMongoData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const [historyData, updateHistoryData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     const fetch = async () => {
-      const response = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api');
+      const response = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api'); // const responseHistory = await axios.get('/api/history')
+      // updateHistoryData(responseHistory.data.map(item => {
+      //     return {uniqueId: item.uniqueId, action: item.action, amount: item.amount, date: item.date}
+      // }))
+
       updateMongoData(response.data.map(item => {
         return {
           name: item.name,
-          id: item._id
+          id: item._id,
+          totalAmount: item.totalAmount
         };
       }));
     };
@@ -228,11 +234,11 @@ const BookTable = props => {
     component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_13__["default"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_6__["default"], {
     "aria-label": "collapsible table"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null, "Book name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null, "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u0430"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, "Amount"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043D\u0430 \u0441\u043A\u043B\u0430\u0434\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, "ID"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, mongoData.map(row => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Row, {
+  }, "\u0418\u0434\u0435\u043D\u0442\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, mongoData.map(row => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Row, {
     key: row.name,
     row: row
   })))));
@@ -287,12 +293,13 @@ const InputField = () => {
   const [name, updateName] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
   const [amount, updateAmount] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
   const [amountDel, updateAmountDel] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
-  const classes = useStyles();
   const [item, updateItem] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
   const [open, updateOpen] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const [itemDel, updateItemDel] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
   const [openDel, updateOpenDel] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const [mongoData, updateMongoData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const [submitted, updateSubmitted] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const classes = useStyles();
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     const fetch = async () => {
       const response = await axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('/api');
@@ -300,17 +307,21 @@ const InputField = () => {
         return {
           name: item.name,
           description: item.description,
-          id: item._id
+          id: item._id,
+          totalAmount: item.totalAmount
         };
       }));
     };
 
+    console.log('Mongo data updated');
     fetch();
-  }, []);
+  }, [submitted]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    updateSubmitted(false);
+  });
 
   const handleChange = event => {
     updateItem(event.target.value);
-    console.log(item);
   };
 
   const handleClose = () => {
@@ -323,7 +334,6 @@ const InputField = () => {
 
   const handleChangeDelete = event => {
     updateItemDel(event.target.value);
-    console.log(itemDel);
   };
 
   const handleCloseDelete = () => {
@@ -332,10 +342,6 @@ const InputField = () => {
 
   const handleOpenDelete = () => {
     updateOpenDel(true);
-  };
-
-  const handleSelect = event => {
-    console.log(event.target.value);
   };
 
   const dateCount = () => {
@@ -366,6 +372,7 @@ const InputField = () => {
       }).catch(() => {
         console.log("Internal server error");
       });
+      updateSubmitted(true);
     }
   };
 
@@ -377,7 +384,7 @@ const InputField = () => {
       amount: amount,
       date: today
     };
-    axios__WEBPACK_IMPORTED_MODULE_4___default()({
+    if (amount == 0 || item == "") alert("Заполните все поля!");else axios__WEBPACK_IMPORTED_MODULE_4___default()({
       url: "/savedb/history",
       method: "POST",
       data: payLoadHistory
@@ -387,6 +394,7 @@ const InputField = () => {
     }).catch(() => {
       console.log("Internal server error");
     });
+    updateSubmitted(true);
   };
 
   const submitNewHistoryDel = () => {
@@ -397,7 +405,7 @@ const InputField = () => {
       amount: amountDel,
       date: today
     };
-    axios__WEBPACK_IMPORTED_MODULE_4___default()({
+    if (amountDel == 0 || itemDel == "") alert("Заполните все поля!");else if (mongoData.some(item => item.id == itemDel && item.totalAmount < amountDel)) alert("Вы ввели слишком большое количество для списания, в базе недостаточно предметов этого наименования");else axios__WEBPACK_IMPORTED_MODULE_4___default()({
       url: "/savedb/history",
       method: "POST",
       data: payLoadHistory
@@ -407,6 +415,7 @@ const InputField = () => {
     }).catch(() => {
       console.log("Internal server error");
     });
+    updateSubmitted(true);
   };
 
   const resetFields = () => {
