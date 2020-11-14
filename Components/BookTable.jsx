@@ -30,37 +30,37 @@ const useRowStyles = makeStyles({
 
 
 
-function Row(props) {
+const Row = (props) => {
     const { row } = props;
     const [open, setOpen] = React.useState(false);
     const classes = useRowStyles();
     const [historyData, updateHistoryData] = useState([])
-    const [submitted, updateSubmitted] = useState(false)
+    const [rendered, updateRendered] = useState(false)
 
-    const deleteHandler = (historyId, action, amount) => {
-        // const payLoad = {
-        //     id: historyId,
-        //     action: action,
-        //     amount: amount,
-        // };
-        // axios({
-        //     url: "/deleteHistory",
-        //     method: "POST",
-        //     data: payLoad
-        //     })
-        //     .then(()=>{
-        //         console.log("История удалена");
-        //     })
-        //     .catch(()=>{
-        //         console.log("Internal server error");
-        //     })
-        // updateSubmitted(true)
-        console.log(historyId, action, amount)
+    const deleteHandler = (itemId, historyId, action, amount) => {
+        const payLoad = {
+            itemId: itemId,
+            historyId: historyId,
+            action: action,
+            amount: amount,
+        };
+        axios({
+            url: "/deleteHistory",
+            method: "POST",
+            data: payLoad
+            })
+            .then(()=>{
+                console.log("История удалена");
+            })
+            .catch(()=>{
+                console.log("Internal server error");
+            })
+        updateRendered(true)
     }
 
 
     useEffect(() => {
-        updateSubmitted(false)
+        updateRendered(false)
     })
 
     useEffect(() => {
@@ -72,12 +72,13 @@ function Row(props) {
         }
         console.log("History data has been updated")
         fetch()
-    },[submitted]);
+    },[rendered]);
 
     const createHistoryArray = (id) => {
         let historyArray = historyData.filter(item => item.uniqueId == id)
         return historyArray
     }
+
 
 
     return (
@@ -111,15 +112,15 @@ function Row(props) {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {createHistoryArray(row.id).map((item) => (
-                                        <TableRow key={item.historyId}>
+                                    {createHistoryArray(row.id).map((history) => (
+                                        <TableRow key={history.historyId}>
                                             <TableCell component="th" scope="row">
-                                                {item.date}
+                                                {history.date}
                                             </TableCell>
-                                            <TableCell align="right">{item.amount}</TableCell>
-                                            <TableCell align="right">{item.action}</TableCell>
+                                            <TableCell align="right">{history.amount}</TableCell>
+                                            <TableCell align="right">{history.action}</TableCell>
                                             <TableCell align="right">
-                                                <Button variant="contained" onClick={() => {deleteHandler(item.historyId, item.action, item.amount)}}>
+                                                <Button variant="contained" onClick={() => {deleteHandler(row.id, history.historyId, history.action, history.amount)}}>
                                                     Remove
                                                 </Button>
                                             </TableCell>

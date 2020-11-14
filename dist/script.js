@@ -145,38 +145,36 @@ const useRowStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2_
   }
 });
 
-function Row(props) {
+const Row = props => {
   const {
     row
   } = props;
   const [open, setOpen] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false);
   const classes = useRowStyles();
   const [historyData, updateHistoryData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  const [submitted, updateSubmitted] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [rendered, updateRendered] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
 
-  const deleteHandler = (historyId, action, amount) => {
-    // const payLoad = {
-    //     id: historyId,
-    //     action: action,
-    //     amount: amount,
-    // };
-    // axios({
-    //     url: "/deleteHistory",
-    //     method: "POST",
-    //     data: payLoad
-    //     })
-    //     .then(()=>{
-    //         console.log("История удалена");
-    //     })
-    //     .catch(()=>{
-    //         console.log("Internal server error");
-    //     })
-    // updateSubmitted(true)
-    console.log(historyId, action, amount);
+  const deleteHandler = (itemId, historyId, action, amount) => {
+    const payLoad = {
+      itemId: itemId,
+      historyId: historyId,
+      action: action,
+      amount: amount
+    };
+    axios__WEBPACK_IMPORTED_MODULE_17___default()({
+      url: "/deleteHistory",
+      method: "POST",
+      data: payLoad
+    }).then(() => {
+      console.log("История удалена");
+    }).catch(() => {
+      console.log("Internal server error");
+    });
+    updateRendered(true);
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    updateSubmitted(false);
+    updateRendered(false);
   });
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     const fetch = async () => {
@@ -194,7 +192,7 @@ function Row(props) {
 
     console.log("History data has been updated");
     fetch();
-  }, [submitted]);
+  }, [rendered]);
 
   const createHistoryArray = id => {
     let historyArray = historyData.filter(item => item.uniqueId == id);
@@ -239,26 +237,26 @@ function Row(props) {
     align: "right"
   }, "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E / \u0423\u0434\u0430\u043B\u0435\u043D\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0438\u0441\u0442\u043E\u0440\u0438\u044E"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, createHistoryArray(row.id).map(item => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    key: item.historyId
+  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0438\u0441\u0442\u043E\u0440\u0438\u044E"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, createHistoryArray(row.id).map(history => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    key: history.historyId
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     component: "th",
     scope: "row"
-  }, item.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, history.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, item.amount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, history.amount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, item.action), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, history.action), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "contained",
     onClick: () => {
-      deleteHandler(item.historyId, item.action, item.amount);
+      deleteHandler(row.id, history.historyId, history.action, history.amount);
     }
   }, "Remove")))).sort(() => {
     return -1;
   }))))))));
-}
+};
 
 Row.propTypes = {
   row: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
