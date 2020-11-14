@@ -34,6 +34,51 @@ function Row(props) {
     const { row } = props;
     const [open, setOpen] = React.useState(false);
     const classes = useRowStyles();
+    const [historyData, updateHistoryData] = useState([])
+    const [submitted, updateSubmitted] = useState(false)
+
+    const deleteHandler = (historyId, action, amount) => {
+        // const payLoad = {
+        //     id: historyId,
+        //     action: action,
+        //     amount: amount,
+        // };
+        // axios({
+        //     url: "/deleteHistory",
+        //     method: "POST",
+        //     data: payLoad
+        //     })
+        //     .then(()=>{
+        //         console.log("История удалена");
+        //     })
+        //     .catch(()=>{
+        //         console.log("Internal server error");
+        //     })
+        // updateSubmitted(true)
+        console.log(historyId, action, amount)
+    }
+
+
+    useEffect(() => {
+        updateSubmitted(false)
+    })
+
+    useEffect(() => {
+        const fetch = async () => {
+            const responseHistory = await axios.get('/api/history')
+            updateHistoryData(responseHistory.data.map(item => {
+                return {uniqueId: item.uniqueId, action: item.action, amount: item.amount, date: item.date, historyId : item._id}
+            }))
+        }
+        console.log("History data has been updated")
+        fetch()
+    },[submitted]);
+
+    const createHistoryArray = (id) => {
+        let historyArray = historyData.filter(item => item.uniqueId == id)
+        return historyArray
+    }
+
 
     return (
         <React.Fragment>
@@ -62,27 +107,25 @@ function Row(props) {
                                         <TableCell>Дата</TableCell>
                                         <TableCell align="right">Количество</TableCell>
                                         <TableCell align="right">Добавлено / Удалено</TableCell>
-                                        <TableCell align="right">Удалить предмет</TableCell>
+                                        <TableCell align="right">Удалить историю</TableCell>
                                     </TableRow>
                                 </TableHead>
-                                {/*<TableBody>*/}
-                                {/*    {row.history.map((historyRow) => (*/}
-                                {/*        <TableRow key={historyRow.date}>*/}
-                                {/*            <TableCell component="th" scope="row">*/}
-                                {/*                {historyRow.date}*/}
-                                {/*            </TableCell>*/}
-                                {/*            <TableCell>Vic</TableCell>*/}
-                                {/*            <TableCell align="right"></TableCell>*/}
-                                {/*            <TableCell align="right">*/}
-                                {/*            </TableCell>*/}
-                                {/*            <TableCell align="right">*/}
-                                {/*                <Button variant="contained">*/}
-                                {/*                    Remove*/}
-                                {/*                </Button>*/}
-                                {/*            </TableCell>*/}
-                                {/*        </TableRow>*/}
-                                {/*    ))}*/}
-                                {/*</TableBody>*/}
+                                <TableBody>
+                                    {createHistoryArray(row.id).map((item) => (
+                                        <TableRow key={item.historyId}>
+                                            <TableCell component="th" scope="row">
+                                                {item.date}
+                                            </TableCell>
+                                            <TableCell align="right">{item.amount}</TableCell>
+                                            <TableCell align="right">{item.action}</TableCell>
+                                            <TableCell align="right">
+                                                <Button variant="contained" onClick={() => {deleteHandler(item.historyId, item.action, item.amount)}}>
+                                                    Remove
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    )).sort(()=> {return -1})}
+                                </TableBody>
                             </Table>
                         </Box>
                     </Collapse>
@@ -112,15 +155,10 @@ Row.propTypes = {
 
 const BookTable = (props) => {
     const [mongoData, updateMongoData] = useState([]);
-    const [historyData, updateHistoryData] = useState([])
 
     useEffect(() => {
         const fetch = async () => {
             const response = await axios.get('/api')
-            // const responseHistory = await axios.get('/api/history')
-            // updateHistoryData(responseHistory.data.map(item => {
-            //     return {uniqueId: item.uniqueId, action: item.action, amount: item.amount, date: item.date}
-            // }))
             updateMongoData(response.data.map(item => {
                 return {name: item.name, id: item._id, totalAmount: item.totalAmount}
             }))
@@ -142,7 +180,7 @@ const BookTable = (props) => {
                 <TableBody>
                     {mongoData.map((row) => (
                         <Row key={row.name} row={row} />
-                    ))}
+                    )).sort(()=> {return -1})}
                 </TableBody>
             </Table>
         </TableContainer>

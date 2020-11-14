@@ -71,6 +71,28 @@ app.post("/savedb", function(req, res){
     })
 })
 
+// app.post("/deleteHistory", async function(req,res){
+//     console.log("DeletedItem:", req.body)
+//     const reqData = req.body;
+//
+//     const matchingItem = await bookSchema.findOne({_id : reqData.id})
+//     let matchingItemAmount = await parseInt(matchingItem.totalAmount, 10)
+//
+//
+//     if(reqData.action == "Added"){
+//         let newTotalAmount = matchingItemAmount - parseInt(reqData.amount, 10)
+//         await bookSchema.findOneAndUpdate({_id : reqData.id}, {totalAmount : newTotalAmount})
+//     }
+//     else{
+//         let newTotalAmount = matchingItemAmount + parseInt(reqData.amount, 10)
+//         await bookSchema.findOneAndUpdate({_id : reqData.id}, {totalAmount : newTotalAmount})
+//     }
+//     await historySchema.findByIdAndDelete(reqData.id)
+// })
+
+
+
+
 app.post("/savedb/history", async function(req, res){
     console.log("HistoryBody:", req.body)
     const reqData = req.body;
