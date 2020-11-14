@@ -16,6 +16,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Button from '@material-ui/core/Button';
 import axios from "axios";
+import TextField from "@material-ui/core/TextField";
 
 
 const useRowStyles = makeStyles({
@@ -64,6 +65,7 @@ const Row = (props) => {
     })
 
     useEffect(() => {
+        let cleanupFunc = false;
         const fetch = async () => {
             const responseHistory = await axios.get('/api/history')
             updateHistoryData(responseHistory.data.map(item => {
@@ -72,6 +74,7 @@ const Row = (props) => {
         }
         console.log("History data has been updated")
         fetch()
+        return () => cleanupFunc = true;
     },[rendered]);
 
     const createHistoryArray = (id) => {
@@ -156,18 +159,27 @@ Row.propTypes = {
 
 const BookTable = (props) => {
     const [mongoData, updateMongoData] = useState([]);
+    const [filtered, updateFiltered] = useState(mongoData);
+    const [text, updateText] = useState("")
+
 
     useEffect(() => {
+        let cleanupFunc = false;
         const fetch = async () => {
             const response = await axios.get('/api')
-            updateMongoData(response.data.map(item => {
+            let responseValue = response.data;
+            updateMongoData(responseValue.map(item => {
                 return {name: item.name, id: item._id, totalAmount: item.totalAmount}
             }))
         }
         fetch()
+        return () => cleanupFunc = true;
     },[]);
 
+
     return (
+        <Fragment>
+        <TextField id="standard-basic" label="Фильтр" type="text" value={text} onChange = {e => updateText(e.currentTarget.value)}/>
         <TableContainer component={Paper}>
             <Table aria-label="collapsible table">
                 <TableHead>
@@ -180,11 +192,12 @@ const BookTable = (props) => {
                 </TableHead>
                 <TableBody>
                     {mongoData.map((row) => (
-                        <Row key={row.name} row={row} />
+                        <Row key={row._id} row={row} />
                     )).sort(()=> {return -1})}
                 </TableBody>
             </Table>
         </TableContainer>
+        </Fragment>
     );
 }
 

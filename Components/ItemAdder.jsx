@@ -32,7 +32,7 @@ const InputField =()=> {
     const [itemDel, updateItemDel] = useState('');
     const [openDel, updateOpenDel] = useState(false);
     const [mongoData, updateMongoData] = useState([]);
-    const [submitted, updateSubmitted] = useState(false)
+    const [rendered, updateRendered] = useState(false)
     const classes = useStyles();
 
     useEffect(() => {
@@ -44,10 +44,10 @@ const InputField =()=> {
         }
         console.log('Mongo data updated')
         fetch()
-    },[submitted]);
+    },[rendered]);
 
     useEffect(() => {
-        updateSubmitted(false)
+        updateRendered(false)
     })
 
 
@@ -109,7 +109,7 @@ const InputField =()=> {
                 .catch(()=>{
                     console.log("Internal server error");
                 })
-            updateSubmitted(true)
+            updateRendered(true)
         }
     }
 
@@ -136,7 +136,7 @@ const InputField =()=> {
                 .catch(()=>{
                     console.log("Internal server error");
                 })
-        updateSubmitted(true)
+        updateRendered(true)
     }
 
     const submitNewHistoryDel = () => {
@@ -164,7 +164,7 @@ const InputField =()=> {
             .catch(()=>{
                 console.log("Internal server error");
             })
-        updateSubmitted(true)
+        updateRendered(true)
     }
 
 

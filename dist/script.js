@@ -119,6 +119,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
+
 
 
 
@@ -177,6 +179,8 @@ const Row = props => {
     updateRendered(false);
   });
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    let cleanupFunc = false;
+
     const fetch = async () => {
       const responseHistory = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api/history');
       updateHistoryData(responseHistory.data.map(item => {
@@ -192,6 +196,7 @@ const Row = props => {
 
     console.log("History data has been updated");
     fetch();
+    return () => cleanupFunc = true;
   }, [rendered]);
 
   const createHistoryArray = id => {
@@ -277,10 +282,15 @@ Row.propTypes = {
 
 const BookTable = props => {
   const [mongoData, updateMongoData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const [filtered, updateFiltered] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(mongoData);
+  const [text, updateText] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    let cleanupFunc = false;
+
     const fetch = async () => {
       const response = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api');
-      updateMongoData(response.data.map(item => {
+      let responseValue = response.data;
+      updateMongoData(responseValue.map(item => {
         return {
           name: item.name,
           id: item._id,
@@ -290,8 +300,15 @@ const BookTable = props => {
     };
 
     fetch();
+    return () => cleanupFunc = true;
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_18__["default"], {
+    id: "standard-basic",
+    label: "\u0424\u0438\u043B\u044C\u0442\u0440",
+    type: "text",
+    value: text,
+    onChange: e => updateText(e.currentTarget.value)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
     component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_13__["default"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_6__["default"], {
     "aria-label": "collapsible table"
@@ -300,11 +317,11 @@ const BookTable = props => {
   }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043D\u0430 \u0441\u043A\u043B\u0430\u0434\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
   }, "\u0418\u0434\u0435\u043D\u0442\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, mongoData.map(row => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Row, {
-    key: row.name,
+    key: row._id,
     row: row
   })).sort(() => {
     return -1;
-  }))));
+  })))));
 };
 
 
@@ -361,7 +378,7 @@ const InputField = () => {
   const [itemDel, updateItemDel] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
   const [openDel, updateOpenDel] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const [mongoData, updateMongoData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  const [submitted, updateSubmitted] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [rendered, updateRendered] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const classes = useStyles();
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     const fetch = async () => {
@@ -378,9 +395,9 @@ const InputField = () => {
 
     console.log('Mongo data updated');
     fetch();
-  }, [submitted]);
+  }, [rendered]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    updateSubmitted(false);
+    updateRendered(false);
   });
 
   const handleChange = event => {
@@ -435,7 +452,7 @@ const InputField = () => {
       }).catch(() => {
         console.log("Internal server error");
       });
-      updateSubmitted(true);
+      updateRendered(true);
     }
   };
 
@@ -457,7 +474,7 @@ const InputField = () => {
     }).catch(() => {
       console.log("Internal server error");
     });
-    updateSubmitted(true);
+    updateRendered(true);
   };
 
   const submitNewHistoryDel = () => {
@@ -478,7 +495,7 @@ const InputField = () => {
     }).catch(() => {
       console.log("Internal server error");
     });
-    updateSubmitted(true);
+    updateRendered(true);
   };
 
   const resetFields = () => {
