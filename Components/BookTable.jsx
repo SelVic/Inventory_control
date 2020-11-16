@@ -144,15 +144,6 @@ Row.propTypes = {
         name: PropTypes.string,
         amount: PropTypes.number,
         id: PropTypes.string,
-        // history: PropTypes.string
-        // // history: PropTypes.arrayOf(
-        // //     PropTypes.shape({
-        // //         amount: PropTypes.number.isRequired,
-        // //         customerId: PropTypes.string.isRequired,
-        // //         date: PropTypes.string.isRequired,
-        // //         action: PropTypes.string.isRequired,
-        // //     }),
-        // // ).isRequired,
     }),
 };
 
