@@ -193,7 +193,7 @@ const InputField =()=> {
                 </form>
                 <div className="mt-40">
                     <div>Добавить предметы</div>
-                    <form className={classes.root} noValidate autoComplete="off">
+                    <form className={classes.root} className="input-style" noValidate autoComplete="off">
                         <Select
                             labelId="demo-controlled-open-select-label"
                             id="demo-controlled-open-select"
