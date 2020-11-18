@@ -139,7 +139,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let testState = false;
 const useRowStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["makeStyles"])({
   root: {
     '& > *': {
@@ -168,11 +167,6 @@ const Row = props => {
       };
     }));
   };
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    testState = !testState;
-    console.log(testState);
-  }, [historyData]);
 
   const deleteHandler = (itemId, historyId, action, amount) => {
     const payLoad = {
@@ -253,7 +247,7 @@ const Row = props => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "contained",
     onClick: () => {
-      deleteHandler(row.id, history.historyId, history.action, history.amount), fetch();
+      deleteHandler(row.id, history.historyId, history.action, history.amount), fetch(), props.handleFetch();
     }
   }, "Remove")))).sort(() => {
     return -1;
@@ -261,6 +255,7 @@ const Row = props => {
 };
 
 Row.propTypes = {
+  testHandle: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
   row: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
     name: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
     amount: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
@@ -272,31 +267,30 @@ const BookTable = () => {
   const [mongoData, updateMongoData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   const [filtered, updateFiltered] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(mongoData);
   const [text, updateText] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
-  const [render, updateRender] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [fetchProgress, updateFetchProgress] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
 
-  const handleRender = () => {
-    updateRender(!render);
+  const fetch = async () => {
+    const response = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api');
+    let responseValue = response.data;
+    updateMongoData(responseValue.map(item => {
+      return {
+        name: item.name,
+        id: item._id,
+        totalAmount: item.totalAmount
+      };
+    }));
+    updateFetchProgress(true);
+  };
+
+  const handleFetch = () => {
+    updateFetchProgress(false);
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     let cleanupFunc = false;
-
-    const fetch = async () => {
-      const response = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api');
-      let responseValue = response.data;
-      updateMongoData(responseValue.map(item => {
-        return {
-          name: item.name,
-          id: item._id,
-          totalAmount: item.totalAmount
-        };
-      }));
-      console.log("test");
-    };
-
     fetch();
     return () => cleanupFunc = true;
-  }, [render]);
+  }, [fetchProgress]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: "table-container",
     component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_13__["default"]
@@ -306,7 +300,8 @@ const BookTable = () => {
     align: "right"
   }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043D\u0430 \u0441\u043A\u043B\u0430\u0434\u0435"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, mongoData.map(row => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Row, {
     key: row.id,
-    row: row
+    row: row,
+    handleFetch: handleFetch
   })).sort(() => {
     return -1;
   })))));

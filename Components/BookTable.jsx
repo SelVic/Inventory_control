@@ -18,9 +18,6 @@ import Button from '@material-ui/core/Button';
 import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 
-let testState = false
-
-
 
 const useRowStyles = makeStyles({
     root: {
@@ -49,10 +46,6 @@ const Row = (props) => {
     }
 
 
-    useEffect(() => {
-        testState = !testState
-        console.log(testState)
-    },[historyData])
 
     const deleteHandler = (itemId, historyId, action, amount) => {
         const payLoad = {
@@ -127,7 +120,7 @@ const Row = (props) => {
                                             <TableCell align="right">{history.amount}</TableCell>
                                             <TableCell align="right">{history.action}</TableCell>
                                             <TableCell align="right">
-                                                <Button variant="contained" onClick={() => {deleteHandler(row.id, history.historyId, history.action, history.amount), fetch()}}>
+                                                <Button variant="contained" onClick={() => {deleteHandler(row.id, history.historyId, history.action, history.amount), fetch(), props.handleFetch()}}>
                                                     Remove
                                                 </Button>
                                             </TableCell>
@@ -144,6 +137,7 @@ const Row = (props) => {
 }
 
 Row.propTypes = {
+    testHandle : PropTypes.func,
     row: PropTypes.shape({
         name: PropTypes.string,
         amount: PropTypes.number,
@@ -156,25 +150,26 @@ const BookTable = () => {
     const [mongoData, updateMongoData] = useState([]);
     const [filtered, updateFiltered] = useState(mongoData);
     const [text, updateText] = useState("")
-    const [render, updateRender] = useState(false)
+    const [fetchProgress, updateFetchProgress] = useState(false)
 
-    const handleRender = () => {
-        updateRender(!render)
+    const fetch = async () => {
+        const response = await axios.get('/api')
+        let responseValue = response.data;
+        updateMongoData(responseValue.map(item => {
+            return {name: item.name, id: item._id, totalAmount: item.totalAmount}
+        }))
+        updateFetchProgress(true)
+    }
+
+    const handleFetch = () => {
+        updateFetchProgress(false)
     }
 
     useEffect(() => {
         let cleanupFunc = false;
-        const fetch = async () => {
-            const response = await axios.get('/api')
-            let responseValue = response.data;
-            updateMongoData(responseValue.map(item => {
-                return {name: item.name, id: item._id, totalAmount: item.totalAmount}
-            }))
-            console.log("test")
-        }
         fetch()
         return () => cleanupFunc = true;
-    },[render]);
+    },[fetchProgress]);
 
 
     return (
@@ -191,7 +186,7 @@ const BookTable = () => {
                 </TableHead>
                 <TableBody>
                     {mongoData.map((row) => (
-                        <Row key={row.id} row={row} />
+                        <Row key={row.id} row={row} handleFetch={handleFetch} />
                     )).sort(()=> {return -1})}
                 </TableBody>
             </Table>

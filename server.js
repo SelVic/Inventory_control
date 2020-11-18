@@ -72,14 +72,19 @@ app.post("/savedb", function(req, res){
 })
 
 app.post("/deleteHistory", async function(req,res){
-    console.log("DeletedItem:", req.body)
     const reqData = req.body;
-
     const matchingItem = await bookSchema.findOne({_id : reqData.itemId})
-    console.log(matchingItem)
-    let matchingItemAmount = await parseInt(matchingItem.totalAmount, 10)
-    await historySchema.findByIdAndDelete(reqData.historyId)
 
+    let matchingItemAmount = await parseInt(matchingItem.totalAmount, 10)
+    await historySchema.findByIdAndDelete(reqData.historyId, (err) => {
+        if (err) {
+            res.status(500).json({msg: "Sorry, internal server errors"})
+        } else{
+            res.json({
+                msg: "Data received"
+            })
+        }
+    })
     if(reqData.action == "Added"){
         let newTotalAmount = matchingItemAmount - parseInt(reqData.amount, 10)
         await bookSchema.findOneAndUpdate({_id : reqData.itemId}, {totalAmount : newTotalAmount})
