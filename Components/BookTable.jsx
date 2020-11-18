@@ -18,6 +18,9 @@ import Button from '@material-ui/core/Button';
 import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 
+let testState = false
+
+
 
 const useRowStyles = makeStyles({
     root: {
@@ -33,11 +36,23 @@ const useRowStyles = makeStyles({
 
 const Row = (props) => {
     const { row } = props;
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const classes = useRowStyles();
     const [historyData, updateHistoryData] = useState([])
-    const [rendered, updateRendered] = useState(false)
 
+
+    const fetch = async () => {
+        const responseHistory = await axios.get('/api/history')
+        updateHistoryData(responseHistory.data.map(historyItem => {
+            return {uniqueId: historyItem.uniqueId, action: historyItem.action, amount: historyItem.amount, date: historyItem.date, historyId : historyItem._id}
+        }))
+    }
+
+
+    useEffect(() => {
+        testState = !testState
+        console.log(testState)
+    },[historyData])
 
     const deleteHandler = (itemId, historyId, action, amount) => {
         const payLoad = {
@@ -57,26 +72,10 @@ const Row = (props) => {
             .catch(()=>{
                 console.log("Internal server error");
             })
-        updateRendered(true)
+        fetch()
     }
 
 
-    useEffect(() => {
-        updateRendered(false)
-    })
-
-    // useEffect(() => {
-    //     let cleanupFunc = false;
-    //     // const fetch = async () => {
-    //     //     const responseHistory = await axios.get('/api/history')
-    //     //     updateHistoryData(responseHistory.data.map(historyItem => {
-    //     //         return {uniqueId: historyItem.uniqueId, action: historyItem.action, amount: historyItem.amount, date: historyItem.date, historyId : historyItem._id}
-    //     //     }))
-    //     // }
-    //     // console.log("History data has been updated")
-    //     // fetch()
-    //     return () => cleanupFunc = true;
-    // },[rendered]);
 
     const createHistoryArray = (id) => {
         let historyArray = historyData.filter(history => history.uniqueId == id)
@@ -85,20 +84,13 @@ const Row = (props) => {
 
 
     const openHandler = () =>{
-        const fetch = async () => {
-            const responseHistory = await axios.get('/api/history')
-            updateHistoryData(responseHistory.data.map(historyItem => {
-                return {uniqueId: historyItem.uniqueId, action: historyItem.action, amount: historyItem.amount, date: historyItem.date, historyId : historyItem._id}
-            }))
-        }
-        console.log("History data has been updated")
         fetch()
         setOpen(!open)
     }
 
 
     return (
-        <React.Fragment>
+        <Fragment>
             <TableRow className={classes.root}>
                 <TableCell>
                     <IconButton aria-label="expand row" size="small" onClick={() => openHandler()}>
@@ -109,7 +101,6 @@ const Row = (props) => {
                     {row.name}
                 </TableCell>
                 <TableCell align="right">{row.totalAmount}</TableCell>
-                <TableCell align="right">{row.id}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -136,7 +127,7 @@ const Row = (props) => {
                                             <TableCell align="right">{history.amount}</TableCell>
                                             <TableCell align="right">{history.action}</TableCell>
                                             <TableCell align="right">
-                                                <Button variant="contained" onClick={() => {deleteHandler(row.id, history.historyId, history.action, history.amount)}}>
+                                                <Button variant="contained" onClick={() => {deleteHandler(row.id, history.historyId, history.action, history.amount), fetch()}}>
                                                     Remove
                                                 </Button>
                                             </TableCell>
@@ -148,7 +139,7 @@ const Row = (props) => {
                     </Collapse>
                 </TableCell>
             </TableRow>
-        </React.Fragment>
+        </Fragment>
     );
 }
 
@@ -161,11 +152,15 @@ Row.propTypes = {
 };
 
 
-const BookTable = (props) => {
+const BookTable = () => {
     const [mongoData, updateMongoData] = useState([]);
     const [filtered, updateFiltered] = useState(mongoData);
     const [text, updateText] = useState("")
+    const [render, updateRender] = useState(false)
 
+    const handleRender = () => {
+        updateRender(!render)
+    }
 
     useEffect(() => {
         let cleanupFunc = false;
@@ -175,10 +170,11 @@ const BookTable = (props) => {
             updateMongoData(responseValue.map(item => {
                 return {name: item.name, id: item._id, totalAmount: item.totalAmount}
             }))
+            console.log("test")
         }
         fetch()
         return () => cleanupFunc = true;
-    },[]);
+    },[render]);
 
 
     return (
@@ -191,7 +187,6 @@ const BookTable = (props) => {
                         <TableCell />
                         <TableCell>Название предмета</TableCell>
                         <TableCell align="right">Количество на складе</TableCell>
-                        <TableCell align="right">Идентификатор</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

@@ -139,6 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+let testState = false;
 const useRowStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["makeStyles"])({
   root: {
     '& > *': {
@@ -151,10 +152,27 @@ const Row = props => {
   const {
     row
   } = props;
-  const [open, setOpen] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false);
+  const [open, setOpen] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const classes = useRowStyles();
   const [historyData, updateHistoryData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  const [rendered, updateRendered] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+
+  const fetch = async () => {
+    const responseHistory = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api/history');
+    updateHistoryData(responseHistory.data.map(historyItem => {
+      return {
+        uniqueId: historyItem.uniqueId,
+        action: historyItem.action,
+        amount: historyItem.amount,
+        date: historyItem.date,
+        historyId: historyItem._id
+      };
+    }));
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    testState = !testState;
+    console.log(testState);
+  }, [historyData]);
 
   const deleteHandler = (itemId, historyId, action, amount) => {
     const payLoad = {
@@ -172,23 +190,8 @@ const Row = props => {
     }).catch(() => {
       console.log("Internal server error");
     });
-    updateRendered(true);
+    fetch();
   };
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    updateRendered(false);
-  }); // useEffect(() => {
-  //     let cleanupFunc = false;
-  //     // const fetch = async () => {
-  //     //     const responseHistory = await axios.get('/api/history')
-  //     //     updateHistoryData(responseHistory.data.map(historyItem => {
-  //     //         return {uniqueId: historyItem.uniqueId, action: historyItem.action, amount: historyItem.amount, date: historyItem.date, historyId : historyItem._id}
-  //     //     }))
-  //     // }
-  //     // console.log("History data has been updated")
-  //     // fetch()
-  //     return () => cleanupFunc = true;
-  // },[rendered]);
 
   const createHistoryArray = id => {
     let historyArray = historyData.filter(history => history.uniqueId == id);
@@ -196,25 +199,11 @@ const Row = props => {
   };
 
   const openHandler = () => {
-    const fetch = async () => {
-      const responseHistory = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api/history');
-      updateHistoryData(responseHistory.data.map(historyItem => {
-        return {
-          uniqueId: historyItem.uniqueId,
-          action: historyItem.action,
-          amount: historyItem.amount,
-          date: historyItem.date,
-          historyId: historyItem._id
-        };
-      }));
-    };
-
-    console.log("History data has been updated");
     fetch();
     setOpen(!open);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], {
     className: classes.root
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
     "aria-label": "expand row",
@@ -225,9 +214,7 @@ const Row = props => {
     scope: "row"
   }, row.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, row.totalAmount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    align: "right"
-  }, row.id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, row.totalAmount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     style: {
       paddingBottom: 0,
       paddingTop: 0
@@ -266,7 +253,7 @@ const Row = props => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_16__["default"], {
     variant: "contained",
     onClick: () => {
-      deleteHandler(row.id, history.historyId, history.action, history.amount);
+      deleteHandler(row.id, history.historyId, history.action, history.amount), fetch();
     }
   }, "Remove")))).sort(() => {
     return -1;
@@ -281,10 +268,16 @@ Row.propTypes = {
   })
 };
 
-const BookTable = props => {
+const BookTable = () => {
   const [mongoData, updateMongoData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   const [filtered, updateFiltered] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(mongoData);
   const [text, updateText] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
+  const [render, updateRender] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+
+  const handleRender = () => {
+    updateRender(!render);
+  };
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     let cleanupFunc = false;
 
@@ -298,11 +291,12 @@ const BookTable = props => {
           totalAmount: item.totalAmount
         };
       }));
+      console.log("test");
     };
 
     fetch();
     return () => cleanupFunc = true;
-  }, []);
+  }, [render]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: "table-container",
     component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_13__["default"]
@@ -310,9 +304,7 @@ const BookTable = props => {
     className: "table-cells-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null, "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u0430"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043D\u0430 \u0441\u043A\u043B\u0430\u0434\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    align: "right"
-  }, "\u0418\u0434\u0435\u043D\u0442\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, mongoData.map(row => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Row, {
+  }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043D\u0430 \u0441\u043A\u043B\u0430\u0434\u0435"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, mongoData.map(row => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Row, {
     key: row.id,
     row: row
   })).sort(() => {
