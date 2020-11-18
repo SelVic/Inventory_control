@@ -1,4 +1,4 @@
-@each $size in 10,20,30,40,50,150,300,800 {
+@each $size in 10,20,30,40,50,70,80,90,100,150,300,800 {
   .mb-#{$size} {
     margin-bottom: #{$size}px;
   }

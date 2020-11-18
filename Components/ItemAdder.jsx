@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from "axios";
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
@@ -16,7 +15,24 @@ const useStyles = makeStyles((theme) => ({
             width: '25ch',
         },
     },
+    button: {
+        background: "radial-gradient(circle, rgba(198,86,59,1) 27%, rgba(150,39,21,1) 100%)",
+        color: "white",
+    },
+    input: {
+        '& label.Mui-focused': {
+            color: '#962715',
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: '#962715',
+        },
 
+    },
+    select: {
+        '& .MuiInput-underline:after': {
+            borderBottomColor: '#962715',
+        },
+    },
     adder: {
         marginBottom: "15px",
         minWidth: 150
@@ -181,22 +197,22 @@ const InputField =()=> {
     }
 
     return (
-        <div>
+        <div className="input-container">
             <Fragment>
-                Внести новый предмет в базу
-                <form className={classes.root} noValidate autoComplete="off" >
-                    <TextField id="standard-basic" label="Наименование" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
-                    <TextField id="standard-basic" label="Описание" type="text" value = {description} onChange={e => updateDescription(e.currentTarget.value)}/>
-                    <Button variant="contained" color="primary" onClick={() => {submitNewItem()}}>
-                        Submit
-                    </Button>
-                </form>
-                <div className="mt-40">
-                    <div>Добавить предметы</div>
-                    <form className={classes.root} className="input-style" noValidate autoComplete="off">
-                        <Select
-                            labelId="demo-controlled-open-select-label"
-                            id="demo-controlled-open-select"
+                <div className="mr-20">
+                    <div className="text-style">Внести новый предмет в базу</div>
+                    <form className={`input-style ${classes.root}`} noValidate autoComplete="off" >
+                        <TextField id="standard-basic" className={classes.input} label="Наименование" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
+                        <TextField id="standard-basic" className={classes.input} label="Описание" type="text" value = {description} onChange={e => updateDescription(e.currentTarget.value)}/>
+                        <Button className={classes.button} variant="contained" onClick={() => {submitNewItem()}}>
+                            Submit
+                        </Button>
+                    </form>
+                </div>
+                <div className={`mt-40 ${classes.select}`}>
+                    <div className="text-style">Добавить предметы</div>
+                    <form className={`input-style ${classes.root}`} noValidate autoComplete="off">
+                        <Select className={classes.select}
                             open={open}
                             onClose={handleClose}
                             onOpen={handleOpen}
@@ -210,25 +226,21 @@ const InputField =()=> {
                                 <MenuItem key={item.id} value = {item.id} >{item.name}</MenuItem>
                             )}
                         </Select>
-                        <TextField id="standard-basic" label="Количество" type="text" value={amount} onChange = {e => updateAmount(e.currentTarget.value)}/>
-                        <Button variant="contained" color="primary" onClick = {() => submitNewHistoryAdd()}>
+                        <TextField className={classes.input} id="standard-basic" label="Количество" type="text" value={amount} onChange = {e => updateAmount(e.currentTarget.value)}/>
+                        <Button variant="contained" className={classes.button} onClick = {() => submitNewHistoryAdd()}>
                             Submit
                         </Button>
                     </form>
                 </div>
-                <div className="mt-40">
-                    <div>Удалить предметы</div>
-                    <form className={classes.root}>
-                        {/*<InputLabel id="demo-controlled-open-select-label">Выберите предмет</InputLabel>*/}
-                        <Select
-                            labelId="demo-controlled-open-select-label"
-                            id="demo-controlled-open-select"
+                <div className={`mt-40 ${classes.select}`}>
+                    <div className="text-style">Удалить предметы</div>
+                    <form className={`input-style ${classes.root}`} noValidate autoComplete="off">
+                        <Select className={classes.select}
                             open={openDel}
                             onClose={handleCloseDelete}
                             onOpen={handleOpenDelete}
                             value={itemDel}
                             onChange={handleChangeDelete}
-                            // onChange={(e)=>console.log('eee', e.target.value)}
                         >
                             <MenuItem value="">
                                 <em>None</em>
@@ -237,8 +249,8 @@ const InputField =()=> {
                                 <MenuItem key={item.id} value = {item.id} item={item}>{item.name}</MenuItem>
                             )}
                         </Select>
-                        <TextField id="standard-basic" label="Количество" type="text" value={amountDel} onChange = {e => updateAmountDel(e.currentTarget.value)}/>
-                        <Button variant="contained" color="primary" onClick = {() => submitNewHistoryDel()}>
+                        <TextField id="standard-basic" className={classes.input} label="Количество" type="text" value={amountDel} onChange = {e => updateAmountDel(e.currentTarget.value)}/>
+                        <Button variant="contained" className={classes.button} onClick = {() => submitNewHistoryDel()}>
                             Submit
                         </Button>
                     </form>

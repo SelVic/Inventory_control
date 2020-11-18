@@ -68,8 +68,8 @@ const Row = (props) => {
         let cleanupFunc = false;
         const fetch = async () => {
             const responseHistory = await axios.get('/api/history')
-            updateHistoryData(responseHistory.data.map(item => {
-                return {uniqueId: item.uniqueId, action: item.action, amount: item.amount, date: item.date, historyId : item._id}
+            updateHistoryData(responseHistory.data.map(historyItem => {
+                return {uniqueId: historyItem.uniqueId, action: historyItem.action, amount: historyItem.amount, date: historyItem.date, historyId : historyItem._id}
             }))
         }
         console.log("History data has been updated")
@@ -170,9 +170,9 @@ const BookTable = (props) => {
 
     return (
         <Fragment>
-        <TextField id="standard-basic" label="Фильтр" type="text" value={text} onChange = {e => updateText(e.currentTarget.value)}/>
-        <TableContainer component={Paper}>
-            <Table aria-label="collapsible table">
+        {/*<TextField id="standard-basic" label="Фильтр" type="text" value={text} onChange = {e => updateText(e.currentTarget.value)}/>*/}
+        <TableContainer className="table-container" component={Paper}>
+            <Table className="table-cells-container">
                 <TableHead>
                     <TableRow>
                         <TableCell />
@@ -183,7 +183,7 @@ const BookTable = (props) => {
                 </TableHead>
                 <TableBody>
                     {mongoData.map((row) => (
-                        <Row key={row._id} row={row} />
+                        <Row key={row.id} row={row} />
                     )).sort(()=> {return -1})}
                 </TableBody>
             </Table>

@@ -1,12 +1,14 @@
 .header{
   text-align: center;
-  background-color: #90caf9;
+  background: radial-gradient(circle, rgba(198,86,59,1) 27%, rgba(150,39,21,1) 100%);
   text-decoration: none;
   align-items: center;
+  justify-content: center;
   min-height: 64px;
   display: flex;
   box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.17);
   margin-bottom: 100px;
+  border-radius: 10px;
   .header-item{
     text-align: center;
     font-size: 26px;
