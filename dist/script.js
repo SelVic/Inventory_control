@@ -177,10 +177,25 @@ const Row = props => {
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     updateRendered(false);
-  });
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    let cleanupFunc = false;
+  }); // useEffect(() => {
+  //     let cleanupFunc = false;
+  //     // const fetch = async () => {
+  //     //     const responseHistory = await axios.get('/api/history')
+  //     //     updateHistoryData(responseHistory.data.map(historyItem => {
+  //     //         return {uniqueId: historyItem.uniqueId, action: historyItem.action, amount: historyItem.amount, date: historyItem.date, historyId : historyItem._id}
+  //     //     }))
+  //     // }
+  //     // console.log("History data has been updated")
+  //     // fetch()
+  //     return () => cleanupFunc = true;
+  // },[rendered]);
 
+  const createHistoryArray = id => {
+    let historyArray = historyData.filter(history => history.uniqueId == id);
+    return historyArray;
+  };
+
+  const openHandler = () => {
     const fetch = async () => {
       const responseHistory = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api/history');
       updateHistoryData(responseHistory.data.map(historyItem => {
@@ -196,12 +211,7 @@ const Row = props => {
 
     console.log("History data has been updated");
     fetch();
-    return () => cleanupFunc = true;
-  }, [rendered]);
-
-  const createHistoryArray = id => {
-    let historyArray = historyData.filter(item => item.uniqueId == id);
-    return historyArray;
+    setOpen(!open);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -209,7 +219,7 @@ const Row = props => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
     "aria-label": "expand row",
     size: "small",
-    onClick: () => setOpen(!open)
+    onClick: () => openHandler()
   }, open ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_15___default.a, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_14___default.a, null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     component: "th",
     scope: "row"

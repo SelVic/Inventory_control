@@ -38,6 +38,7 @@ const Row = (props) => {
     const [historyData, updateHistoryData] = useState([])
     const [rendered, updateRendered] = useState(false)
 
+
     const deleteHandler = (itemId, historyId, action, amount) => {
         const payLoad = {
             itemId: itemId,
@@ -64,8 +65,26 @@ const Row = (props) => {
         updateRendered(false)
     })
 
-    useEffect(() => {
-        let cleanupFunc = false;
+    // useEffect(() => {
+    //     let cleanupFunc = false;
+    //     // const fetch = async () => {
+    //     //     const responseHistory = await axios.get('/api/history')
+    //     //     updateHistoryData(responseHistory.data.map(historyItem => {
+    //     //         return {uniqueId: historyItem.uniqueId, action: historyItem.action, amount: historyItem.amount, date: historyItem.date, historyId : historyItem._id}
+    //     //     }))
+    //     // }
+    //     // console.log("History data has been updated")
+    //     // fetch()
+    //     return () => cleanupFunc = true;
+    // },[rendered]);
+
+    const createHistoryArray = (id) => {
+        let historyArray = historyData.filter(history => history.uniqueId == id)
+        return historyArray
+    }
+
+
+    const openHandler = () =>{
         const fetch = async () => {
             const responseHistory = await axios.get('/api/history')
             updateHistoryData(responseHistory.data.map(historyItem => {
@@ -74,21 +93,15 @@ const Row = (props) => {
         }
         console.log("History data has been updated")
         fetch()
-        return () => cleanupFunc = true;
-    },[rendered]);
-
-    const createHistoryArray = (id) => {
-        let historyArray = historyData.filter(item => item.uniqueId == id)
-        return historyArray
+        setOpen(!open)
     }
-
 
 
     return (
         <React.Fragment>
             <TableRow className={classes.root}>
                 <TableCell>
-                    <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+                    <IconButton aria-label="expand row" size="small" onClick={() => openHandler()}>
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                 </TableCell>
