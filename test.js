@@ -7,10 +7,10 @@ let testarray = [{name:"heyho",totalAmount:345,id:7896,date:"11/11/2020","__v":0
 
 
 
-
-const updateTotalAmount = (id) => {
-    let newTotalAmount = testarray.find(item => item.id == id)
-    return newTotalAmount.totalAmount
-}
-
-console.log(updateTotalAmount(7896))
+//
+// const updateTotalAmount = (id) => {
+//     let newTotalAmount = testarray.find(item => item.id == id)
+//     return newTotalAmount.totalAmount
+// }
+//
+// console.log(updateTotalAmount(7896))

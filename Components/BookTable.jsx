@@ -93,6 +93,9 @@ const Row = (props) => {
                 <TableCell component="th" scope="row">
                     {row.name}
                 </TableCell>
+                <TableCell component="th" scope="row">
+                    {row.description}
+                </TableCell>
                 <TableCell align="right">{row.totalAmount}</TableCell>
             </TableRow>
             <TableRow>
@@ -156,7 +159,7 @@ const BookTable = () => {
         const response = await axios.get('/api')
         let responseValue = response.data;
         updateMongoData(responseValue.map(item => {
-            return {name: item.name, id: item._id, totalAmount: item.totalAmount}
+            return {name: item.name, id: item._id, totalAmount: item.totalAmount, description:item.description}
         }))
         updateFetchProgress(true)
     }
@@ -181,6 +184,7 @@ const BookTable = () => {
                     <TableRow>
                         <TableCell />
                         <TableCell>Название предмета</TableCell>
+                        <TableCell align="center">Описание</TableCell>
                         <TableCell align="right">Количество на складе</TableCell>
                     </TableRow>
                 </TableHead>

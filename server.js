@@ -114,10 +114,7 @@ app.post("/savedb/history", async function(req, res){
         let newTotalAmount = matchingItemAmount - parseInt(reqData.amount, 10)
         await bookSchema.findOneAndUpdate({_id : reqDataId}, {totalAmount : newTotalAmount})
     }
-
-
     const newHistorySchema = new historySchema(reqData)
-
     newHistorySchema.save((error)=>{
         if (error) {
             res.status(500).json({msg: "Sorry, internal server errors"})
