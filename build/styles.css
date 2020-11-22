@@ -258,6 +258,9 @@ a:hover {
 .table-container {
   max-width: 1300px;
   margin: auto; }
+  @media (max-width: 715px) {
+    .table-container #root {
+      width: 100%; } }
 
 .input-container {
   align-items: center;
