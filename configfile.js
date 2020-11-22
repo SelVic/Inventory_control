@@ -1,3 +1,3 @@
-let mongoPass = "pE23c135fxaI3gjz"
+let mongoPass = "testetetsetste"
 
 module.exports = mongoPass
