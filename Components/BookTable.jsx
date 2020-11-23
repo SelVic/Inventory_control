@@ -93,7 +93,7 @@ const Row = (props) => {
                 <TableCell component="th" scope="row">
                     {row.name}
                 </TableCell>
-                <TableCell component="th" scope="row">
+                <TableCell component="th" scope="row" align="center">
                     {row.description}
                 </TableCell>
                 <TableCell align="right">{row.totalAmount}</TableCell>

@@ -200,17 +200,17 @@ const InputField =()=> {
         <div className="input-container">
             <Fragment>
                 <div className="mr-20">
-                    <div className="text-style">Внести новый предмет в базу</div>
+                    <div className="text-style">Внести новое наименованиеу</div>
                     <form className={`input-style ${classes.root}`} noValidate autoComplete="off" >
                         <TextField id="standard-basic" className={classes.input} label="Наименование" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
                         <TextField id="standard-basic" className={classes.input} label="Описание" type="text" value = {description} onChange={e => updateDescription(e.currentTarget.value)}/>
                         <Button className={classes.button} variant="contained" onClick={() => {submitNewItem()}}>
-                            Submit
+                            Внести
                         </Button>
                     </form>
                 </div>
                 <div className={`mt-40 ${classes.select}`}>
-                    <div className="text-style">Добавить предметы</div>
+                    <div className="text-style">Поступление</div>
                     <form className={`input-style ${classes.root}`} noValidate autoComplete="off">
                         <Select className={classes.select}
                             open={open}
@@ -228,12 +228,12 @@ const InputField =()=> {
                         </Select>
                         <TextField className={classes.input} id="standard-basic" label="Количество" type="text" value={amount} onChange = {e => updateAmount(e.currentTarget.value)}/>
                         <Button variant="contained" className={classes.button} onClick = {() => submitNewHistoryAdd()}>
-                            Submit
+                            Добавить
                         </Button>
                     </form>
                 </div>
                 <div className={`mt-40 ${classes.select}`}>
-                    <div className="text-style">Удалить предметы</div>
+                    <div className="text-style">Списание</div>
                     <form className={`input-style ${classes.root}`} noValidate autoComplete="off">
                         <Select className={classes.select}
                             open={openDel}
@@ -251,7 +251,7 @@ const InputField =()=> {
                         </Select>
                         <TextField id="standard-basic" className={classes.input} label="Количество" type="text" value={amountDel} onChange = {e => updateAmountDel(e.currentTarget.value)}/>
                         <Button variant="contained" className={classes.button} onClick = {() => submitNewHistoryDel()}>
-                            Submit
+                            Списать
                         </Button>
                     </form>
                 </div>

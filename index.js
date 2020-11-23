@@ -14,8 +14,8 @@ const App = props => {
         <Router>
             <Fragment>
                 <nav className="header">
-                        <NavLink activeClassName="selected" className="header-item" exact to="/">Редактировать</NavLink>
-                        <NavLink activeClassName="selected" className="header-item" exact to="/table">Таблица</NavLink>
+                        <NavLink activeClassName="selected" className="header-item" exact to="/">Управление</NavLink>
+                        <NavLink activeClassName="selected" className="header-item" exact to="/table">Склад</NavLink>
                 </nav>
                 <Switch>
                     <Route path="/table">

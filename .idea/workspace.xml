@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8390655d-237f-4fcc-89f1-7200c08f8d46" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/configfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/configfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/BookTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Components/BookTable.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ItemAdder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ItemAdder.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/script.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/script.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +176,8 @@
       <workItem from="1605697400073" duration="13657000" />
       <workItem from="1605874480868" duration="850000" />
       <workItem from="1605988754516" duration="2941000" />
-      <workItem from="1606065454099" duration="1060000" />
+      <workItem from="1606065454099" duration="3265000" />
+      <workItem from="1606131128741" duration="2785000" />
     </task>
     <servers />
   </component>
@@ -183,10 +190,10 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1605707587314">
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1606067620824">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1605707587314" />
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606067620824" />
     <state width="1898" height="228" key="GridCell.Tab.0.bottom" timestamp="1606066170643">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
