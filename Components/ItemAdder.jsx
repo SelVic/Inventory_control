@@ -200,7 +200,7 @@ const InputField =()=> {
         <div className="input-container">
             <Fragment>
                 <div className="mr-20">
-                    <div className="text-style">Внести новое наименованиеу</div>
+                    <div className="text-style">Внести новое наименование</div>
                     <form className={`input-style ${classes.root}`} noValidate autoComplete="off" >
                         <TextField id="standard-basic" className={classes.input} label="Наименование" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
                         <TextField id="standard-basic" className={classes.input} label="Описание" type="text" value = {description} onChange={e => updateDescription(e.currentTarget.value)}/>

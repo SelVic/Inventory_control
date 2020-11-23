@@ -521,7 +521,7 @@ const InputField = () => {
     className: "mr-20"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-style"
-  }, "\u0412\u043D\u0435\u0441\u0442\u0438 \u043D\u043E\u0432\u044B\u0439 \u043F\u0440\u0435\u0434\u043C\u0435\u0442 \u0432 \u0431\u0430\u0437\u0443"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, "\u0412\u043D\u0435\u0441\u0442\u0438 \u043D\u043E\u0432\u043E\u0435 \u043D\u0430\u0438\u043C\u0435\u043D\u043E\u0432\u0430\u043D\u0438\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: `input-style ${classes.root}`,
     noValidate: true,
     autoComplete: "off"
@@ -545,11 +545,11 @@ const InputField = () => {
     onClick: () => {
       submitNewItem();
     }
-  }, "Submit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "\u0412\u043D\u0435\u0441\u0442\u0438"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: `mt-40 ${classes.select}`
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-style"
-  }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, "\u041F\u043E\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: `input-style ${classes.root}`,
     noValidate: true,
     autoComplete: "off"
@@ -576,11 +576,11 @@ const InputField = () => {
     variant: "contained",
     className: classes.button,
     onClick: () => submitNewHistoryAdd()
-  }, "Submit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: `mt-40 ${classes.select}`
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-style"
-  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, "\u0421\u043F\u0438\u0441\u0430\u043D\u0438\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: `input-style ${classes.root}`,
     noValidate: true,
     autoComplete: "off"
@@ -608,7 +608,7 @@ const InputField = () => {
     variant: "contained",
     className: classes.button,
     onClick: () => submitNewHistoryDel()
-  }, "Submit")))));
+  }, "\u0421\u043F\u0438\u0441\u0430\u0442\u044C")))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (InputField);
@@ -648,12 +648,12 @@ const App = props => {
     className: "header-item",
     exact: true,
     to: "/"
-  }, "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
+  }, "\u0423\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
     activeClassName: "selected",
     className: "header-item",
     exact: true,
     to: "/table"
-  }, "\u0422\u0430\u0431\u043B\u0438\u0446\u0430")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  }, "\u0421\u043A\u043B\u0430\u0434")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/table"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_BookTable__WEBPACK_IMPORTED_MODULE_4__["BookTable"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/"
