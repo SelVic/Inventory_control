@@ -39,8 +39,8 @@ const useInventoryStyles = makeStyles({
     tableStyle: {
         maxWidth: 1300,
         margin: "auto",
-        ['@media (min-width:780px)']: { // eslint-disable-line no-useless-computed-key
-            width: '80%'
+        ['@media (min-width:375px)']: { // eslint-disable-line no-useless-computed-key
+            width: '40%'
         }
     },
     inputStyle: {
@@ -284,11 +284,11 @@ const BookTable = () => {
 
     return (
         <Fragment>
-            <div className={classes.tableStyle}>
+            <div>
                 <TextField  align="center" className={classes.inputStyle} id="standard-basic" label="Фильтр" type="text" value={text} variant="outlined" onChange = {e => updateText(e.currentTarget.value)}/>
             </div>
-        <TableContainer className="table-container" component={Paper}>
-            <Table className="table-cells-container">
+        <TableContainer className={classes.tableStyle} component={Paper}>
+            <Table>
                 <TableHead>
                     <TableRow>
                         <TableCell />
