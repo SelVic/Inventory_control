@@ -39,10 +39,11 @@ const useInventoryStyles = makeStyles({
     tableStyle: {
         maxWidth: 1300,
         margin: "auto",
-        ['@media (min-width:780px)']: { // eslint-disable-line no-useless-computed-key
-            width: '80%',
-            height: "100%"
-        }
+        ['@media (max-width:715px)']: {
+            root: {
+                width: "100%"
+            },
+        },
     },
     inputStyle: {
         '& label.Mui-focused': {
