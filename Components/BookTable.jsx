@@ -40,7 +40,7 @@ const useInventoryStyles = makeStyles({
         maxWidth: 1300,
         margin: "auto",
         ['@media (min-width:375px)']: { // eslint-disable-line no-useless-computed-key
-            width: '40%'
+            width: '80%'
         }
     },
     inputStyle: {
