@@ -2,11 +2,11 @@ const mongoose = require("mongoose")
 
 
 
-const bookSchema = mongoose.Schema({
+const itemSchema = mongoose.Schema({
     name: String,
     description: String,
     totalAmount: Number,
     date: String
 })
 
-module.exports = mongoose.model('itemSchemas', bookSchema)
+module.exports = mongoose.model('itemSchemas', itemSchema)

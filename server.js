@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require('mongoose')
 const login = require('./configfile')
 const mongoPath = `mongodb+srv://Vic:${login}@cluster0.q16eb.mongodb.net/appdata`
-const bookSchema = require('./schemas/BookSchema')
+const itemSchema = require('./schemas/ItemSchema')
 const historySchema = require("./schemas/HistorySchema")
 
 async function mong() {
@@ -35,7 +35,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 app.get("/api", function (req, res) {
-    bookSchema.find({ })
+    itemSchema.find({ })
         .then((apiData)=>{
             res.json(apiData)
         })
@@ -58,7 +58,7 @@ app.post("/savedb", function(req, res){
     console.log("Body:", req.body)
     const reqData = req.body;
 
-    const newBookSchema = new bookSchema(reqData)
+    const newBookSchema = new itemSchema(reqData)
 
     newBookSchema.save((error)=>{
         if (error) {
@@ -73,7 +73,7 @@ app.post("/savedb", function(req, res){
 
 app.post("/deleteHistory", async function(req,res){
     const reqData = req.body;
-    const matchingItem = await bookSchema.findOne({_id : reqData.itemId})
+    const matchingItem = await itemSchema.findOne({_id : reqData.itemId})
 
     let matchingItemAmount = await parseInt(matchingItem.totalAmount, 10)
     await historySchema.findByIdAndDelete(reqData.historyId, (err) => {
@@ -87,32 +87,45 @@ app.post("/deleteHistory", async function(req,res){
     })
     if(reqData.action == "Added"){
         let newTotalAmount = matchingItemAmount - parseInt(reqData.amount, 10)
-        await bookSchema.findOneAndUpdate({_id : reqData.itemId}, {totalAmount : newTotalAmount})
+        await itemSchema.findOneAndUpdate({_id : reqData.itemId}, {totalAmount : newTotalAmount})
     }
     else{
         let newTotalAmount = matchingItemAmount + parseInt(reqData.amount, 10)
-        await bookSchema.findOneAndUpdate({_id : reqData.itemId}, {totalAmount : newTotalAmount})
+        await itemSchema.findOneAndUpdate({_id : reqData.itemId}, {totalAmount : newTotalAmount})
     }
 
 })
 
+app.post("/deleteItem", async function(req, res){
+    console.log("Deleting item:", req.body)
+    const reqData = req.body;
 
+    await itemSchema.findByIdAndDelete(reqData.itemId, (err) => {
+        if (err) {
+            res.status(500).json({msg: "Sorry, internal server errors"})
+        } else{
+            res.json({
+                msg: "Data received"
+            })
+        }
+    })
+})
 
 
 app.post("/savedb/history", async function(req, res){
     console.log("HistoryBody:", req.body)
     const reqData = req.body;
     const reqDataId = req.body.uniqueId;
-    const matchingItem = await bookSchema.findOne({_id : reqDataId})
+    const matchingItem = await itemSchema.findOne({_id : reqDataId})
     let matchingItemAmount = await parseInt(matchingItem.totalAmount, 10)
 
     if(reqData.action == "Added"){
         let newTotalAmount = matchingItemAmount + parseInt(reqData.amount, 10)
-        await bookSchema.findOneAndUpdate({_id : reqDataId}, {totalAmount : newTotalAmount})
+        await itemSchema.findOneAndUpdate({_id : reqDataId}, {totalAmount : newTotalAmount})
     }
     else{
         let newTotalAmount = matchingItemAmount - parseInt(reqData.amount, 10)
-        await bookSchema.findOneAndUpdate({_id : reqDataId}, {totalAmount : newTotalAmount})
+        await itemSchema.findOneAndUpdate({_id : reqDataId}, {totalAmount : newTotalAmount})
     }
     const newHistorySchema = new historySchema(reqData)
     newHistorySchema.save((error)=>{

@@ -17,6 +17,14 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Button from '@material-ui/core/Button';
 import axios from "axios";
 import TextField from "@material-ui/core/TextField";
+import DeleteIcon from '@material-ui/icons/Delete';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 
 
 const useRowStyles = makeStyles({
@@ -32,8 +40,10 @@ const useInventoryStyles = makeStyles({
         '& label.Mui-focused': {
             color: '#962715',
         },
-        '& .MuiInput-underline:after': {
-            borderBottomColor: '#962715',
+        '& .MuiOutlinedInput-root': {
+            '&.Mui-focused fieldset': {
+                borderColor: '#962715',
+            },
         },
         width: "50ch",
         marginBottom: "25px",
@@ -49,6 +59,10 @@ const Row = (props) => {
     const [open, setOpen] = useState(false);
     const classes = useRowStyles();
     const [historyData, updateHistoryData] = useState([])
+    const [openDialog, setOpenDialog] = useState(false);
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
 
 
     const fetch = async () => {
@@ -60,7 +74,7 @@ const Row = (props) => {
 
 
 
-    const deleteHandler = (itemId, historyId, action, amount) => {
+    const deleteHistoryHandler = (itemId, historyId, action, amount) => {
         const payLoad = {
             itemId: itemId,
             historyId: historyId,
@@ -81,7 +95,61 @@ const Row = (props) => {
         fetch()
     }
 
+    const deleteItemHandler = (itemId) => {
 
+        const handleClickOpen = () => {
+            setOpenDialog(true);
+        };
+
+        const handleCloseYes = () => {
+            const payLoad = {
+                itemId: itemId,
+            };
+            axios({
+                url: "/deleteItem",
+                method: "POST",
+                data: payLoad
+            })
+                .then(()=>{
+                    console.log("Предмет удален");
+                })
+                .catch(()=>{
+                    console.log("Internal server error");
+                })
+            setOpenDialog(false);
+            props.handleFetch();
+        };
+
+        const handleCloseNo = () =>{
+            setOpenDialog(false);
+        }
+
+        const handleClose = () =>{
+            setOpenDialog(false);
+        }
+
+        return (
+            <div>
+                <DeleteIcon onClick={() => handleClickOpen()}/>
+                <Dialog
+                    fullScreen={fullScreen}
+                    open={openDialog}
+                    onClose={handleClose}
+                    aria-labelledby="responsive-dialog-title"
+                >
+                    <DialogTitle id="responsive-dialog-title">{"Вы уверены, что хотите удалить наименование из базы?"}</DialogTitle>
+                    <DialogActions align="center">
+                        <Button autoFocus onClick={handleCloseNo} color="primary">
+                            Нет
+                        </Button>
+                        <Button onClick={handleCloseYes} color="primary" autoFocus>
+                            Да
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
+        );
+    }
 
     const createHistoryArray = (id) => {
         let historyArray = historyData.filter(history => history.uniqueId == id)
@@ -94,6 +162,12 @@ const Row = (props) => {
         setOpen(!open)
     }
 
+    const actionRenderHandler = (action) => {
+        if (action === "Deleted")
+            return "Списано"
+        else
+            return "Добавлено"
+    }
 
     return (
         <Fragment>
@@ -101,6 +175,9 @@ const Row = (props) => {
                 <TableCell>
                     <IconButton aria-label="expand row" size="small" onClick={() => openHandler()}>
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    </IconButton>
+                    <IconButton aria-label="expand row" size="small">
+                        {deleteItemHandler(row.id)}
                     </IconButton>
                 </TableCell>
                 <TableCell component="th" scope="row">
@@ -123,7 +200,7 @@ const Row = (props) => {
                                     <TableRow>
                                         <TableCell>Дата</TableCell>
                                         <TableCell align="right">Количество</TableCell>
-                                        <TableCell align="right">Добавлено / Удалено</TableCell>
+                                        <TableCell align="right">Добавлено / Списано</TableCell>
                                         <TableCell align="right">Удалить историю</TableCell>
                                     </TableRow>
                                 </TableHead>
@@ -134,10 +211,10 @@ const Row = (props) => {
                                                 {history.date}
                                             </TableCell>
                                             <TableCell align="right">{history.amount}</TableCell>
-                                            <TableCell align="right">{history.action}</TableCell>
+                                            <TableCell align="right">{actionRenderHandler(history.action)}</TableCell>
                                             <TableCell align="right">
-                                                <Button variant="contained" onClick={() => {deleteHandler(row.id, history.historyId, history.action, history.amount), fetch(), props.handleFetch()}}>
-                                                    Remove
+                                                <Button variant="contained" onClick={() => {deleteHistoryHandler(row.id, history.historyId, history.action, history.amount), fetch(), props.handleFetch()}}>
+                                                    Удалить
                                                 </Button>
                                             </TableCell>
                                         </TableRow>
@@ -201,7 +278,7 @@ const BookTable = () => {
     return (
         <Fragment>
             <div className="input-container">
-                <TextField align="center" className={classes.inputStyle} id="standard-basic" label="Фильтр" type="text" value={text} onChange = {e => updateText(e.currentTarget.value)}/>
+                <TextField  align="center" className={classes.inputStyle} id="standard-basic" label="Фильтр" type="text" value={text} variant="outlined" onChange = {e => updateText(e.currentTarget.value)}/>
             </div>
         <TableContainer className="table-container" component={Paper}>
             <Table className="table-cells-container">

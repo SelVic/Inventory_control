@@ -25,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
         '& label.Mui-focused': {
             color: '#962715',
         },
-        '& .MuiInput-underline:after': {
-            borderBottomColor: '#962715',
+        '& .MuiOutlinedInput-root': {
+            '&.Mui-focused fieldset': {
+                borderColor: '#962715',
+            },
         },
-
     },
     select: {
         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
@@ -180,11 +181,11 @@ const InputField =()=> {
     return (
         <div className="input-container">
             <Fragment>
-                <div className="mr-20">
+                <div className="mr-100" >
                     <div className="text-style">Внести новое наименование</div>
                     <form className={`input-style ${classes.root}`} noValidate autoComplete="off" >
-                        <TextField id="standard-basic" className={classes.input} label="Наименование" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
-                        <TextField id="standard-basic" className={classes.input} label="Описание" type="text" value = {description} onChange={e => updateDescription(e.currentTarget.value)}/>
+                        <TextField variant="outlined" id="standard-basic" className={classes.input} label="Наименование" type="text" value = {name} onChange={e => updateName(e.currentTarget.value)} />
+                        <TextField variant="outlined" id="standard-basic" className={classes.input} label="Описание" type="text" value = {description} onChange={e => updateDescription(e.currentTarget.value)}/>
                         <Button className={classes.button} variant="contained" onClick={() => {submitNewItem()}}>
                             Внести
                         </Button>
@@ -238,7 +239,7 @@ const InputField =()=> {
                                 <TextField className={classes.input} id="standard-basic" {...params} label="Выберите наименование" variant="outlined" />
                             )}
                         />
-                        <TextField className={classes.input} id="standard-basic" label="Количество" type="text" value={amount} onChange = {e => updateAmount(e.currentTarget.value)}/>
+                        <TextField variant="outlined" className={classes.input} id="standard-basic" label="Количество" type="text" value={amount} onChange = {e => updateAmount(e.currentTarget.value)}/>
                         <Button variant="contained" className={classes.button} onClick = {() => submitNewHistoryAdd()}>
                             Добавить
                         </Button>
@@ -292,7 +293,7 @@ const InputField =()=> {
                                 <TextField className={classes.input} id="standard-basic" {...params} label="Выберите наименование" variant="outlined" />
                             )}
                         />
-                        <TextField id="standard-basic" className={classes.input} label="Количество" type="text" value={amountDel} onChange = {e => updateAmountDel(e.currentTarget.value)}/>
+                        <TextField variant="outlined" id="standard-basic" className={classes.input} label="Количество" type="text" value={amountDel} onChange = {e => updateAmountDel(e.currentTarget.value)}/>
                         <Button variant="contained" className={classes.button} onClick = {() => submitNewHistoryDel()}>
                             Списать
                         </Button>
