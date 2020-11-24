@@ -166,9 +166,9 @@ const useInventoryStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MOD
   tableStyle: {
     maxWidth: 1300,
     margin: "auto",
-    ['@media (min-width:375px)']: {
+    ['@media (min-width:780px)']: {
       // eslint-disable-line no-useless-computed-key
-      width: '40%'
+      width: '80%'
     }
   },
   inputStyle: {

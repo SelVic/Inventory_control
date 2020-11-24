@@ -39,7 +39,7 @@ const useInventoryStyles = makeStyles({
     tableStyle: {
         maxWidth: 1300,
         margin: "auto",
-        ['@media (min-width:375px)']: { // eslint-disable-line no-useless-computed-key
+        ['@media (min-width:780px)']: { // eslint-disable-line no-useless-computed-key
             width: '80%'
         }
     },
