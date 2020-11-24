@@ -163,6 +163,14 @@ const useRowStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2_
   }
 });
 const useInventoryStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["makeStyles"])({
+  tableStyle: {
+    maxWidth: 1300,
+    margin: "auto",
+    ['@media (min-width:780px)']: {
+      // eslint-disable-line no-useless-computed-key
+      width: '80%'
+    }
+  },
   inputStyle: {
     '& label.Mui-focused': {
       color: '#962715'
@@ -403,7 +411,7 @@ const BookTable = () => {
     updateFiltered(result);
   }, [text]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-container"
+    className: classes.tableStyle
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_18__["default"], {
     align: "center",
     className: classes.inputStyle,
