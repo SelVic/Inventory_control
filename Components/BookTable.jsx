@@ -27,6 +27,19 @@ const useRowStyles = makeStyles({
     },
 });
 
+const useInventoryStyles = makeStyles({
+    inputStyle: {
+        '& label.Mui-focused': {
+            color: '#962715',
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: '#962715',
+        },
+        width: "50ch",
+        marginBottom: "25px",
+    }
+})
+
 
 
 
@@ -150,10 +163,12 @@ Row.propTypes = {
 
 
 const BookTable = () => {
+    const classes = useInventoryStyles()
     const [mongoData, updateMongoData] = useState([]);
-    const [filtered, updateFiltered] = useState(mongoData);
+    const [filtered, updateFiltered] = useState([]);
     const [text, updateText] = useState("")
     const [fetchProgress, updateFetchProgress] = useState(false)
+    let searchItem = text.trim().toLowerCase()
 
     const fetch = async () => {
         const response = await axios.get('/api')
@@ -162,6 +177,9 @@ const BookTable = () => {
             return {name: item.name, id: item._id, totalAmount: item.totalAmount, description:item.description}
         }))
         updateFetchProgress(true)
+        updateFiltered(responseValue.map(item => {
+            return {name: item.name, id: item._id, totalAmount: item.totalAmount, description:item.description}
+        }))
     }
 
     const handleFetch = () => {
@@ -174,10 +192,17 @@ const BookTable = () => {
         return () => cleanupFunc = true;
     },[fetchProgress]);
 
+    useEffect(() => {
+        let result = mongoData.filter(item => item.name.toLowerCase().includes(searchItem))
+        updateFiltered(result);
+    }, [text])
+
 
     return (
         <Fragment>
-        {/*<TextField id="standard-basic" label="Фильтр" type="text" value={text} onChange = {e => updateText(e.currentTarget.value)}/>*/}
+            <div className="input-container">
+                <TextField align="center" className={classes.inputStyle} id="standard-basic" label="Фильтр" type="text" value={text} onChange = {e => updateText(e.currentTarget.value)}/>
+            </div>
         <TableContainer className="table-container" component={Paper}>
             <Table className="table-cells-container">
                 <TableHead>
@@ -189,7 +214,7 @@ const BookTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {mongoData.map((row) => (
+                    {filtered.map((row) => (
                         <Row key={row.id} row={row} handleFetch={handleFetch} />
                     )).sort(()=> {return -1})}
                 </TableBody>

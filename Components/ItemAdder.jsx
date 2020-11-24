@@ -5,7 +5,9 @@ import Button from '@material-ui/core/Button';
 import axios from "axios";
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
+const filter = createFilterOptions();
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,9 +31,9 @@ const useStyles = makeStyles((theme) => ({
 
     },
     select: {
-        '& .MuiInput-underline:after': {
-            borderBottomColor: '#962715',
-        },
+        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#962715"
+        }
     },
     adder: {
         marginBottom: "15px",
@@ -44,12 +46,13 @@ const InputField =()=> {
     const [amount, updateAmount] = useState("");
     const [amountDel, updateAmountDel] = useState("");
     const [item, updateItem] = useState('');
-    const [open, updateOpen] = useState(false);
     const [itemDel, updateItemDel] = useState('');
-    const [openDel, updateOpenDel] = useState(false);
     const [mongoData, updateMongoData] = useState([]);
     const [rendered, updateRendered] = useState(false)
     const classes = useStyles();
+    const [value, setValue] = useState("");
+    const [valuedel, setValueDel] = useState("")
+
 
     useEffect(() => {
         const fetch = async () => {
@@ -66,30 +69,6 @@ const InputField =()=> {
         updateRendered(false)
     })
 
-
-    const handleChange = (event) => {
-        updateItem(event.target.value);
-    };
-
-    const handleClose = () => {
-        updateOpen(false);
-    };
-
-    const handleOpen = () => {
-        updateOpen(true);
-    };
-
-    const handleChangeDelete = (event) => {
-        updateItemDel(event.target.value);
-    };
-
-    const handleCloseDelete = () => {
-        updateOpenDel(false);
-    };
-
-    const handleOpenDelete = () => {
-        updateOpenDel(true);
-    };
 
     const dateCount = () => {
         let today = new Date();
@@ -194,6 +173,8 @@ const InputField =()=> {
         updateAmountDel(0)
         updateItem("")
         updateItemDel("")
+        setValue("")
+        setValueDel("")
     }
 
     return (
@@ -212,20 +193,51 @@ const InputField =()=> {
                 <div className={`mt-40 ${classes.select}`}>
                     <div className="text-style">Поступление</div>
                     <form className={`input-style ${classes.root}`} noValidate autoComplete="off">
-                        <Select className={classes.select}
-                            open={open}
-                            onClose={handleClose}
-                            onOpen={handleOpen}
-                            value={item}
-                            onChange={handleChange}
-                        >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            {mongoData.map((item) =>
-                                <MenuItem key={item.id} value = {item.id} >{item.name}</MenuItem>
+                        <Autocomplete
+                            className={classes.select}
+                            value={value}
+                            onChange={(event, newValue) => {
+                                if (typeof newValue === 'string') {
+                                    setValue({
+                                        name: newValue,
+                                    });
+                                    updateItem({
+                                        name: newValue.id
+                                    })
+                                } else if (newValue == null){
+                                    setValue(newValue);
+                                    updateItem("")
+                                }
+                                else {
+                                    setValue(newValue);
+                                    updateItem(newValue.id)
+                                }
+                            }}
+                            filterOptions={(options, params) => {
+                                const filtered = filter(options, params);
+                                return filtered;
+                            }}
+                            selectOnFocus
+                            clearOnBlur
+                            handleHomeEndKeys
+                            id="Выберите наименование"
+                            options={mongoData}
+                            getOptionLabel={(option) => {
+                                if (typeof option === 'string') {
+                                    return option;
+                                }
+                                if (option.inputValue) {
+                                    return option.inputValue;
+                                }
+                                return option.name;
+                            }}
+                            renderOption={(option) => option.name}
+                            style={{ width: 300 }}
+                            freeSolo
+                            renderInput={(params) => (
+                                <TextField className={classes.input} id="standard-basic" {...params} label="Выберите наименование" variant="outlined" />
                             )}
-                        </Select>
+                        />
                         <TextField className={classes.input} id="standard-basic" label="Количество" type="text" value={amount} onChange = {e => updateAmount(e.currentTarget.value)}/>
                         <Button variant="contained" className={classes.button} onClick = {() => submitNewHistoryAdd()}>
                             Добавить
@@ -235,20 +247,51 @@ const InputField =()=> {
                 <div className={`mt-40 ${classes.select}`}>
                     <div className="text-style">Списание</div>
                     <form className={`input-style ${classes.root}`} noValidate autoComplete="off">
-                        <Select className={classes.select}
-                            open={openDel}
-                            onClose={handleCloseDelete}
-                            onOpen={handleOpenDelete}
-                            value={itemDel}
-                            onChange={handleChangeDelete}
-                        >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            {mongoData.map((item) =>
-                                <MenuItem key={item.id} value = {item.id} item={item}>{item.name}</MenuItem>
+                        <Autocomplete
+                            className={classes.select}
+                            value={valuedel}
+                            onChange={(event, newValue) => {
+                                if (typeof newValue === 'string') {
+                                    setValueDel({
+                                        name: newValue,
+                                    });
+                                    updateItemDel({
+                                        name: newValue.id
+                                    })
+                                } else if (newValue == null){
+                                    setValueDel(newValue);
+                                    updateItemDel("")
+                                }
+                                else {
+                                    setValueDel(newValue);
+                                    updateItemDel(newValue.id)
+                                }
+                            }}
+                            filterOptions={(options, params) => {
+                                const filtered = filter(options, params);
+                                return filtered;
+                            }}
+                            selectOnFocus
+                            clearOnBlur
+                            handleHomeEndKeys
+                            id="Выберите наименование"
+                            options={mongoData}
+                            getOptionLabel={(option) => {
+                                if (typeof option === 'string') {
+                                    return option;
+                                }
+                                if (option.inputValue) {
+                                    return option.inputValue;
+                                }
+                                return option.name;
+                            }}
+                            renderOption={(option) => option.name}
+                            style={{ width: 300 }}
+                            freeSolo
+                            renderInput={(params) => (
+                                <TextField className={classes.input} id="standard-basic" {...params} label="Выберите наименование" variant="outlined" />
                             )}
-                        </Select>
+                        />
                         <TextField id="standard-basic" className={classes.input} label="Количество" type="text" value={amountDel} onChange = {e => updateAmountDel(e.currentTarget.value)}/>
                         <Button variant="contained" className={classes.button} onClick = {() => submitNewHistoryDel()}>
                             Списать
