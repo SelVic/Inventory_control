@@ -168,7 +168,8 @@ const useInventoryStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MOD
     margin: "auto",
     ['@media (min-width:780px)']: {
       // eslint-disable-line no-useless-computed-key
-      width: '80%'
+      width: '80%',
+      height: "100%"
     }
   },
   inputStyle: {
