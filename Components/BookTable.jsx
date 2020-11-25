@@ -171,13 +171,6 @@ const Row = (props) => {
         setOpen(!open)
     }
 
-    const actionRenderHandler = (action) => {
-        if (action === "Deleted")
-            return "Списано"
-        else
-            return "Добавлено"
-    }
-
     return (
         <Fragment>
             <TableRow className={classes.root}>
@@ -220,7 +213,7 @@ const Row = (props) => {
                                                 {history.date}
                                             </TableCell>
                                             <TableCell align="right">{history.amount}</TableCell>
-                                            <TableCell align="right">{actionRenderHandler(history.action)}</TableCell>
+                                            <TableCell align="right">{history.action === "Deleted" ? "Списано" : "Добавлено"}</TableCell>
                                             <TableCell align="right">
                                                 <Button variant="contained" onClick={() => {deleteHistoryHandler(row.id, history.historyId, history.action, history.amount), fetch(), props.handleFetch()}}>
                                                     Удалить
@@ -286,8 +279,8 @@ const BookTable = () => {
 
     return (
         <Fragment>
-            <div>
-                <TextField  align="center" className={classes.inputStyle} id="standard-basic" label="Фильтр" type="text" value={text} variant="outlined" onChange = {e => updateText(e.currentTarget.value)}/>
+            <div align="center">
+                <TextField className={classes.inputStyle} id="standard-basic" label="Фильтр" type="text" value={text} variant="outlined" onChange = {e => updateText(e.currentTarget.value)}/>
             </div>
         <TableContainer className={classes.tableStyle} component={Paper}>
             <Table>
