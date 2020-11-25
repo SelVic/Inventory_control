@@ -1,11 +1,5 @@
 html {
   background-color: #F4F4EF; }
-  @media (max-width: 715px) {
-    html #root {
-      width: 100%; } }
-  @media (max-height: 1200px) {
-    html #root {
-      height: 100%; } }
 
 .header {
   text-align: center;
