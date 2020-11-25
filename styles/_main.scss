@@ -5,4 +5,9 @@ html {
       width: 100%;
     }
   }
+  @media (max-height: 1200px) {
+    #root {
+      height: 100%;
+    }
+  }
 }
