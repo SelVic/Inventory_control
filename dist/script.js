@@ -343,7 +343,7 @@ const Row = props => {
     align: "right"
   }, history.amount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, history.customerType === "Покупатель" ? `Покупатель: ${history.customer}` : `Поставщик: ${history.customer}`), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, history.action === "Deleted" ? `Покупатель: ${history.customer}` : `Поставщик: ${history.customer}`), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
   }, history.action === "Deleted" ? "Списано" : "Добавлено"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
@@ -574,7 +574,6 @@ const InputField = () => {
       action: "Added",
       amount: amount,
       customer: customer,
-      customerType: "Поставщик",
       date: today
     };
     if (amount == 0 || item == "") alert("Заполните все поля!");else axios__WEBPACK_IMPORTED_MODULE_4___default()({
@@ -597,7 +596,6 @@ const InputField = () => {
       action: "Deleted",
       amount: amountDel,
       customer: customerDel,
-      customerType: "Покупатель",
       date: today
     };
     if (amountDel == 0 || itemDel == "") alert("Заполните все поля!");else if (mongoData.some(item => item.id == itemDel && item.totalAmount < amountDel)) alert("Вы ввели слишком большое количество для списания, в базе недостаточно предметов этого наименования");else axios__WEBPACK_IMPORTED_MODULE_4___default()({

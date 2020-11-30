@@ -118,7 +118,6 @@ const InputField =()=> {
             action: "Added",
             amount: amount,
             customer: customer,
-            customerType: "Поставщик",
             date: today
         };
         if(amount == 0 || item == "")
@@ -146,7 +145,6 @@ const InputField =()=> {
             action : "Deleted",
             amount: amountDel,
             customer: customerDel,
-            customerType: "Покупатель",
             date: today
         };
         if(amountDel == 0 || itemDel == "")

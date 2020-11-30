@@ -218,7 +218,7 @@ const Row = (props) => {
                                                 {history.date}
                                             </TableCell>
                                             <TableCell align="right">{history.amount}</TableCell>
-                                            <TableCell align="right">{history.customerType === "Покупатель" ? `Покупатель: ${history.customer}` : `Поставщик: ${history.customer}`}</TableCell>
+                                            <TableCell align="right">{history.action === "Deleted" ? `Покупатель: ${history.customer}` : `Поставщик: ${history.customer}`}</TableCell>
                                             <TableCell align="right">{history.action === "Deleted" ? "Списано" : "Добавлено"}</TableCell>
                                             <TableCell align="right">
                                                 <Button variant="contained" onClick={() => {deleteHistoryHandler(row.id, history.historyId, history.action, history.amount), fetch(), props.handleFetch()}}>
