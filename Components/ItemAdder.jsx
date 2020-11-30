@@ -48,6 +48,8 @@ const InputField =()=> {
     const [amountDel, updateAmountDel] = useState("");
     const [item, updateItem] = useState('');
     const [itemDel, updateItemDel] = useState('');
+    const [customer, updateCustomer] = useState('');
+    const [customerDel, updateCustomerDel] = useState('');
     const [mongoData, updateMongoData] = useState([]);
     const [rendered, updateRendered] = useState(false)
     const classes = useStyles();
@@ -115,6 +117,7 @@ const InputField =()=> {
             uniqueId: item,
             action: "Added",
             amount: amount,
+            customer: customer,
             date: today
         };
         if(amount == 0 || item == "")
@@ -141,6 +144,7 @@ const InputField =()=> {
             uniqueId: itemDel,
             action : "Deleted",
             amount: amountDel,
+            customer: customerDel,
             date: today
         };
         if(amountDel == 0 || itemDel == "")
@@ -240,6 +244,7 @@ const InputField =()=> {
                             )}
                         />
                         <TextField variant="outlined" className={classes.input} id="standard-basic" label="Количество" type="text" value={amount} onChange = {e => updateAmount(e.currentTarget.value)}/>
+                        <TextField variant="outlined" className={classes.input} id="standard-basic" label="Поставщик" type="text" value={customer} onChange = {e => updateCustomer(e.currentTarget.value)}/>
                         <Button variant="contained" className={classes.button} onClick = {() => submitNewHistoryAdd()}>
                             Добавить
                         </Button>
@@ -294,6 +299,7 @@ const InputField =()=> {
                             )}
                         />
                         <TextField variant="outlined" id="standard-basic" className={classes.input} label="Количество" type="text" value={amountDel} onChange = {e => updateAmountDel(e.currentTarget.value)}/>
+                        <TextField variant="outlined" className={classes.input} id="standard-basic" label="Покупатель" type="text" value={customerDel} onChange = {e => updateCustomerDel(e.currentTarget.value)}/>
                         <Button variant="contained" className={classes.button} onClick = {() => submitNewHistoryDel()}>
                             Списать
                         </Button>

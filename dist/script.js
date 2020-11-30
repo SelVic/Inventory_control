@@ -124,12 +124,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_19__);
 /* harmony import */ var _material_ui_core_Dialog__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @material-ui/core/Dialog */ "./node_modules/@material-ui/core/esm/Dialog/index.js");
 /* harmony import */ var _material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @material-ui/core/DialogActions */ "./node_modules/@material-ui/core/esm/DialogActions/index.js");
-/* harmony import */ var _material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @material-ui/core/DialogContent */ "./node_modules/@material-ui/core/esm/DialogContent/index.js");
-/* harmony import */ var _material_ui_core_DialogContentText__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @material-ui/core/DialogContentText */ "./node_modules/@material-ui/core/esm/DialogContentText/index.js");
-/* harmony import */ var _material_ui_core_DialogTitle__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @material-ui/core/DialogTitle */ "./node_modules/@material-ui/core/esm/DialogTitle/index.js");
-/* harmony import */ var _material_ui_core_useMediaQuery__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @material-ui/core/useMediaQuery */ "./node_modules/@material-ui/core/esm/useMediaQuery/index.js");
-
-
+/* harmony import */ var _material_ui_core_DialogTitle__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @material-ui/core/DialogTitle */ "./node_modules/@material-ui/core/esm/DialogTitle/index.js");
+/* harmony import */ var _material_ui_core_useMediaQuery__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @material-ui/core/useMediaQuery */ "./node_modules/@material-ui/core/esm/useMediaQuery/index.js");
 
 
 
@@ -195,7 +191,7 @@ const Row = props => {
   const [historyData, updateHistoryData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   const [openDialog, setOpenDialog] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["useTheme"])();
-  const fullScreen = Object(_material_ui_core_useMediaQuery__WEBPACK_IMPORTED_MODULE_25__["default"])(theme.breakpoints.down('sm'));
+  const fullScreen = Object(_material_ui_core_useMediaQuery__WEBPACK_IMPORTED_MODULE_23__["default"])(theme.breakpoints.down('sm'));
 
   const fetch = async () => {
     const responseHistory = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api/history');
@@ -266,7 +262,7 @@ const Row = props => {
       open: openDialog,
       onClose: handleClose,
       "aria-labelledby": "responsive-dialog-title"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_DialogTitle__WEBPACK_IMPORTED_MODULE_24__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_DialogTitle__WEBPACK_IMPORTED_MODULE_22__["default"], {
       id: "responsive-dialog-title"
     }, "Вы уверены, что хотите удалить наименование из базы?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_21__["default"], {
       align: "center"
@@ -506,6 +502,8 @@ const InputField = () => {
   const [amountDel, updateAmountDel] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
   const [item, updateItem] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
   const [itemDel, updateItemDel] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+  const [customer, updateCustomer] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+  const [customerDel, updateCustomerDel] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
   const [mongoData, updateMongoData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   const [rendered, updateRendered] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const classes = useStyles();
@@ -569,6 +567,7 @@ const InputField = () => {
       uniqueId: item,
       action: "Added",
       amount: amount,
+      customer: customer,
       date: today
     };
     if (amount == 0 || item == "") alert("Заполните все поля!");else axios__WEBPACK_IMPORTED_MODULE_4___default()({
@@ -590,6 +589,7 @@ const InputField = () => {
       uniqueId: itemDel,
       action: "Deleted",
       amount: amountDel,
+      customer: customerDel,
       date: today
     };
     if (amountDel == 0 || itemDel == "") alert("Заполните все поля!");else if (mongoData.some(item => item.id == itemDel && item.totalAmount < amountDel)) alert("Вы ввели слишком большое количество для списания, в базе недостаточно предметов этого наименования");else axios__WEBPACK_IMPORTED_MODULE_4___default()({
@@ -718,6 +718,14 @@ const InputField = () => {
     type: "text",
     value: amount,
     onChange: e => updateAmount(e.currentTarget.value)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    variant: "outlined",
+    className: classes.input,
+    id: "standard-basic",
+    label: "\u041F\u043E\u0441\u0442\u0430\u0432\u0449\u0438\u043A",
+    type: "text",
+    value: customer,
+    onChange: e => updateCustomer(e.currentTarget.value)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "contained",
     className: classes.button,
@@ -789,6 +797,14 @@ const InputField = () => {
     type: "text",
     value: amountDel,
     onChange: e => updateAmountDel(e.currentTarget.value)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    variant: "outlined",
+    className: classes.input,
+    id: "standard-basic",
+    label: "\u041F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C",
+    type: "text",
+    value: customerDel,
+    onChange: e => updateCustomerDel(e.currentTarget.value)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "contained",
     className: classes.button,
@@ -4470,189 +4486,6 @@ var DialogActions = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["forwardRef"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DialogActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DialogActions */ "./node_modules/@material-ui/core/esm/DialogActions/DialogActions.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _DialogActions__WEBPACK_IMPORTED_MODULE_0__["default"]; });
-
-
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/core/esm/DialogContent/DialogContent.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/DialogContent/DialogContent.js ***!
-  \***************************************************************************/
-/*! exports provided: styles, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
-/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
-
-
-
-
-
-
-var styles = function styles(theme) {
-  return {
-    /* Styles applied to the root element. */
-    root: {
-      flex: '1 1 auto',
-      WebkitOverflowScrolling: 'touch',
-      // Add iOS momentum scrolling.
-      overflowY: 'auto',
-      padding: '8px 24px',
-      '&:first-child': {
-        // dialog without title
-        paddingTop: 20
-      }
-    },
-
-    /* Styles applied to the root element if `dividers={true}`. */
-    dividers: {
-      padding: '16px 24px',
-      borderTop: "1px solid ".concat(theme.palette.divider),
-      borderBottom: "1px solid ".concat(theme.palette.divider)
-    }
-  };
-};
-var DialogContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["forwardRef"](function DialogContent(props, ref) {
-  var classes = props.classes,
-      className = props.className,
-      _props$dividers = props.dividers,
-      dividers = _props$dividers === void 0 ? false : _props$dividers,
-      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["classes", "className", "dividers"]);
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"]("div", Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, className, dividers && classes.dividers),
-    ref: ref
-  }, other));
-});
- true ? DialogContent.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-
-  /**
-   * The content of the component.
-   */
-  children: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node,
-
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
-   */
-  classes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object,
-
-  /**
-   * @ignore
-   */
-  className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
-
-  /**
-   * Display the top and bottom dividers.
-   */
-  dividers: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool
-} : undefined;
-/* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_5__["default"])(styles, {
-  name: 'MuiDialogContent'
-})(DialogContent));
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/core/esm/DialogContent/index.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/DialogContent/index.js ***!
-  \*******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _DialogContent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DialogContent */ "./node_modules/@material-ui/core/esm/DialogContent/DialogContent.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _DialogContent__WEBPACK_IMPORTED_MODULE_0__["default"]; });
-
-
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/core/esm/DialogContentText/DialogContentText.js":
-/*!***********************************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/DialogContentText/DialogContentText.js ***!
-  \***********************************************************************************/
-/*! exports provided: styles, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
-/* harmony import */ var _Typography__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
-
-
-
-
-
-var styles = {
-  /* Styles applied to the root element. */
-  root: {
-    marginBottom: 12
-  }
-};
-var DialogContentText = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__["forwardRef"](function DialogContentText(props, ref) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__["createElement"](_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    component: "p",
-    variant: "body1",
-    color: "textSecondary",
-    ref: ref
-  }, props));
-});
- true ? DialogContentText.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-
-  /**
-   * The content of the component.
-   */
-  children: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.node,
-
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
-   */
-  classes: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.object
-} : undefined;
-/* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_3__["default"])(styles, {
-  name: 'MuiDialogContentText'
-})(DialogContentText));
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/core/esm/DialogContentText/index.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/DialogContentText/index.js ***!
-  \***********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _DialogContentText__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DialogContentText */ "./node_modules/@material-ui/core/esm/DialogContentText/DialogContentText.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _DialogContentText__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
 
 
