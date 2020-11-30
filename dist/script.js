@@ -201,7 +201,9 @@ const Row = props => {
         action: historyItem.action,
         amount: historyItem.amount,
         date: historyItem.date,
-        historyId: historyItem._id
+        historyId: historyItem._id,
+        customer: historyItem.customer,
+        customerType: historyItem.customerType
       };
     }));
   };
@@ -328,6 +330,8 @@ const Row = props => {
     align: "right"
   }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
+  }, "\u041F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C / \u041F\u043E\u0441\u0442\u0430\u0432\u0449\u0438\u043A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    align: "right"
   }, "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E / \u0421\u043F\u0438\u0441\u0430\u043D\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
   }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0438\u0441\u0442\u043E\u0440\u0438\u044E"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, createHistoryArray(row.id).map(history => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -338,6 +342,8 @@ const Row = props => {
   }, history.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
   }, history.amount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    align: "right"
+  }, history.customerType === "Покупатель" ? `Покупатель: ${history.customer}` : `Поставщик: ${history.customer}`), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
   }, history.action === "Deleted" ? "Списано" : "Добавлено"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
@@ -568,6 +574,7 @@ const InputField = () => {
       action: "Added",
       amount: amount,
       customer: customer,
+      customerType: "Поставщик",
       date: today
     };
     if (amount == 0 || item == "") alert("Заполните все поля!");else axios__WEBPACK_IMPORTED_MODULE_4___default()({
@@ -590,6 +597,7 @@ const InputField = () => {
       action: "Deleted",
       amount: amountDel,
       customer: customerDel,
+      customerType: "Покупатель",
       date: today
     };
     if (amountDel == 0 || itemDel == "") alert("Заполните все поля!");else if (mongoData.some(item => item.id == itemDel && item.totalAmount < amountDel)) alert("Вы ввели слишком большое количество для списания, в базе недостаточно предметов этого наименования");else axios__WEBPACK_IMPORTED_MODULE_4___default()({
@@ -615,6 +623,8 @@ const InputField = () => {
     updateAmountDel(0);
     updateItem("");
     updateItemDel("");
+    updateCustomer("");
+    updateCustomerDel("");
     setValue("");
     setValueDel("");
   };

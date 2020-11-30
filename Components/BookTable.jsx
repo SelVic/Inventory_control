@@ -73,7 +73,15 @@ const Row = (props) => {
     const fetch = async () => {
         const responseHistory = await axios.get('/api/history')
         updateHistoryData(responseHistory.data.map(historyItem => {
-            return {uniqueId: historyItem.uniqueId, action: historyItem.action, amount: historyItem.amount, date: historyItem.date, historyId : historyItem._id}
+            return {
+                uniqueId: historyItem.uniqueId,
+                action: historyItem.action,
+                amount: historyItem.amount,
+                date: historyItem.date,
+                historyId : historyItem._id,
+                customer: historyItem.customer,
+                customerType: historyItem.customerType
+            }
         }))
     }
 
@@ -198,6 +206,7 @@ const Row = (props) => {
                                     <TableRow>
                                         <TableCell>Дата</TableCell>
                                         <TableCell align="right">Количество</TableCell>
+                                        <TableCell align="right">Покупатель / Поставщик</TableCell>
                                         <TableCell align="right">Добавлено / Списано</TableCell>
                                         <TableCell align="right">Удалить историю</TableCell>
                                     </TableRow>
@@ -209,6 +218,7 @@ const Row = (props) => {
                                                 {history.date}
                                             </TableCell>
                                             <TableCell align="right">{history.amount}</TableCell>
+                                            <TableCell align="right">{history.customerType === "Покупатель" ? `Покупатель: ${history.customer}` : `Поставщик: ${history.customer}`}</TableCell>
                                             <TableCell align="right">{history.action === "Deleted" ? "Списано" : "Добавлено"}</TableCell>
                                             <TableCell align="right">
                                                 <Button variant="contained" onClick={() => {deleteHistoryHandler(row.id, history.historyId, history.action, history.amount), fetch(), props.handleFetch()}}>

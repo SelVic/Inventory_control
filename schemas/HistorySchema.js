@@ -5,6 +5,7 @@ const historySchema = mongoose.Schema({
     action: String,
     amount: Number,
     customer: String,
+    customerType: String,
     date: String
 })
 
