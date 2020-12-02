@@ -247,7 +247,7 @@ Row.propTypes = {
 };
 
 
-const BookTable = () => {
+const ItemTable = () => {
     const classes = useInventoryStyles()
     const [mongoData, updateMongoData] = useState([]);
     const [filtered, updateFiltered] = useState([]);
@@ -309,7 +309,7 @@ const BookTable = () => {
     );
 }
 
-export {BookTable}
+export {ItemTable}
 
 
 

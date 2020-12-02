@@ -5,7 +5,7 @@ import { render } from "react-dom";
 import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
 // import {ItemAdder} from "./Components/ItemAdder"
 import InputField from "./Components/ItemAdder"
-import {BookTable} from "./Components/BookTable"
+import {ItemTable} from "./Components/ItemTable"
 
 
 
@@ -19,7 +19,7 @@ const App = props => {
                 </nav>
                 <Switch>
                     <Route path="/table">
-                        <BookTable/>
+                        <ItemTable/>
                     </Route>
                     <Route path="/">
                         <InputField/>
