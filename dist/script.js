@@ -102,9 +102,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/index.js");
-/* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Select */ "./node_modules/@material-ui/core/esm/Select/index.js");
-/* harmony import */ var _material_ui_lab_Autocomplete__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/lab/Autocomplete */ "./node_modules/@material-ui/lab/esm/Autocomplete/index.js");
+/* harmony import */ var _material_ui_lab_Autocomplete__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/lab/Autocomplete */ "./node_modules/@material-ui/lab/esm/Autocomplete/index.js");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 
@@ -113,9 +111,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
-
-
-const filter = Object(_material_ui_lab_Autocomplete__WEBPACK_IMPORTED_MODULE_7__["createFilterOptions"])();
+const filter = Object(_material_ui_lab_Autocomplete__WEBPACK_IMPORTED_MODULE_5__["createFilterOptions"])();
 const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["makeStyles"])(theme => ({
   root: {
     '& > *': {
@@ -314,7 +310,7 @@ const InputField = () => {
     className: `input-style ${classes.root}`,
     noValidate: true,
     autoComplete: "off"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_lab_Autocomplete__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_lab_Autocomplete__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: classes.select,
     value: value,
     onChange: (event, newValue) => {
@@ -393,7 +389,7 @@ const InputField = () => {
     className: `input-style ${classes.root}`,
     noValidate: true,
     autoComplete: "off"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_lab_Autocomplete__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_lab_Autocomplete__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: classes.select,
     value: valuedel,
     onChange: (event, newValue) => {
@@ -483,6 +479,138 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ItemTable", function() { return ItemTable; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+/* harmony import */ var _material_ui_core_Table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Table */ "./node_modules/@material-ui/core/esm/Table/index.js");
+/* harmony import */ var _material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/TableBody */ "./node_modules/@material-ui/core/esm/TableBody/index.js");
+/* harmony import */ var _material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/TableCell */ "./node_modules/@material-ui/core/esm/TableCell/index.js");
+/* harmony import */ var _material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/TableContainer */ "./node_modules/@material-ui/core/esm/TableContainer/index.js");
+/* harmony import */ var _material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/TableHead */ "./node_modules/@material-ui/core/esm/TableHead/index.js");
+/* harmony import */ var _material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/TableRow */ "./node_modules/@material-ui/core/esm/TableRow/index.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
+/* harmony import */ var _Rows__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Rows */ "./Components/Rows.jsx");
+
+
+
+
+
+
+
+
+
+
+
+
+const useInventoryStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["makeStyles"])({
+  tableStyle: {
+    maxWidth: 1300,
+    margin: "auto",
+    ['@media (max-width:715px)']: {
+      root: {
+        width: "100%"
+      }
+    }
+  },
+  inputStyle: {
+    '& label.Mui-focused': {
+      color: '#962715'
+    },
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused fieldset': {
+        borderColor: '#962715'
+      }
+    },
+    width: "50ch",
+    marginBottom: "25px"
+  }
+});
+
+const ItemTable = () => {
+  const classes = useInventoryStyles();
+  const [mongoData, updateMongoData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const [filtered, updateFiltered] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const [text, updateText] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
+  const [fetchProgress, updateFetchProgress] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  let searchItem = text.trim().toLowerCase();
+
+  const fetch = async () => {
+    const response = await axios__WEBPACK_IMPORTED_MODULE_9___default.a.get('/api');
+    let responseValue = response.data;
+    updateMongoData(responseValue.map(item => {
+      return {
+        name: item.name,
+        id: item._id,
+        totalAmount: item.totalAmount,
+        description: item.description
+      };
+    }));
+    updateFetchProgress(true);
+    updateFiltered(responseValue.map(item => {
+      return {
+        name: item.name,
+        id: item._id,
+        totalAmount: item.totalAmount,
+        description: item.description
+      };
+    }));
+  };
+
+  const handleFetch = () => {
+    updateFetchProgress(false);
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    let cleanupFunc = false;
+    fetch();
+    return () => cleanupFunc = true;
+  }, [fetchProgress]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    let result = mongoData.filter(item => item.name.toLowerCase().includes(searchItem));
+    updateFiltered(result);
+  }, [text]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    align: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    className: classes.inputStyle,
+    id: "standard-basic",
+    label: "\u0424\u0438\u043B\u044C\u0442\u0440",
+    type: "text",
+    value: text,
+    variant: "outlined",
+    onChange: e => updateText(e.currentTarget.value)
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    className: classes.tableStyle,
+    component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_4__["default"], null, "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u0430"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    align: "center"
+  }, "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    align: "right"
+  }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043D\u0430 \u0441\u043A\u043B\u0430\u0434\u0435"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_3__["default"], null, filtered.map(row => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Rows__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    key: row.id,
+    row: row,
+    handleFetch: handleFetch
+  })).sort(() => {
+    return -1;
+  })))));
+};
+
+
+
+/***/ }),
+
+/***/ "./Components/Rows.jsx":
+/*!*****************************!*\
+  !*** ./Components/Rows.jsx ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
@@ -492,28 +620,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Table__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Table */ "./node_modules/@material-ui/core/esm/Table/index.js");
 /* harmony import */ var _material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/TableBody */ "./node_modules/@material-ui/core/esm/TableBody/index.js");
 /* harmony import */ var _material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/TableCell */ "./node_modules/@material-ui/core/esm/TableCell/index.js");
-/* harmony import */ var _material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/TableContainer */ "./node_modules/@material-ui/core/esm/TableContainer/index.js");
-/* harmony import */ var _material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/TableHead */ "./node_modules/@material-ui/core/esm/TableHead/index.js");
-/* harmony import */ var _material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/TableRow */ "./node_modules/@material-ui/core/esm/TableRow/index.js");
-/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
-/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
-/* harmony import */ var _material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @material-ui/icons/KeyboardArrowDown */ "./node_modules/@material-ui/icons/KeyboardArrowDown.js");
-/* harmony import */ var _material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var _material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @material-ui/icons/KeyboardArrowUp */ "./node_modules/@material-ui/icons/KeyboardArrowUp.js");
-/* harmony import */ var _material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
-/* harmony import */ var _material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @material-ui/icons/Delete */ "./node_modules/@material-ui/icons/Delete.js");
-/* harmony import */ var _material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var _material_ui_core_Dialog__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @material-ui/core/Dialog */ "./node_modules/@material-ui/core/esm/Dialog/index.js");
-/* harmony import */ var _material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @material-ui/core/DialogActions */ "./node_modules/@material-ui/core/esm/DialogActions/index.js");
-/* harmony import */ var _material_ui_core_DialogTitle__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @material-ui/core/DialogTitle */ "./node_modules/@material-ui/core/esm/DialogTitle/index.js");
-/* harmony import */ var _material_ui_core_useMediaQuery__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @material-ui/core/useMediaQuery */ "./node_modules/@material-ui/core/esm/useMediaQuery/index.js");
-
-
-
+/* harmony import */ var _material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/TableHead */ "./node_modules/@material-ui/core/esm/TableHead/index.js");
+/* harmony import */ var _material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/TableRow */ "./node_modules/@material-ui/core/esm/TableRow/index.js");
+/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
+/* harmony import */ var _material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/icons/KeyboardArrowDown */ "./node_modules/@material-ui/icons/KeyboardArrowDown.js");
+/* harmony import */ var _material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/icons/KeyboardArrowUp */ "./node_modules/@material-ui/icons/KeyboardArrowUp.js");
+/* harmony import */ var _material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/icons/Delete */ "./node_modules/@material-ui/icons/Delete.js");
+/* harmony import */ var _material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _material_ui_core_Dialog__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @material-ui/core/Dialog */ "./node_modules/@material-ui/core/esm/Dialog/index.js");
+/* harmony import */ var _material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @material-ui/core/DialogActions */ "./node_modules/@material-ui/core/esm/DialogActions/index.js");
+/* harmony import */ var _material_ui_core_DialogTitle__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @material-ui/core/DialogTitle */ "./node_modules/@material-ui/core/esm/DialogTitle/index.js");
+/* harmony import */ var _material_ui_core_useMediaQuery__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @material-ui/core/useMediaQuery */ "./node_modules/@material-ui/core/esm/useMediaQuery/index.js");
 
 
 
@@ -576,10 +698,10 @@ const Row = props => {
   const [historyData, updateHistoryData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   const [openDialog, setOpenDialog] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["useTheme"])();
-  const fullScreen = Object(_material_ui_core_useMediaQuery__WEBPACK_IMPORTED_MODULE_23__["default"])(theme.breakpoints.down('sm'));
+  const fullScreen = Object(_material_ui_core_useMediaQuery__WEBPACK_IMPORTED_MODULE_20__["default"])(theme.breakpoints.down('sm'));
 
   const fetch = async () => {
-    const responseHistory = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api/history');
+    const responseHistory = await axios__WEBPACK_IMPORTED_MODULE_15___default.a.get('/api/history');
     updateHistoryData(responseHistory.data.map(historyItem => {
       return {
         uniqueId: historyItem.uniqueId,
@@ -600,7 +722,7 @@ const Row = props => {
       action: action,
       amount: amount
     };
-    axios__WEBPACK_IMPORTED_MODULE_17___default()({
+    axios__WEBPACK_IMPORTED_MODULE_15___default()({
       url: "/deleteHistory",
       method: "POST",
       data: payLoad
@@ -621,7 +743,7 @@ const Row = props => {
       const payLoad = {
         itemId: itemId
       };
-      axios__WEBPACK_IMPORTED_MODULE_17___default()({
+      axios__WEBPACK_IMPORTED_MODULE_15___default()({
         url: "/deleteItem",
         method: "POST",
         data: payLoad
@@ -642,22 +764,22 @@ const Row = props => {
       setOpenDialog(false);
     };
 
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_19___default.a, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_16___default.a, {
       onClick: () => handleClickOpen()
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Dialog__WEBPACK_IMPORTED_MODULE_20__["default"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Dialog__WEBPACK_IMPORTED_MODULE_17__["default"], {
       fullScreen: fullScreen,
       open: openDialog,
       onClose: handleClose,
       "aria-labelledby": "responsive-dialog-title"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_DialogTitle__WEBPACK_IMPORTED_MODULE_22__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_DialogTitle__WEBPACK_IMPORTED_MODULE_19__["default"], {
       id: "responsive-dialog-title"
-    }, "Вы уверены, что хотите удалить наименование из базы?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_21__["default"], {
+    }, "Вы уверены, что хотите удалить наименование из базы?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_18__["default"], {
       align: "center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_14__["default"], {
       autoFocus: true,
       onClick: handleCloseNo,
       color: "primary"
-    }, "\u041D\u0435\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    }, "\u041D\u0435\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_14__["default"], {
       onClick: handleCloseYes,
       color: "primary",
       autoFocus: true
@@ -674,13 +796,13 @@ const Row = props => {
     setOpen(!open);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_10__["default"], {
     className: classes.root
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
     "aria-label": "expand row",
     size: "small",
     onClick: () => openHandler()
-  }, open ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_15___default.a, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_14___default.a, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, open ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_13___default.a, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_12___default.a, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
     "aria-label": "expand row",
     size: "small"
   }, deleteItemHandler(row.id))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -692,7 +814,7 @@ const Row = props => {
     align: "center"
   }, row.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, row.totalAmount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, row.totalAmount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     style: {
       paddingBottom: 0,
       paddingTop: 0
@@ -704,14 +826,14 @@ const Row = props => {
     unmountOnExit: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Box__WEBPACK_IMPORTED_MODULE_3__["default"], {
     margin: 1
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_11__["default"], {
     variant: "h6",
     gutterBottom: true,
     component: "div"
   }, "\u0418\u0441\u0442\u043E\u0440\u0438\u044F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_6__["default"], {
     size: "small",
     "aria-label": "purchases"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null, "\u0414\u0430\u0442\u0430"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_9__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null, "\u0414\u0430\u0442\u0430"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
   }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
@@ -719,7 +841,7 @@ const Row = props => {
     align: "right"
   }, "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E / \u0421\u043F\u0438\u0441\u0430\u043D\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0438\u0441\u0442\u043E\u0440\u0438\u044E"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, createHistoryArray(row.id).map(history => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0438\u0441\u0442\u043E\u0440\u0438\u044E"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, createHistoryArray(row.id).map(history => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_10__["default"], {
     key: history.historyId
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     component: "th",
@@ -732,7 +854,7 @@ const Row = props => {
     align: "right"
   }, history.action === "Deleted" ? "Списано" : "Добавлено"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
     align: "right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_16__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_14__["default"], {
     variant: "contained",
     onClick: () => {
       deleteHistoryHandler(row.id, history.historyId, history.action, history.amount), fetch(), props.handleFetch();
@@ -743,84 +865,13 @@ const Row = props => {
 };
 
 Row.propTypes = {
-  testHandle: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
   row: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
     name: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
     amount: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
     id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
   })
 };
-
-const ItemTable = () => {
-  const classes = useInventoryStyles();
-  const [mongoData, updateMongoData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  const [filtered, updateFiltered] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  const [text, updateText] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
-  const [fetchProgress, updateFetchProgress] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  let searchItem = text.trim().toLowerCase();
-
-  const fetch = async () => {
-    const response = await axios__WEBPACK_IMPORTED_MODULE_17___default.a.get('/api');
-    let responseValue = response.data;
-    updateMongoData(responseValue.map(item => {
-      return {
-        name: item.name,
-        id: item._id,
-        totalAmount: item.totalAmount,
-        description: item.description
-      };
-    }));
-    updateFetchProgress(true);
-    updateFiltered(responseValue.map(item => {
-      return {
-        name: item.name,
-        id: item._id,
-        totalAmount: item.totalAmount,
-        description: item.description
-      };
-    }));
-  };
-
-  const handleFetch = () => {
-    updateFetchProgress(false);
-  };
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    let cleanupFunc = false;
-    fetch();
-    return () => cleanupFunc = true;
-  }, [fetchProgress]);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    let result = mongoData.filter(item => item.name.toLowerCase().includes(searchItem));
-    updateFiltered(result);
-  }, [text]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    align: "center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_18__["default"], {
-    className: classes.inputStyle,
-    id: "standard-basic",
-    label: "\u0424\u0438\u043B\u044C\u0442\u0440",
-    type: "text",
-    value: text,
-    variant: "outlined",
-    onChange: e => updateText(e.currentTarget.value)
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    className: classes.tableStyle,
-    component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_13__["default"]
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], null, "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u0430"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    align: "center"
-  }, "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    align: "right"
-  }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043D\u0430 \u0441\u043A\u043B\u0430\u0434\u0435"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_7__["default"], null, filtered.map(row => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Row, {
-    key: row.id,
-    row: row,
-    handleFetch: handleFetch
-  })).sort(() => {
-    return -1;
-  })))));
-};
-
-
+/* harmony default export */ __webpack_exports__["default"] = (Row);
 
 /***/ }),
 
@@ -8019,352 +8070,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/@material-ui/core/esm/ListItem/ListItem.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ListItem/ListItem.js ***!
-  \*****************************************************************/
-/*! exports provided: styles, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
-/* harmony import */ var _material_ui_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/utils */ "./node_modules/@material-ui/utils/esm/index.js");
-/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
-/* harmony import */ var _ButtonBase__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../ButtonBase */ "./node_modules/@material-ui/core/esm/ButtonBase/index.js");
-/* harmony import */ var _utils_isMuiElement__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/isMuiElement */ "./node_modules/@material-ui/core/esm/utils/isMuiElement.js");
-/* harmony import */ var _utils_useForkRef__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../utils/useForkRef */ "./node_modules/@material-ui/core/esm/utils/useForkRef.js");
-/* harmony import */ var _List_ListContext__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../List/ListContext */ "./node_modules/@material-ui/core/esm/List/ListContext.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_11__);
-
-
-
-
-
-
-
-
-
-
-
-
-var styles = function styles(theme) {
-  return {
-    /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
-    root: {
-      display: 'flex',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      position: 'relative',
-      textDecoration: 'none',
-      width: '100%',
-      boxSizing: 'border-box',
-      textAlign: 'left',
-      paddingTop: 8,
-      paddingBottom: 8,
-      '&$focusVisible': {
-        backgroundColor: theme.palette.action.selected
-      },
-      '&$selected, &$selected:hover': {
-        backgroundColor: theme.palette.action.selected
-      },
-      '&$disabled': {
-        opacity: 0.5
-      }
-    },
-
-    /* Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
-    container: {
-      position: 'relative'
-    },
-
-    /* Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
-    focusVisible: {},
-
-    /* Styles applied to the `component` element if dense. */
-    dense: {
-      paddingTop: 4,
-      paddingBottom: 4
-    },
-
-    /* Styles applied to the `component` element if `alignItems="flex-start"`. */
-    alignItemsFlexStart: {
-      alignItems: 'flex-start'
-    },
-
-    /* Pseudo-class applied to the inner `component` element if `disabled={true}`. */
-    disabled: {},
-
-    /* Styles applied to the inner `component` element if `divider={true}`. */
-    divider: {
-      borderBottom: "1px solid ".concat(theme.palette.divider),
-      backgroundClip: 'padding-box'
-    },
-
-    /* Styles applied to the inner `component` element if `disableGutters={false}`. */
-    gutters: {
-      paddingLeft: 16,
-      paddingRight: 16
-    },
-
-    /* Styles applied to the inner `component` element if `button={true}`. */
-    button: {
-      transition: theme.transitions.create('background-color', {
-        duration: theme.transitions.duration.shortest
-      }),
-      '&:hover': {
-        textDecoration: 'none',
-        backgroundColor: theme.palette.action.hover,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent'
-        }
-      }
-    },
-
-    /* Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */
-    secondaryAction: {
-      // Add some space to avoid collision as `ListItemSecondaryAction`
-      // is absolutely positioned.
-      paddingRight: 48
-    },
-
-    /* Pseudo-class applied to the root element if `selected={true}`. */
-    selected: {}
-  };
-};
-var useEnhancedEffect = typeof window === 'undefined' ? react__WEBPACK_IMPORTED_MODULE_2__["useEffect"] : react__WEBPACK_IMPORTED_MODULE_2__["useLayoutEffect"];
-/**
- * Uses an additional container component if `ListItemSecondaryAction` is the last child.
- */
-
-var ListItem = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["forwardRef"](function ListItem(props, ref) {
-  var _props$alignItems = props.alignItems,
-      alignItems = _props$alignItems === void 0 ? 'center' : _props$alignItems,
-      _props$autoFocus = props.autoFocus,
-      autoFocus = _props$autoFocus === void 0 ? false : _props$autoFocus,
-      _props$button = props.button,
-      button = _props$button === void 0 ? false : _props$button,
-      childrenProp = props.children,
-      classes = props.classes,
-      className = props.className,
-      componentProp = props.component,
-      _props$ContainerCompo = props.ContainerComponent,
-      ContainerComponent = _props$ContainerCompo === void 0 ? 'li' : _props$ContainerCompo,
-      _props$ContainerProps = props.ContainerProps;
-  _props$ContainerProps = _props$ContainerProps === void 0 ? {} : _props$ContainerProps;
-
-  var ContainerClassName = _props$ContainerProps.className,
-      ContainerProps = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(_props$ContainerProps, ["className"]),
-      _props$dense = props.dense,
-      dense = _props$dense === void 0 ? false : _props$dense,
-      _props$disabled = props.disabled,
-      disabled = _props$disabled === void 0 ? false : _props$disabled,
-      _props$disableGutters = props.disableGutters,
-      disableGutters = _props$disableGutters === void 0 ? false : _props$disableGutters,
-      _props$divider = props.divider,
-      divider = _props$divider === void 0 ? false : _props$divider,
-      focusVisibleClassName = props.focusVisibleClassName,
-      _props$selected = props.selected,
-      selected = _props$selected === void 0 ? false : _props$selected,
-      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["alignItems", "autoFocus", "button", "children", "classes", "className", "component", "ContainerComponent", "ContainerProps", "dense", "disabled", "disableGutters", "divider", "focusVisibleClassName", "selected"]);
-
-  var context = react__WEBPACK_IMPORTED_MODULE_2__["useContext"](_List_ListContext__WEBPACK_IMPORTED_MODULE_10__["default"]);
-  var childContext = {
-    dense: dense || context.dense || false,
-    alignItems: alignItems
-  };
-  var listItemRef = react__WEBPACK_IMPORTED_MODULE_2__["useRef"](null);
-  useEnhancedEffect(function () {
-    if (autoFocus) {
-      if (listItemRef.current) {
-        listItemRef.current.focus();
-      } else if (true) {
-        console.error('Material-UI: Unable to set focus to a ListItem whose component has not been rendered.');
-      }
-    }
-  }, [autoFocus]);
-  var children = react__WEBPACK_IMPORTED_MODULE_2__["Children"].toArray(childrenProp);
-  var hasSecondaryAction = children.length && Object(_utils_isMuiElement__WEBPACK_IMPORTED_MODULE_8__["default"])(children[children.length - 1], ['ListItemSecondaryAction']);
-  var handleOwnRef = react__WEBPACK_IMPORTED_MODULE_2__["useCallback"](function (instance) {
-    // #StrictMode ready
-    listItemRef.current = react_dom__WEBPACK_IMPORTED_MODULE_11__["findDOMNode"](instance);
-  }, []);
-  var handleRef = Object(_utils_useForkRef__WEBPACK_IMPORTED_MODULE_9__["default"])(handleOwnRef, ref);
-
-  var componentProps = Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, className, childContext.dense && classes.dense, !disableGutters && classes.gutters, divider && classes.divider, disabled && classes.disabled, button && classes.button, alignItems !== "center" && classes.alignItemsFlexStart, hasSecondaryAction && classes.secondaryAction, selected && classes.selected),
-    disabled: disabled
-  }, other);
-
-  var Component = componentProp || 'li';
-
-  if (button) {
-    componentProps.component = componentProp || 'div';
-    componentProps.focusVisibleClassName = Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.focusVisible, focusVisibleClassName);
-    Component = _ButtonBase__WEBPACK_IMPORTED_MODULE_7__["default"];
-  }
-
-  if (hasSecondaryAction) {
-    // Use div by default.
-    Component = !componentProps.component && !componentProp ? 'div' : Component; // Avoid nesting of li > li.
-
-    if (ContainerComponent === 'li') {
-      if (Component === 'li') {
-        Component = 'div';
-      } else if (componentProps.component === 'li') {
-        componentProps.component = 'div';
-      }
-    }
-
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](_List_ListContext__WEBPACK_IMPORTED_MODULE_10__["default"].Provider, {
-      value: childContext
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](ContainerComponent, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-      className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.container, ContainerClassName),
-      ref: handleRef
-    }, ContainerProps), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](Component, componentProps, children), children.pop()));
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](_List_ListContext__WEBPACK_IMPORTED_MODULE_10__["default"].Provider, {
-    value: childContext
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](Component, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    ref: handleRef
-  }, componentProps), children));
-});
- true ? ListItem.propTypes = {
-  /**
-   * Defines the `align-items` style property.
-   */
-  alignItems: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.oneOf(['flex-start', 'center']),
-
-  /**
-   * If `true`, the list item will be focused during the first mount.
-   * Focus will also be triggered if the value changes from false to true.
-   */
-  autoFocus: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
-
-  /**
-   * If `true`, the list item will be a button (using `ButtonBase`). Props intended
-   * for `ButtonBase` can then be applied to `ListItem`.
-   */
-  button: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
-
-  /**
-   * The content of the component. If a `ListItemSecondaryAction` is used it must
-   * be the last child.
-   */
-  children: Object(_material_ui_utils__WEBPACK_IMPORTED_MODULE_5__["chainPropTypes"])(prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node, function (props) {
-    var children = react__WEBPACK_IMPORTED_MODULE_2__["Children"].toArray(props.children); // React.Children.toArray(props.children).findLastIndex(isListItemSecondaryAction)
-
-    var secondaryActionIndex = -1;
-
-    for (var i = children.length - 1; i >= 0; i -= 1) {
-      var child = children[i];
-
-      if (Object(_utils_isMuiElement__WEBPACK_IMPORTED_MODULE_8__["default"])(child, ['ListItemSecondaryAction'])) {
-        secondaryActionIndex = i;
-        break;
-      }
-    } //  is ListItemSecondaryAction the last child of ListItem
-
-
-    if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {
-      return new Error('Material-UI: You used an element after ListItemSecondaryAction. ' + 'For ListItem to detect that it has a secondary action ' + 'you must pass it as the last child to ListItem.');
-    }
-
-    return null;
-  }),
-
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
-   */
-  classes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object.isRequired,
-
-  /**
-   * @ignore
-   */
-  className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
-
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   * By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
-   */
-  component: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a
-  /* @typescript-to-proptypes-ignore */
-  .elementType,
-
-  /**
-   * The container component used when a `ListItemSecondaryAction` is the last child.
-   */
-  ContainerComponent: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.elementType,
-
-  /**
-   * Props applied to the container component if used.
-   */
-  ContainerProps: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object,
-
-  /**
-   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
-   */
-  dense: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
-
-  /**
-   * If `true`, the list item will be disabled.
-   */
-  disabled: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
-
-  /**
-   * If `true`, the left and right padding is removed.
-   */
-  disableGutters: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
-
-  /**
-   * If `true`, a 1px light border is added to the bottom of the list item.
-   */
-  divider: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
-
-  /**
-   * @ignore
-   */
-  focusVisibleClassName: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
-
-  /**
-   * Use to apply selected styling.
-   */
-  selected: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool
-} : undefined;
-/* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_6__["default"])(styles, {
-  name: 'MuiListItem'
-})(ListItem));
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/core/esm/ListItem/index.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ListItem/index.js ***!
-  \**************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ListItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListItem */ "./node_modules/@material-ui/core/esm/ListItem/ListItem.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _ListItem__WEBPACK_IMPORTED_MODULE_0__["default"]; });
-
-
-
-/***/ }),
-
 /***/ "./node_modules/@material-ui/core/esm/ListSubheader/ListSubheader.js":
 /*!***************************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/ListSubheader/ListSubheader.js ***!
@@ -8820,178 +8525,6 @@ var Menu = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["forwardRef"](functio
 /* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_7__["default"])(styles, {
   name: 'MuiMenu'
 })(Menu));
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/core/esm/MenuItem/MenuItem.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/MenuItem/MenuItem.js ***!
-  \*****************************************************************/
-/*! exports provided: styles, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
-/* harmony import */ var _babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
-/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
-/* harmony import */ var _ListItem__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../ListItem */ "./node_modules/@material-ui/core/esm/ListItem/index.js");
-
-
-
-
-
-
-
-
-var styles = function styles(theme) {
-  return {
-    /* Styles applied to the root element. */
-    root: Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_2__["default"])({}, theme.typography.body1, Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__["default"])({
-      minHeight: 48,
-      paddingTop: 6,
-      paddingBottom: 6,
-      boxSizing: 'border-box',
-      width: 'auto',
-      overflow: 'hidden',
-      whiteSpace: 'nowrap'
-    }, theme.breakpoints.up('sm'), {
-      minHeight: 'auto'
-    })),
-    // TODO v5: remove
-
-    /* Styles applied to the root element if `disableGutters={false}`. */
-    gutters: {},
-
-    /* Styles applied to the root element if `selected={true}`. */
-    selected: {},
-
-    /* Styles applied to the root element if dense. */
-    dense: Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_2__["default"])({}, theme.typography.body2, {
-      minHeight: 'auto'
-    })
-  };
-};
-var MenuItem = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__["forwardRef"](function MenuItem(props, ref) {
-  var classes = props.classes,
-      className = props.className,
-      _props$component = props.component,
-      component = _props$component === void 0 ? 'li' : _props$component,
-      _props$disableGutters = props.disableGutters,
-      disableGutters = _props$disableGutters === void 0 ? false : _props$disableGutters,
-      ListItemClasses = props.ListItemClasses,
-      _props$role = props.role,
-      role = _props$role === void 0 ? 'menuitem' : _props$role,
-      selected = props.selected,
-      tabIndexProp = props.tabIndex,
-      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0__["default"])(props, ["classes", "className", "component", "disableGutters", "ListItemClasses", "role", "selected", "tabIndex"]);
-
-  var tabIndex;
-
-  if (!props.disabled) {
-    tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1;
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__["createElement"](_ListItem__WEBPACK_IMPORTED_MODULE_7__["default"], Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_2__["default"])({
-    button: true,
-    role: role,
-    tabIndex: tabIndex,
-    component: component,
-    selected: selected,
-    disableGutters: disableGutters,
-    classes: Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_2__["default"])({
-      dense: classes.dense
-    }, ListItemClasses),
-    className: Object(clsx__WEBPACK_IMPORTED_MODULE_5__["default"])(classes.root, className, selected && classes.selected, !disableGutters && classes.gutters),
-    ref: ref
-  }, other));
-});
- true ? MenuItem.propTypes = {
-  /**
-   * Menu item contents.
-   */
-  children: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.node,
-
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
-   */
-  classes: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.object.isRequired,
-
-  /**
-   * @ignore
-   */
-  className: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.string,
-
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a
-  /* @typescript-to-proptypes-ignore */
-  .elementType,
-
-  /**
-   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
-   */
-  dense: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.bool,
-
-  /**
-   * @ignore
-   */
-  disabled: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.bool,
-
-  /**
-   * If `true`, the left and right padding is removed.
-   */
-  disableGutters: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.bool,
-
-  /**
-   * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
-   */
-  ListItemClasses: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.object,
-
-  /**
-   * @ignore
-   */
-  role: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.string,
-
-  /**
-   * @ignore
-   */
-  selected: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.bool,
-
-  /**
-   * @ignore
-   */
-  tabIndex: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.number
-} : undefined;
-/* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_6__["default"])(styles, {
-  name: 'MuiMenuItem'
-})(MenuItem));
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/core/esm/MenuItem/index.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/MenuItem/index.js ***!
-  \**************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _MenuItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/MenuItem.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _MenuItem__WEBPACK_IMPORTED_MODULE_0__["default"]; });
-
-
 
 /***/ }),
 

@@ -159,22 +159,5 @@ app.listen(3000);
 console.log('http://localhost:3000');
 
 
-// app.get('/', function(req, res) {
-//     res.sendFile(__dirname + '/index.html');
-// });
-
-// app.get('/error', function (req, res, next) {
-//     next('404040')
-// })
-
-
-// const getData = async () => {
-//     const res = await fetch('localhost:3000/api/get')
-//     if(res.status == 200) {
-//         const { data } = await res.json()
-//         setItems(data.items) // положить в стэйт
-//     }
-// }
-
 
 

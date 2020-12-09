@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8390655d-237f-4fcc-89f1-7200c08f8d46" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/script.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/script.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ItemTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ItemTable.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/api.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,8 +15,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="SCSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -34,7 +35,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.16.1" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/node_modules/gulp" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../jstask2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -182,6 +183,14 @@
       <workItem from="1606743010213" duration="4502000" />
       <workItem from="1606819237594" duration="2566000" />
       <workItem from="1606907083160" duration="255000" />
+      <workItem from="1607011523369" duration="2041000" />
+      <workItem from="1607086328525" duration="3533000" />
+      <workItem from="1607175598733" duration="11345000" />
+      <workItem from="1607254044109" duration="1361000" />
+      <workItem from="1607266699593" duration="646000" />
+      <workItem from="1607336071569" duration="266000" />
+      <workItem from="1607438385546" duration="2357000" />
+      <workItem from="1607512619276" duration="724000" />
     </task>
     <servers />
   </component>
@@ -194,26 +203,26 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1606227258193">
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1607087072214">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606227258193" />
-    <state width="1898" height="228" key="GridCell.Tab.0.bottom" timestamp="1606907262220">
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607087072214" />
+    <state width="1898" height="228" key="GridCell.Tab.0.bottom" timestamp="1607017769006">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1898" height="228" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606907262220" />
-    <state width="1898" height="228" key="GridCell.Tab.0.center" timestamp="1606907262219">
+    <state width="1898" height="228" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607017769006" />
+    <state width="1898" height="228" key="GridCell.Tab.0.center" timestamp="1607017769006">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1898" height="228" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606907262219" />
-    <state width="1898" height="228" key="GridCell.Tab.0.left" timestamp="1606907262219">
+    <state width="1898" height="228" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607017769006" />
+    <state width="1898" height="228" key="GridCell.Tab.0.left" timestamp="1607017769005">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1898" height="228" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606907262219" />
-    <state width="1898" height="228" key="GridCell.Tab.0.right" timestamp="1606907262219">
+    <state width="1898" height="228" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607017769005" />
+    <state width="1898" height="228" key="GridCell.Tab.0.right" timestamp="1607017769006">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1898" height="228" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606907262219" />
+    <state width="1898" height="228" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607017769006" />
     <state width="1898" height="342" key="GridCell.Tab.1.bottom" timestamp="1605708208822">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
