@@ -665,29 +665,6 @@ const useRowStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2_
     }
   }
 });
-const useInventoryStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["makeStyles"])({
-  tableStyle: {
-    maxWidth: 1300,
-    margin: "auto",
-    ['@media (max-width:715px)']: {
-      root: {
-        width: "100%"
-      }
-    }
-  },
-  inputStyle: {
-    '& label.Mui-focused': {
-      color: '#962715'
-    },
-    '& .MuiOutlinedInput-root': {
-      '&.Mui-focused fieldset': {
-        borderColor: '#962715'
-      }
-    },
-    width: "50ch",
-    marginBottom: "25px"
-  }
-});
 
 const Row = props => {
   const {
